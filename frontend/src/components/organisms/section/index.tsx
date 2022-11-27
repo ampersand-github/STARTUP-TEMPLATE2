@@ -1,7 +1,7 @@
 import { Container, Stack, useTheme } from "@mui/material";
 import { ReactNode } from "react";
 import { Theme } from "@mui/material/styles/createTheme";
-import { isMobileSize } from "../../../services/functions/is-mobile-size";
+import { isMobileSize } from "src/services/functions/is-mobile-size";
 
 export interface ISection {
   children: ReactNode;
