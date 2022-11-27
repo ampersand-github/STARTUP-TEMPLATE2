@@ -1,7 +1,7 @@
 import { Container, Stack, useTheme } from "@mui/material";
 import { ReactNode } from "react";
 import { Theme } from "@mui/material/styles/createTheme";
-import { isMobileSize } from "src/services/functions/is-mobile-size";
+import { useIsMobileSize } from "src/services/hooks/use-is-mobile-size";
 
 export interface ISection {
   children: ReactNode;
@@ -9,7 +9,8 @@ export interface ISection {
 
 export const Section = ({ children }: ISection) => {
   const theme: Theme = useTheme();
-  const maxWidth = isMobileSize() ? "xs" : "md";
+  const { isMobileSize } = useIsMobileSize();
+  const maxWidth = isMobileSize ? "xs" : "md";
 
   return (
     <Stack

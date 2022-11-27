@@ -1,4 +1,5 @@
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
+import { CopyRightText } from "src/components/elements/copy-right-text";
 
 export const Footer = () => {
   const theme = useTheme();
@@ -16,9 +17,7 @@ export const Footer = () => {
       }}
     >
       <Box m="auto">
-        <Typography variant="h6" fontWeight="bold">
-          footer
-        </Typography>
+        <CopyRightText color={white} />
       </Box>
     </Stack>
   );
