@@ -1,18 +1,18 @@
-import { Section } from "src/components/organisms/section";
-import { Footer } from "src/components/organisms/footer";
 import { ReactNode } from "react";
 import { HeaderContainer } from "../organisms/header/index.container";
+import { FooterContainer } from "../organisms/footer/index.container";
+import { SectionContainer } from "../organisms/section/index.container";
 
-export interface ISection {
+export interface IBasicLayout {
   children: ReactNode;
 }
 
-export default function BasicLayout({ children }: ISection) {
+export default function BasicLayout({ children }: IBasicLayout) {
   return (
     <>
       <HeaderContainer />
-      <Section>{children}</Section>
-      <Footer />
+      <SectionContainer>{children}</SectionContainer>
+      <FooterContainer />
     </>
   );
 }
