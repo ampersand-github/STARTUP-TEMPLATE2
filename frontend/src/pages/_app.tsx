@@ -14,7 +14,10 @@ import { NextPage } from "next";
  * https://nextjs.org/docs/basic-features/layouts
  */
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
+  P,
+  IP
+> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -50,29 +53,3 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 };
 
 export default MyApp;
-/*
-
-  return getLayout(<Component {...pageProps} />)
-
-
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <React.StrictMode>
-      <Head>
-        <title>テンプレートサイト</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <BasicLayout>
-            <Component {...pageProps} />
-          </BasicLayout>
-          <CssBaseline />
-        </ThemeProvider>
-      </RecoilRoot>
-    </React.StrictMode>
-  );
-}
-
-
- */

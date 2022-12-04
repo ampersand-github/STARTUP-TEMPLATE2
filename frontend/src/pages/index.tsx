@@ -1,4 +1,4 @@
-import { Button, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Button, Stack, Typography, useTheme } from "@mui/material";
 import Head from "next/head";
 import { Space } from "src/components/elements/space";
 import { GREAT_PARSON_PAGE } from "src/services/constraints/page-url";
