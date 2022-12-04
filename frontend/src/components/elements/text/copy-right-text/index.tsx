@@ -1,13 +1,13 @@
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import * as React from "react";
-import { AMPERSAND_PAGE } from "src/services/constraints/page-url";
 
 export interface ICopyRightText {
+  pageUrl: string;
   color?: string;
 }
 
-export const CopyRightText = ({ color = "black" }: ICopyRightText) => {
+export const CopyRightText = ({ pageUrl, color = "black" }: ICopyRightText) => {
   const year = new Date().getFullYear();
   return (
     <Typography
@@ -17,7 +17,7 @@ export const CopyRightText = ({ color = "black" }: ICopyRightText) => {
       align="center"
     >
       {"Copyright © "}
-      <Link color="inherit" href={AMPERSAND_PAGE}>
+      <Link color="inherit" href={pageUrl}>
         ampersand {year}
       </Link>
     </Typography>

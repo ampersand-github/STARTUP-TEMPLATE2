@@ -1,12 +1,13 @@
 import { Box, Stack } from "@mui/material";
-import { CopyRightText } from "src/components/elements/text/copy-right-text";
+import { CopyRightText } from "../../elements/text/copy-right-text";
 
 export interface IFooter {
   white: string;
   backgroundColor: string;
+  url: string;
 }
 
-export const Footer = ({ white, backgroundColor }: IFooter) => {
+export const Footer = ({ white, backgroundColor, url }: IFooter) => {
   return (
     <Stack
       sx={{
@@ -19,7 +20,7 @@ export const Footer = ({ white, backgroundColor }: IFooter) => {
       }}
     >
       <Box m="auto">
-        <CopyRightText color={white} />
+        <CopyRightText color={white} pageUrl={url} />
       </Box>
     </Stack>
   );
