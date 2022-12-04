@@ -5,7 +5,7 @@ import { Header } from "src/components/organisms/header/index";
 import { useAuth } from "src/services/hooks/use-auth";
 
 export const HeaderContainer = () => {
-  const { user, logout } = useAuth();
+  const { user, isUserLoading, logout } = useAuth();
   const { isMobileSize } = useIsMobileSize();
   const theme: Theme = useTheme();
   const white = theme.palette.common.white;
@@ -13,6 +13,7 @@ export const HeaderContainer = () => {
 
   return Header({
     user,
+    isUserLoading,
     logout,
     isMobileSize,
     white,

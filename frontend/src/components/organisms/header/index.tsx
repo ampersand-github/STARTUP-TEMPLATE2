@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Button, IconButton, Link, Toolbar, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  IconButton,
+  Link,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { AppBar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Space } from "src/components/elements/space";
@@ -8,6 +15,7 @@ import { IUseAuth } from "src/services/hooks/use-auth";
 
 export interface IHeader {
   user: IUseAuth["user"];
+  isUserLoading: IUseAuth["isUserLoading"];
   logout: IUseAuth["logout"];
   isMobileSize: boolean;
   white: string;
@@ -16,6 +24,7 @@ export interface IHeader {
 
 export const Header = ({
   user,
+  isUserLoading,
   logout,
   isMobileSize,
   white,
@@ -31,7 +40,10 @@ export const Header = ({
           </Typography>
         </Link>
 
-        {user ? (
+        {/* 認証まわり */}
+        {isUserLoading ? (
+          <CircularProgress />
+        ) : user ? (
           <Button onClick={logout}>ログアウト</Button>
         ) : (
           <>
