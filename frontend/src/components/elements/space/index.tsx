@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 
 export interface ISpace {
   width?: number;
@@ -6,8 +6,6 @@ export interface ISpace {
 }
 
 export const Space = ({ width = 0, height = 0 }: ISpace) => {
-  const theme = useTheme();
-  const _width = theme.spacing(width);
-  const _height = theme.spacing(height);
-  return <Box width={_width} height={_height} />;
+  const baseSpacing = 8;
+  return <Box width={baseSpacing * width} height={baseSpacing * height} />;
 };
