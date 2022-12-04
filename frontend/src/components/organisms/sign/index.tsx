@@ -4,16 +4,15 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useAuth } from "src/services/hooks/use-auth";
+import { IUseAuth } from "src/services/hooks/use-auth";
 
 export interface ISignForm {
   text: string;
+  user: IUseAuth["user"];
+  signIn: IUseAuth["signIn"];
 }
 
-export const SignForm = ({ text }: ISignForm) => {
-  // todo containerへ
-  const { user, signIn, logout } = useAuth();
-
+export const SignForm = ({ text, user, signIn }: ISignForm) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
