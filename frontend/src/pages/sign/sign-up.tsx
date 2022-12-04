@@ -3,10 +3,10 @@ import Container from "@mui/material/Container";
 import { Space } from "src/components/elements/space";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import Grid from "@mui/material/Grid";
-import { CopyRightText } from "src/components/elements/copy-right-text";
+import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import * as React from "react";
 import { SignForm } from "src/components/organisms/sign";
-import { LinkText } from "src/components/elements/link-text";
+import { LinkText } from "src/components/elements/text/link-text";
 import { SIGN_IN_PAGE } from "src/services/constraints/page-url";
 
 export default function SignUp() {

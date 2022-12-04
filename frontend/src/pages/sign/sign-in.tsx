@@ -2,12 +2,12 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { Space } from "src/components/elements/space";
-import { CopyRightText } from "src/components/elements/copy-right-text";
+import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import { useTheme } from "@mui/material";
-import { SignForm } from "src/components/organisms/sign";
-import { LinkText } from "src/components/elements/link-text";
+import { LinkText } from "src/components/elements/text/link-text";
 import { SIGN_UP_PAGE } from "src/services/constraints/page-url";
+import { SignFormContainer } from "src/components/organisms/sign/index.container";
 
 export default function SignIn() {
   const theme = useTheme();
@@ -24,7 +24,7 @@ export default function SignIn() {
       ></SignIcon>
 
       {/* サインインフォーム */}
-      <SignForm text={text}></SignForm>
+      <SignFormContainer text={text}></SignFormContainer>
 
       {/* 下部のコンテンツ */}
       <Grid container>
