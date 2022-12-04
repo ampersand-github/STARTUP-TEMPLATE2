@@ -1,9 +1,9 @@
+import * as React from "react";
 import { Button, IconButton, Link, Toolbar, Typography } from "@mui/material";
 import { AppBar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Space } from "src/components/elements/space";
 import { SIGN_IN_PAGE, SIGN_UP_PAGE } from "src/services/constraints/page-url";
-import * as React from "react";
 import { IUseAuth } from "src/services/hooks/use-auth";
 
 export interface IHeader {
