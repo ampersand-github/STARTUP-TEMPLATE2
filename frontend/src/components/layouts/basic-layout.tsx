@@ -1,7 +1,7 @@
-import { Header } from "src/components/organisms/header";
 import { Section } from "src/components/organisms/section";
 import { Footer } from "src/components/organisms/footer";
 import { ReactNode } from "react";
+import { HeaderContainer } from "../organisms/header/index.container";
 
 export interface ISection {
   children: ReactNode;
@@ -10,7 +10,7 @@ export interface ISection {
 export default function BasicLayout({ children }: ISection) {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <Section>{children}</Section>
       <Footer />
     </>
