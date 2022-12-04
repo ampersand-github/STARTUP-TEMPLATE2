@@ -1,10 +1,12 @@
-import { Box, Stack, useTheme } from "@mui/material";
-import { CopyRightText } from "src/components/elements/copy-right-text";
+import { Box, Stack } from "@mui/material";
+import { CopyRightText } from "src/components/elements/text/copy-right-text";
 
-export const Footer = () => {
-  const theme = useTheme();
-  const backgroundColor = theme.palette.grey["900"];
-  const white = theme.palette.common.white;
+export interface IFooter {
+  white: string;
+  backgroundColor: string;
+}
+
+export const Footer = ({ white, backgroundColor }: IFooter) => {
   return (
     <Stack
       sx={{
