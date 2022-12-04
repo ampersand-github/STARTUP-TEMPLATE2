@@ -5,9 +5,9 @@ import { SignIcon } from "src/components/elements/sign/sign-icon";
 import Grid from "@mui/material/Grid";
 import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import * as React from "react";
-import { SignForm } from "src/components/organisms/sign";
 import { LinkText } from "src/components/elements/text/link-text";
 import { SIGN_IN_PAGE } from "src/services/constraints/page-url";
+import { SignFormContainer } from "src/components/organisms/sign/index.container";
 
 export default function SignUp() {
   const theme = useTheme();
@@ -25,7 +25,7 @@ export default function SignUp() {
       ></SignIcon>
 
       {/* サインインフォーム */}
-      <SignForm text={text} />
+      <SignFormContainer text={text} />
 
       {/* 下部のコンテンツ */}
       <Grid container>

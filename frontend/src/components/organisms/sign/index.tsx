@@ -5,14 +5,16 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { IUseAuth } from "src/services/hooks/use-auth";
+import { NextRouter } from "next/router";
 
 export interface ISignForm {
   text: string;
   user: IUseAuth["user"];
   signIn: IUseAuth["signIn"];
+  router: NextRouter;
 }
 
-export const SignForm = ({ text, user, signIn }: ISignForm) => {
+export const SignForm = ({ text, user, signIn, router }: ISignForm) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -21,6 +23,7 @@ export const SignForm = ({ text, user, signIn }: ISignForm) => {
       password: data.get("password"),
     });
     await signIn(data.get("email") as string, data.get("password") as string);
+    router.back();
   };
 
   return (
