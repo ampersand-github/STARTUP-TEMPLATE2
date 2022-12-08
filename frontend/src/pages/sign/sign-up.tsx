@@ -28,7 +28,7 @@ export default function SignUp() {
       ></SignIcon>
 
       {/* サインインフォーム */}
-      <SignFormContainer text={text} />
+      <SignFormContainer text={text} signType={"sign-up"} />
 
       {/* 下部のコンテンツ */}
       <Grid container>

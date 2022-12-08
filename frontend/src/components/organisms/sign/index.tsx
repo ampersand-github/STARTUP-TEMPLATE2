@@ -1,30 +1,42 @@
 import * as React from "react";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { IUseAuth } from "src/services/hooks/use-auth";
 import { NextRouter } from "next/router";
+import { useState } from "react";
 
 export interface ISignForm {
   text: string;
   user: IUseAuth["user"];
-  signIn: IUseAuth["signIn"];
+  signIn?: IUseAuth["signIn"];
+  signUp?: IUseAuth["signUp"];
   router: NextRouter;
 }
 
-export const SignForm = ({ text, user, signIn, router }: ISignForm) => {
+export const SignForm = ({ text, user, signIn, signUp, router }: ISignForm) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    await signIn(data.get("email") as string, data.get("password") as string);
-    router.back();
+
+    if (signIn) {
+      setIsLoading(true);
+      await signIn(data.get("email") as string, data.get("password") as string);
+    }
+
+    if (signUp) {
+      setIsLoading(true);
+      await signUp(data.get("email") as string, data.get("password") as string);
+    }
+    setIsLoading(false);
   };
+
+  if (isLoading) return <CircularProgress />;
 
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -45,12 +57,18 @@ export const SignForm = ({ text, user, signIn, router }: ISignForm) => {
         fullWidth
         name="password"
         label="Password"
-        type="password"
+        type={isShowPassword ? "text" : "password"}
         id="password"
         autoComplete="current-password"
       />
       <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
+        control={
+          <Checkbox
+            value="remember"
+            color="primary"
+            onClick={() => setIsShowPassword(!isShowPassword)}
+          />
+        }
         label="パスワードを表示する"
       />
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
