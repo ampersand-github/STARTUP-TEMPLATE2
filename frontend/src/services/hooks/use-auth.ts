@@ -13,6 +13,10 @@ import { firebaseAuth } from "src/services/firebase-config";
 import { RecoilAtomKeys } from "src/services/constraints/recoil-atom-key";
 import { useRouter } from "next/router";
 import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/page-url";
+import { FirebaseError } from "@firebase/app";
+import {
+  authErrorList,
+} from "src/services/constraints/firebase-auth-error";
 
 export type IAuth = User | null;
 export interface IUseAuth {
@@ -47,6 +51,7 @@ export const useAuth = (): IUseAuth => {
       // メール認証をしていない場合は認証メールを承認してもらうページに飛ぶ
       if (user && !user.emailVerified)
         await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
+
     });
   }, []);
 
@@ -61,15 +66,28 @@ export const useAuth = (): IUseAuth => {
         password
       );
 
+      // 認証済みユーザーは一つ前の画面に戻る
       if (result.user.emailVerified) {
         await router.back();
         return;
       }
 
       await emailVerified(result.user);
-    } catch (error) {
-      console.log(error);
-      alert("サインインに失敗しました。");
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+
+        // エラーからエラーコードを探す
+        const code = e.code;
+        const mayBeAuthError = authErrorList.find((one) => one.code === code);
+
+        // 一致したらアラートを出す
+        if (mayBeAuthError) {
+          alert(mayBeAuthError.message);
+          return; // 下のアラートと重ならないための処理
+        }
+      }
+
+      alert("ログインに失敗しました");
     }
   };
 
@@ -79,9 +97,22 @@ export const useAuth = (): IUseAuth => {
   const signUp = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
-      await emailVerified(user);
-    } catch (error) {
-      alert("サインアップに失敗しました。");
+      await emailVerified(user); // signUp時点ではemail認証していないので強制的にEmail認証させる
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+
+        // エラーからエラーコードを探す
+        const code = e.code;
+        const mayBeAuthError = authErrorList.find((one) => one.code === code);
+
+        // 一致したらアラートを出す
+        if (mayBeAuthError) {
+          alert(mayBeAuthError.message);
+          return; // 下のアラートと重ならないための処理
+        }
+      }
+
+      alert("新規の登録に失敗しました");
     }
   };
 

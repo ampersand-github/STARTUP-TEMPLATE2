@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "cd .. && husky install frontend/.husky",
-    "dev": "next dev",
+    "dev": "next dev -p 3010",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./ --ext .ts,tsx,js",

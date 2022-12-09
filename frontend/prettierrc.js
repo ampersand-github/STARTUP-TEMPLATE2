@@ -1,6 +1,6 @@
 module.exports = {
   // 以下はデフォルト設定、必要に応じてコメントアウトして値を変更する
-  // printWidth: 80
+  printWidth: 96,
   // tabWidth: 2,
   // useTabs: false,
   // semi: ture,

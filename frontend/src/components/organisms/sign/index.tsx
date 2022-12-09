@@ -16,7 +16,7 @@ export interface ISignForm {
   router: NextRouter;
 }
 
-export const SignForm = ({ text, user, signIn, signUp, router }: ISignForm) => {
+export const SignForm = ({ text, user, signIn, signUp }: ISignForm) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
