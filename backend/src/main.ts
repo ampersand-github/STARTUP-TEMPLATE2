@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
-import helmet from '@fastify/helmet';
-import fastifyCsrf from '@fastify/csrf-protection';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
+import helmet from "@fastify/helmet";
+import fastifyCsrf from "@fastify/csrf-protection";
 
 async function bootstrap() {
   const fastify = new FastifyAdapter();
@@ -14,7 +14,7 @@ async function bootstrap() {
   await app.register(fastifyCsrf);
 
   // アプリケーション
-  await app.listen(3011, '0.0.0.0');
+  await app.listen(3011, "0.0.0.0");
 }
 
 bootstrap();
