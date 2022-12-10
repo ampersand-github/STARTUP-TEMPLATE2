@@ -10,12 +10,7 @@ export interface ICopyRightText {
 export const CopyRightText = ({ pageUrl, color = "black" }: ICopyRightText) => {
   const year = new Date().getFullYear();
   return (
-    <Typography
-      variant="body2"
-      color={color}
-      sx={{ opacity: "0.6" }}
-      align="center"
-    >
+    <Typography variant="body2" color={color} sx={{ opacity: "0.6" }} align="center">
       {"Copyright © "}
       <Link color="inherit" href={pageUrl}>
         ampersand {year}

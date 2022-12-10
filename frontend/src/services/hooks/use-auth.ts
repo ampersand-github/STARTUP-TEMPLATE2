@@ -14,9 +14,7 @@ import { RecoilAtomKeys } from "src/services/constraints/recoil-atom-key";
 import { useRouter } from "next/router";
 import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/page-url";
 import { FirebaseError } from "@firebase/app";
-import {
-  authErrorList,
-} from "src/services/constraints/firebase-auth-error";
+import { authErrorList } from "src/services/constraints/firebase-auth-error";
 
 export type IAuth = User | null;
 export interface IUseAuth {
@@ -49,9 +47,7 @@ export const useAuth = (): IUseAuth => {
       setIsUserLoading(false);
 
       // メール認証をしていない場合は認証メールを承認してもらうページに飛ぶ
-      if (user && !user.emailVerified)
-        await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
-
+      if (user && !user.emailVerified) await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
     });
   }, []);
 
@@ -75,7 +71,6 @@ export const useAuth = (): IUseAuth => {
       await emailVerified(result.user);
     } catch (e) {
       if (e instanceof FirebaseError) {
-
         // エラーからエラーコードを探す
         const code = e.code;
         const mayBeAuthError = authErrorList.find((one) => one.code === code);
@@ -100,7 +95,6 @@ export const useAuth = (): IUseAuth => {
       await emailVerified(user); // signUp時点ではemail認証していないので強制的にEmail認証させる
     } catch (e) {
       if (e instanceof FirebaseError) {
-
         // エラーからエラーコードを探す
         const code = e.code;
         const mayBeAuthError = authErrorList.find((one) => one.code === code);

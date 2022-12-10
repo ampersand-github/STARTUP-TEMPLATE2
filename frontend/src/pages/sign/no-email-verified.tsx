@@ -18,9 +18,7 @@ export default function NoEmailVerified() {
   return (
     <Stack>
       <Center>
-        <Typography>
-          {email}に認証メールを送信しました。 認証してください。
-        </Typography>
+        <Typography>{email}に認証メールを送信しました。 認証してください。</Typography>
       </Center>
       <Space height={3}></Space>
       <Button onClick={handleClick}>認証メールを再送する</Button>

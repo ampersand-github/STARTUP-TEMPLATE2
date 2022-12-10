@@ -6,9 +6,6 @@ export default {
   component: SiteLogo,
 } as ComponentMeta<typeof SiteLogo>;
 
-const Template: ComponentStory<typeof SiteLogo> = (args: ISiteLogo) => (
-  <SiteLogo {...args} />
-);
+const Template: ComponentStory<typeof SiteLogo> = (args: ISiteLogo) => <SiteLogo {...args} />;
 
 export const Normal = Template.bind({});
-

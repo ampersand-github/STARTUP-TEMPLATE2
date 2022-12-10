@@ -7,11 +7,7 @@ export interface ISection {
   backgroundColor: string;
 }
 
-export const Section = ({
-  children,
-  isMobileSize,
-  backgroundColor,
-}: ISection) => {
+export const Section = ({ children, isMobileSize, backgroundColor }: ISection) => {
   const maxWidth = isMobileSize ? "xs" : "md";
 
   return (

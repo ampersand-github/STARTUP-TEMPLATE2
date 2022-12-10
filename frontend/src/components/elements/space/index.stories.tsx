@@ -16,9 +16,7 @@ export default {
   ],
 } as ComponentMeta<typeof Space>;
 
-const Template: ComponentStory<typeof Space> = (args: ISpace) => (
-  <Space {...args} />
-);
+const Template: ComponentStory<typeof Space> = (args: ISpace) => <Space {...args} />;
 
 export const Default = Template.bind({});
 Default.args = { width: 3, height: 12 };

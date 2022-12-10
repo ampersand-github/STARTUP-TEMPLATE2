@@ -6,9 +6,7 @@ export default {
   component: Section,
 } as ComponentMeta<typeof Section>;
 
-const Template: ComponentStory<typeof Section> = (args: ISection) => (
-  <Section {...args} />
-);
+const Template: ComponentStory<typeof Section> = (args: ISection) => <Section {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -6,8 +6,6 @@ export default {
   component: SignIcon,
 } as ComponentMeta<typeof SignIcon>;
 
-const Template: ComponentStory<typeof SignIcon> = (args: ISignIcon) => (
-  <SignIcon {...args} />
-);
+const Template: ComponentStory<typeof SignIcon> = (args: ISignIcon) => <SignIcon {...args} />;
 
 export const Default = Template.bind({});

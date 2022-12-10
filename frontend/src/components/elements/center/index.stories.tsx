@@ -7,16 +7,12 @@ export default {
   component: Center,
 } as ComponentMeta<typeof Center>;
 
-const Template: ComponentStory<typeof Center> = (args: ICenter) => (
-  <Center {...args} />
-);
+const Template: ComponentStory<typeof Center> = (args: ICenter) => <Center {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = { children: "this is Primary" };
 
 export const Component = Template.bind({});
 Component.args = {
-  children: (
-    <Box width="16px" height="16px" sx={{ backgroundColor: "red" }}></Box>
-  ),
+  children: <Box width="16px" height="16px" sx={{ backgroundColor: "red" }}></Box>,
 };

@@ -1,6 +1,6 @@
 module.exports = {
   // 以下はデフォルト設定、必要に応じてコメントアウトして値を変更する
-  printWidth: 96,
+  printWidth: 100,
   // tabWidth: 2,
   // useTabs: false,
   // semi: ture,
@@ -20,4 +20,5 @@ module.exports = {
   // vueIndentScriptAndStyle: false,
   // endOfLine: "lf",
   // embeddedLanguageFormatting: "auto"
+  singleAttributePerLine:false
 };

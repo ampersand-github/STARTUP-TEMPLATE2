@@ -6,10 +6,7 @@ import Grid from "@mui/material/Grid";
 import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import * as React from "react";
 import { LinkText } from "src/components/elements/text/link-text";
-import {
-  AMPERSAND_PAGE,
-  SIGN_IN_PAGE,
-} from "src/services/constraints/page-url";
+import { AMPERSAND_PAGE, SIGN_IN_PAGE } from "src/services/constraints/page-url";
 import { SignFormContainer } from "src/components/organisms/sign/index.container";
 
 export default function SignUp() {

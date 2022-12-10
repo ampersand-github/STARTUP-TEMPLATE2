@@ -6,9 +6,9 @@ export default {
   component: CopyRightText,
 } as ComponentMeta<typeof CopyRightText>;
 
-const Template: ComponentStory<typeof CopyRightText> = (
-  args: ICopyRightText
-) => <CopyRightText {...args} />;
+const Template: ComponentStory<typeof CopyRightText> = (args: ICopyRightText) => (
+  <CopyRightText {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = { pageUrl: "/", color: "black" };

@@ -1,10 +1,7 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
 import Head from "next/head";
 import { Space } from "src/components/elements/space";
-import {
-  GREAT_PARSON_PAGE,
-  PRACTICE_ANOTHER_LAYOUT,
-} from "src/services/constraints/page-url";
+import { GREAT_PARSON_PAGE, PRACTICE_ANOTHER_LAYOUT } from "src/services/constraints/page-url";
 
 export default function Home() {
   const theme = useTheme();

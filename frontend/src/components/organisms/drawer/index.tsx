@@ -7,13 +7,18 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  ListSubheader,
   Stack,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 import { IUseAuth } from "src/services/hooks/use-auth";
-import { Space } from 'src/components/elements/space';
-import { PRACTICE_ANOTHER_LAYOUT, TOP_PAGE, WISE_SAYING_PAGE } from 'src/services/constraints/page-url';
-
+import { Space } from "src/components/elements/space";
+import {
+  PRACTICE_ANOTHER_LAYOUT,
+  TOP_PAGE,
+  WISE_SAYING_PAGE,
+} from "src/services/constraints/page-url";
+import { Center } from "src/components/elements/center";
 
 export interface IMyDrawer {
   isOpen: boolean;
@@ -24,30 +29,34 @@ export interface IMyDrawer {
 }
 
 export const MyDrawer = ({ isOpen, toggle, user, logout }: IMyDrawer) => {
+  const _ListSubheader = (text: string) => <ListSubheader>{text}</ListSubheader>;
+  const _logout = (
+    <Button onClick={logout} variant={"contained"}>
+      ログアウト
+    </Button>
+  );
+
   return (
     <Drawer anchor="right" open={isOpen} onClose={toggle}>
-      <Stack paddingLeft={2} paddingRight={2} sx={{ minWidth: 320 }}>
-        <List>
-          {/* メールアドレス */}
-          {user && (
-            <>
-              <ListItem
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}
-              >
-                <Typography variant={"h6"} fontWeight={"bold"}>
-                  メールアドレス
-                </Typography>
-                <Typography variant={"body2"}>{user?.email}</Typography>
-              </ListItem>
-              <Divider />
-            </>
-          )}
+      <Stack padding={2} spacing={3} sx={{ width: "100%", minWidth: 320 }}>
+        {/* タイトル */}
+        <Center>
+          <Typography variant={"h6"} fontWeight={"bold"}></Typography>
+        </Center>
 
-          {/* 内部ページ */}
+        {/* メールアドレス */}
+        {user && (
+          <List subheader={_ListSubheader("メールアドレス")}>
+            <ListItem sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <Typography variant={"body2"}>{user?.email}</Typography>
+            </ListItem>
+            <Space height={2}></Space>
+            <Divider />
+          </List>
+        )}
+
+        {/* 内部ページ */}
+        <List subheader={_ListSubheader("ページリンク")}>
           <ListItem>
             <ListItemButton component="a" href={TOP_PAGE}>
               <ListItemText primary="トップページ" />
@@ -63,18 +72,11 @@ export const MyDrawer = ({ isOpen, toggle, user, logout }: IMyDrawer) => {
               <ListItemText primary="レイアウトが違うページ" />
             </ListItemButton>
           </ListItem>
+          <Divider />
         </List>
-        <Divider />
 
-   <Space height={10}/>
-
-        {user ? (
-          <Button onClick={logout} variant={"contained"}>
-            ログアウト
-          </Button>
-        ) : (
-          <></>
-        )}
+        {/* ログアウト */}
+        {user ? _logout : <></>}
       </Stack>
     </Drawer>
   );

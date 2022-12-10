@@ -1,5 +1,5 @@
-import { atom, useRecoilState } from 'recoil';
-import { RecoilAtomKeys } from 'src/services/constraints/recoil-atom-key';
+import { atom, useRecoilState } from "recoil";
+import { RecoilAtomKeys } from "src/services/constraints/recoil-atom-key";
 
 const drawerState = atom<boolean>({
   key: RecoilAtomKeys.DRAWER_STATE,
@@ -9,6 +9,6 @@ const drawerState = atom<boolean>({
 
 export const useDrawer = () => {
   const [isOpen, setIsOpen] = useRecoilState(drawerState);
-  const toggle = () => setIsOpen(!isOpen)
+  const toggle = () => setIsOpen(!isOpen);
   return { isOpen, toggle };
 };
