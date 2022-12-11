@@ -5,6 +5,7 @@ export const SIGN_IN_PAGE = "/sign/sign-in";
 export const SIGN_NO_EMAIL_VERIFIED_PAGE = "/sign/no-email-verified";
 export const PRACTICE_ANOTHER_LAYOUT = "/practice/another-layout";
 export const WISE_SAYING_PAGE = "/wise-saying";
+export const API_PRACTICE_PAGE = "/practice/api-page";
 
 // 外部ページ
 export const AMPERSAND_PAGE = "https://blog.ampersand.today/";
