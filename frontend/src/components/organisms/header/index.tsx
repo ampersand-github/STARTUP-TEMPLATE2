@@ -11,7 +11,7 @@ import {
 import { AppBar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Space } from "src/components/elements/space";
-import { SIGN_IN_PAGE, SIGN_UP_PAGE } from "src/services/constraints/page-url";
+import { SIGN_IN_PAGE, SIGN_UP_PAGE } from "src/services/constraints/url/page-url";
 import { IUseAuth } from "src/services/hooks/use-auth";
 import { MyDrawer } from "src/components/organisms/drawer";
 import { SiteLogo } from "src/components/elements/site-logo";
@@ -36,7 +36,7 @@ export const Header = ({
   palette,
 }: IHeader) => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: palette.background.default }}>
+    <AppBar position="static" sx={{ backgroundColor: palette.header.main }}>
       <Toolbar>
         {/* タイトル */}
         <Link href={"/"} underline="none" sx={{ flexGrow: 1 }}>

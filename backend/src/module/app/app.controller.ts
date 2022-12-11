@@ -3,8 +3,6 @@ import { AuthGuard } from "src/module/auth/auth.guard";
 
 @Controller()
 export class AppController {
-  constructor() {}
-
   @Get()
   getHello(): string {
     return "Hello";

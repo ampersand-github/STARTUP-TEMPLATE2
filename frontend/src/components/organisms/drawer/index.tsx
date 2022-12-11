@@ -14,10 +14,11 @@ import {
 import { IUseAuth } from "src/services/hooks/use-auth";
 import { Space } from "src/components/elements/space";
 import {
+  API_PRACTICE_PAGE,
   PRACTICE_ANOTHER_LAYOUT,
   TOP_PAGE,
   WISE_SAYING_PAGE,
-} from "src/services/constraints/page-url";
+} from "src/services/constraints/url/page-url";
 import { Center } from "src/components/elements/center";
 
 export interface IMyDrawer {
@@ -70,6 +71,11 @@ export const MyDrawer = ({ isOpen, toggle, user, logout }: IMyDrawer) => {
           <ListItem>
             <ListItemButton component="a" href={PRACTICE_ANOTHER_LAYOUT}>
               <ListItemText primary="レイアウトが違うページ" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton component="a" href={API_PRACTICE_PAGE}>
+              <ListItemText primary="API動作確認" />
             </ListItemButton>
           </ListItem>
           <Divider />

@@ -1,11 +1,7 @@
-import { Button, Stack, Typography, useTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 import Head from "next/head";
-import { Space } from "src/components/elements/space";
-import { GREAT_PARSON_PAGE, PRACTICE_ANOTHER_LAYOUT } from "src/services/constraints/page-url";
 
 export default function Home() {
-  const theme = useTheme();
-  const white = theme.palette.common.white;
   const text =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
     "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -26,14 +22,6 @@ export default function Home() {
         {text} {text} {text} {text} {text} {text} {text} {text} {text} {text}
         {text} {text} {text} {text} {text} {text} {text} {text} {text} {text}
       </>
-      <Space height={3}></Space>
-      <Button href={GREAT_PARSON_PAGE} variant="contained">
-        <Typography color={white}>偉人データベース</Typography>
-      </Button>
-      <Space height={3}></Space>
-      <Button href={PRACTICE_ANOTHER_LAYOUT} variant="contained">
-        <Typography color={white}>レイアウトが違うページ</Typography>
-      </Button>
     </Stack>
   );
 }

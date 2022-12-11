@@ -6,6 +6,9 @@ import React, { ReactElement, ReactNode } from "react";
 import BasicLayout from "src/components/layouts/basic-layout";
 import { RecoilRoot } from "recoil";
 import { NextPage } from "next";
+import { QueryClient } from "@tanstack/query-core";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -23,6 +26,8 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const queryClient = new QueryClient();
+
   const getLayout =
     Component.getLayout ??
     ((page: ReactElement) => {
@@ -40,10 +45,13 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          {getLayout(<Component {...pageProps} />)}
-          <CssBaseline />
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <ThemeProvider theme={theme}>
+            {getLayout(<Component {...pageProps} />)}
+            <CssBaseline />
+          </ThemeProvider>
+        </QueryClientProvider>
       </RecoilRoot>
     </React.StrictMode>
   );

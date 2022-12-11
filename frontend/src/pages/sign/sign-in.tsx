@@ -6,7 +6,7 @@ import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import { useTheme } from "@mui/material";
 import { LinkText } from "src/components/elements/text/link-text";
-import { AMPERSAND_PAGE, SIGN_UP_PAGE } from "src/services/constraints/page-url";
+import { AMPERSAND_PAGE, SIGN_UP_PAGE } from "src/services/constraints/url/page-url";
 import { SignFormContainer } from "src/components/organisms/sign/index.container";
 
 export default function SignIn() {
