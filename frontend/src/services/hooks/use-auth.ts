@@ -9,10 +9,10 @@ import {
   sendEmailVerification,
   UserCredential,
 } from "@firebase/auth";
-import { firebaseAuth } from "src/services/firebase-config";
-import { RecoilAtomKeys } from "src/services/constraints/recoil-atom-key";
+import { firebaseAuth } from "src/services/configs/firebase-config";
+import { RecoilAtomKeys } from "src/services/constraints/recoil/recoil-atom-key";
 import { useRouter } from "next/router";
-import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/page-url";
+import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/url/page-url";
 import { FirebaseError } from "@firebase/app";
 import { authErrorList } from "src/services/constraints/firebase-auth-error";
 

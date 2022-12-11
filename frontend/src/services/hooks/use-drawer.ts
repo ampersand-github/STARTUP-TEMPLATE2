@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from "recoil";
-import { RecoilAtomKeys } from "src/services/constraints/recoil-atom-key";
+import { RecoilAtomKeys } from "src/services/constraints/recoil/recoil-atom-key";
 
 const drawerState = atom<boolean>({
   key: RecoilAtomKeys.DRAWER_STATE,
