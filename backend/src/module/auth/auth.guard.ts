@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Request } from "express";
 import { AuthService } from "src/module/auth/auth.service";
 
-type CustomRequest = Request & { uid: string };
+export type CustomRequest = Request & { uid: string };
 
 class RequestValidator {
   public validateRequest(request: Request): boolean {
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest<CustomRequest>();
+    const request = await context.switchToHttp().getRequest<CustomRequest>();
     this.requestValidator.validateRequest(request);
     this.requestValidator.validateBearer(request.headers.authorization);
     const token = this.pullOutToken(request);
