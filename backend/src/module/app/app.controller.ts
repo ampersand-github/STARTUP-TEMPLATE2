@@ -1,5 +1,5 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
-import { AuthGuard } from "src/module/auth/auth.guard";
+import { Controller, Get, Req, UseGuards } from "@nestjs/common";
+import { AuthGuard, CustomRequest } from "src/module/auth/auth.guard";
 
 @Controller()
 export class AppController {
@@ -11,9 +11,7 @@ export class AppController {
   // curl http://localhost:3011/auth
   @UseGuards(AuthGuard)
   @Get("auth")
-  getHello2(): string {
-    return "auth";
+  getHello2(@Req() request: CustomRequest): string {
+    return request.uid;
   }
 }
-
-// curl http://localhost:3011/

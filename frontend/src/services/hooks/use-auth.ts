@@ -36,9 +36,9 @@ const authState = atom<IAuth>({
  * 認証
  */
 export const useAuth = (): IUseAuth => {
+  const router = useRouter();
   const [isUserLoading, setIsUserLoading] = useState<boolean>(true);
   const [user, setUser] = useRecoilState(authState);
-  const router = useRouter();
 
   useEffect(() => {
     setIsUserLoading(true);
@@ -67,7 +67,6 @@ export const useAuth = (): IUseAuth => {
         await router.back();
         return;
       }
-
       await emailVerified(result.user);
     } catch (e) {
       if (e instanceof FirebaseError) {
@@ -127,7 +126,7 @@ export const useAuth = (): IUseAuth => {
   const emailVerified = async (user: IAuth) => {
     try {
       if (!user) return; // userがnullならメールの送り先がないのでこの関数は不要
-      if (firebaseAuth.currentUser?.emailVerified === true) return; // 認証されているなら不要
+      if (user.emailVerified) return; // 認証されているなら不要
       await sendEmailVerification(user);
       await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
     } catch (error) {
