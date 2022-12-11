@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "src/app/app.controller";
+import { AppController } from "src/module/app/app.controller";
 import { ConfigModule } from "@nestjs/config";
-import { AuthModule } from "src/auth/auth.module";
+import { AuthModule } from "src/module/auth/auth.module";
 
 const ENV = process.env.NODE_ENV;
 @Module({

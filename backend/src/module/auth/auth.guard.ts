@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Request } from "express";
-import { AuthService } from "src/auth/auth.service";
+import { AuthService } from "src/module/auth/auth.service";
 
 type CustomRequest = Request & { uid: string };
 
