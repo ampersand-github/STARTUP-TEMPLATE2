@@ -9,6 +9,8 @@ import { NextPage } from "next";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ModalProvider } from "react-modal-hook";
+import { TransitionGroup } from "react-transition-group";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -47,10 +49,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <ThemeProvider theme={theme}>
-            {getLayout(<Component {...pageProps} />)}
-            <CssBaseline />
-          </ThemeProvider>
+          <ModalProvider rootComponent={TransitionGroup}>
+            <ThemeProvider theme={theme}>
+              {getLayout(<Component {...pageProps} />)}
+              <CssBaseline />
+            </ThemeProvider>
+          </ModalProvider>
         </QueryClientProvider>
       </RecoilRoot>
     </React.StrictMode>

@@ -5,16 +5,16 @@ import {
   IconButton,
   Link,
   Palette,
+  Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { AppBar } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Space } from "src/components/elements/space";
 import { SIGN_IN_PAGE, SIGN_UP_PAGE } from "src/services/constraints/url/page-url";
 import { IUseAuth } from "src/services/hooks/use-auth";
-import { MyDrawer } from "src/components/organisms/drawer";
 import { SiteLogo } from "src/components/elements/site-logo";
+import PersonIcon from "@mui/icons-material/Person";
 
 export interface IHeader {
   user: IUseAuth["user"];
@@ -26,15 +26,7 @@ export interface IHeader {
   palette: Palette;
 }
 
-export const Header = ({
-  user,
-  isUserLoading,
-  logout,
-  isMobileSize,
-  isOpen,
-  toggle,
-  palette,
-}: IHeader) => {
+export const Header = ({ user, isUserLoading, isMobileSize, palette }: IHeader) => {
   return (
     <AppBar position="static" sx={{ backgroundColor: palette.header.main }}>
       <Toolbar>
@@ -71,16 +63,12 @@ export const Header = ({
 
         <Space width={isMobileSize ? 2 : 4} />
 
-        {/* メニュー */}
-        <IconButton size="large" edge="start" aria-label="menu" color="inherit" onClick={toggle}>
-          <MenuIcon opacity={0.8} />
-          <MyDrawer
-            isOpen={isOpen}
-            toggle={toggle}
-            user={user}
-            logout={logout}
-            black={palette.common.black}
-          />
+        {/* マイページ */}
+        <IconButton size="large" edge="start" aria-label="menu" color="inherit" href={"/my"}>
+          <Stack direction="column" justifyContent="center" alignItems="center">
+            <PersonIcon opacity={0.8} />
+            <Typography variant={"caption"}>各種設定</Typography>
+          </Stack>
         </IconButton>
       </Toolbar>
     </AppBar>

@@ -16,7 +16,7 @@ export interface ISignForm {
   router: NextRouter;
 }
 
-export const SignForm = ({ text, user, signIn, signUp }: ISignForm) => {
+export const SignForm = ({ text, signIn, signUp }: ISignForm) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -40,7 +40,6 @@ export const SignForm = ({ text, user, signIn, signUp }: ISignForm) => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-      <p>{user ? user.uid : "null"}</p>
       <TextField
         margin="normal"
         required

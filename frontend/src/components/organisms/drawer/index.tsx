@@ -14,8 +14,8 @@ import {
 import { IUseAuth } from "src/services/hooks/use-auth";
 import { Space } from "src/components/elements/space";
 import {
+  ANOTHER_PAGE,
   API_PRACTICE_PAGE,
-  PRACTICE_ANOTHER_LAYOUT,
   TOP_PAGE,
   WISE_SAYING_PAGE,
 } from "src/services/constraints/url/page-url";
@@ -69,7 +69,7 @@ export const MyDrawer = ({ isOpen, toggle, user, logout }: IMyDrawer) => {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton component="a" href={PRACTICE_ANOTHER_LAYOUT}>
+            <ListItemButton component="a" href={ANOTHER_PAGE}>
               <ListItemText primary="レイアウトが違うページ" />
             </ListItemButton>
           </ListItem>

@@ -115,6 +115,7 @@ export const useAuth = (): IUseAuth => {
   const logout = async () => {
     try {
       await signOut(firebaseAuth);
+      await router.push("/");
     } catch (error) {
       alert("サインアウトに失敗しました。");
     }
