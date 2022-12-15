@@ -16,7 +16,7 @@ interface IAddress {
   block?: string;
 }
 
-export interface IDuplication {
+export interface IDuplicationAddress {
   prefecture: string;
   city: string;
   town: string;
@@ -31,7 +31,7 @@ const defaultAddressValue: IAddress = {
 };
 
 export default function Address() {
-  const [duplications, setDuplications] = React.useState<IDuplication[]>([]);
+  const [duplications, setDuplications] = React.useState<IDuplicationAddress[]>([]);
   const [zipCode, setZipCode] = useState("");
   const { data, refetch, isFetching } = UseQueryFetchAddress(zipCode);
   const { isUserLoading } = useAuth();
@@ -42,13 +42,20 @@ export default function Address() {
     formState: { errors },
   } = useForm<IAddress>({ defaultValues: defaultAddressValue });
 
-  const setPrefecture = (text: string) => setValue("prefecture", text);
-  const setCity = (text: string) => setValue("city", text);
-  const setTown = (text: string) => setValue("town", text);
+  const setPrefecture: (text: string) => void = (text: string) => setValue("prefecture", text);
+  const setCity: (text: string) => void = (text: string) => setValue("city", text);
+  const setTown: (text: string) => void = (text: string) => setValue("town", text);
 
   const [showModal, hideModal] = useModal(
     ({ in: open }) => (
-      <AddressSelectDialog hideModal={hideModal} open={open} duplications={duplications} />
+      <AddressSelectDialog
+        hideModal={hideModal}
+        open={open}
+        address={duplications}
+        setPrefecture={setPrefecture}
+        setCity={setCity}
+        setTown={setTown}
+      />
     ),
     [duplications]
   );
@@ -68,7 +75,7 @@ export default function Address() {
         setCity(data.results[0].address2);
         setTown(data.results[0].address3);
       } else {
-        const duplicationList: IDuplication[] = data.results.map((one: any) => {
+        const duplicationList: IDuplicationAddress[] = data.results.map((one: any) => {
           return {
             prefecture: one.address1,
             city: one.address2,
