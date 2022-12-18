@@ -8,11 +8,11 @@ atomic designをベースにしつつ、以下の改造を加える
 #### organisms層をpresentationalとcontainerに分ける
 - 以下のようにファイルを分ける
     - `organisms/index.ts`
-    - `organisms/index.container.ts`
+    - `organisms/index.container.tsx`
     - `organisms/index.stories.ts`
 - メリット
     - index.tsが完全なるpresentationalになるため、storybookでの記述が簡単になる。
-    - `index.container.ts`にロジックをまとめることでリファクタしやすくする
+    - `index.container.tsx`にロジックをまとめることでリファクタしやすくする
 - デミリット
     - 記述量が増える。特に引数の引き渡しが大変になる
 

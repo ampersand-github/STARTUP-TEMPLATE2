@@ -13,17 +13,17 @@ import { useAuth } from "src/services/hooks/use-auth";
 import EditIcon from "@mui/icons-material/Edit";
 import { MY_PAGE } from "@/services/constraints/url/page-url";
 import { Space } from "@/components/elements/space";
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from "react";
 
 export default function Profile() {
   const { isUserLoading } = useAuth();
   const url = "https://t.pimg.jp/080/791/225/1/80791225.jpg";
   const [image, setImage] = useState<File>();
 
-  const onUpload = (event:ChangeEvent<HTMLInputElement>) => {
+  const onUpload = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setImage(event.target.files[0]);
-      console.log(image)
+      console.log(image);
       // todo リサイズ処理？？？
       // todo 画像アップロード処理
     }
