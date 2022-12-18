@@ -10,6 +10,7 @@ export const SIGN_IN_PAGE = "/sign/sign-in";
 export const SIGN_NO_EMAIL_VERIFIED_PAGE = "/sign/no-email-verified";
 
 // マイページ
+export const MY_PAGE = "/my";
 export const PROFILE_PAGE = "my/profile";
 export const ADDRESS_PAGE = "my/address";
 

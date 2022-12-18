@@ -8,24 +8,16 @@ import {
   RadioGroup,
 } from "@mui/material";
 import { Space } from "src/components/elements/space";
-import { IDuplicationAddress } from "src/pages/my/address";
+import { IAddress } from "src/components/organisms/address-form";
+
 interface IMyDialog {
   hideModal: () => void;
   open: boolean;
-  address: IDuplicationAddress[];
-  setPrefecture: (text: string) => void;
-  setCity: (text: string) => void;
-  setTown: (text: string) => void;
+  address: IAddress[];
+  setAddress: (address: IAddress) => void;
 }
 
-export const AddressSelectDialog = ({
-  hideModal,
-  open,
-  address,
-  setPrefecture,
-  setCity,
-  setTown,
-}: IMyDialog) => {
+export const AddressSelectDialog = ({ hideModal, open, address, setAddress }: IMyDialog) => {
   return (
     <Dialog open={open} onClose={hideModal} fullWidth={true}>
       <Box sx={{ padding: 3 }}>
@@ -38,13 +30,17 @@ export const AddressSelectDialog = ({
             name="radio-buttons-group"
             onChange={(e) => {
               const _index = Number(e.target.value);
-              setPrefecture(address[_index].prefecture);
-              setCity(address[_index].city);
-              setTown(address[_index].town);
+              setAddress({
+                postalCode: address[_index].postalCode,
+                prefecture: address[_index].prefecture,
+                city: address[_index].city,
+                town: address[_index].town,
+                block: address[_index].block,
+              });
               hideModal();
             }}
           >
-            {address.map((one: IDuplicationAddress, index: number) => (
+            {address.map((one: IAddress, index: number) => (
               <FormControlLabel
                 key={index}
                 value={index}
