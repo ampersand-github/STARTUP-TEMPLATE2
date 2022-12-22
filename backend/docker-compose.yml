@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgresql
+    image: postgres:14.4
+    env_file:
+      - .env.development
+    volumes:
+      - ./.docker/postgresql:/var/lib/postgresql
+    environment:
+      # その他は環境変数に記述
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      TZ: "Asia/Tokyo"
+    ports:
+      - ${DB_PORT}:5432
