@@ -37,3 +37,8 @@ lerna-debug.log*
 # env
 .env.development
 .env.production
+
+# .docker
+.docker/mysql/db
+.docker/mysql/logs
+
