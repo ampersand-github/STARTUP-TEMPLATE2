@@ -1,19 +1,18 @@
 import { Stack, Typography } from "@mui/material";
-import { UseQueryOperationCheck } from "src/services/hooks/api/use-query-operation-check";
 import { UseQueryPersons } from "src/services/hooks/api/use-query-persons";
+import { UseQueryAccount } from "@/services/hooks/api/use-query-account";
 
 export default function ApiPage() {
   const { isLoading: isLoadingP, error: errorP, data: todos } = UseQueryPersons();
-  const { isLoading: isLoadingOC, error: errorOC, data: operationCheck } = UseQueryOperationCheck();
-
-  if (errorOC || errorP) return <span>Error</span>;
-  if (isLoadingOC || isLoadingP) return <span>isLoading</span>;
+  const { isLoading: isLoadingA, error: errorA, data: accounts } = UseQueryAccount();
+  if (errorP || errorA) return <span>Error</span>;
+  if (isLoadingP || isLoadingA) return <span>isLoading</span>;
 
   return (
-    <Stack>
+    <Stack spacing={3}>
       <Typography>API動作確認用ページ</Typography>
+      <Typography> {JSON.stringify(accounts)}</Typography>
       <Typography> {JSON.stringify(todos.data)}</Typography>
-      <Typography> {JSON.stringify(operationCheck)}</Typography>
     </Stack>
   );
 }

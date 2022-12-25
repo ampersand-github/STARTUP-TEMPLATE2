@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/url/page-url";
 import { FirebaseError } from "@firebase/app";
 import { authErrorList } from "src/services/constraints/firebase-auth-error";
+import { UseCreateAccount } from "@/services/hooks/api/use-create-account";
 
 export type IAuth = User | null;
 export interface IUseAuth {
@@ -23,7 +24,7 @@ export interface IUseAuth {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  emailVerified: (user: IAuth) => Promise<void>;
+  sendVerifyEmail: (user: User) => Promise<void>;
 }
 
 const authState = atom<IAuth>({
@@ -39,15 +40,26 @@ export const useAuth = (): IUseAuth => {
   const router = useRouter();
   const [isUserLoading, setIsUserLoading] = useState<boolean>(true);
   const [user, setUser] = useRecoilState(authState);
+  const { mutate } = UseCreateAccount();
+  const [isAccountTableCreated, setIsAccountTableCreated] = useState<boolean>(false);
 
   useEffect(() => {
     setIsUserLoading(true);
+
+    // 新規登録した人のためにアカウントテーブルをつくる
+    // if (user && user.emailVerified && !isAccountTableCreated) {
+    if (user && user.emailVerified && !isAccountTableCreated) {
+      mutate();
+      setIsAccountTableCreated(true);
+    }
+
     return onAuthStateChanged(firebaseAuth, async (user: IAuth) => {
+      console.log("onAuthStateChanged",user?.uid);
       setUser(user);
-      setIsUserLoading(false);
 
       // メール認証をしていない場合は認証メールを承認してもらうページに飛ぶ
-      if (user && !user.emailVerified) await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
+      if (user && !user.emailVerified) await jumpToEmailVerifiedPageIfNotVerified();
+      setIsUserLoading(false);
     });
   }, []);
 
@@ -66,8 +78,9 @@ export const useAuth = (): IUseAuth => {
       if (result.user.emailVerified) {
         await router.back();
         return;
+      } else {
+        await jumpToEmailVerifiedPageIfNotVerified();
       }
-      await emailVerified(result.user);
     } catch (e) {
       if (e instanceof FirebaseError) {
         // エラーからエラーコードを探す
@@ -90,8 +103,13 @@ export const useAuth = (): IUseAuth => {
    */
   const signUp = async (email: string, password: string) => {
     try {
+      setIsAccountTableCreated(false); // 念の為falseにする。
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
-      await emailVerified(user); // signUp時点ではemail認証していないので強制的にEmail認証させる
+      // signUp時点ではemail認証していないので強制的にEmail認証させる
+      await jumpToEmailVerifiedPageIfNotVerified();
+      // テーブルがなければ作成する。メール認証していないが、
+      // メール認証していなければ、動かせないのでこのタイミングで作成しても問題ない
+      mutate();
     } catch (e) {
       if (e instanceof FirebaseError) {
         // エラーからエラーコードを探す
@@ -104,7 +122,6 @@ export const useAuth = (): IUseAuth => {
           return; // 下のアラートと重ならないための処理
         }
       }
-
       alert("新規の登録に失敗しました");
     }
   };
@@ -124,16 +141,13 @@ export const useAuth = (): IUseAuth => {
   /**
    * Email認証
    */
-  const emailVerified = async (user: IAuth) => {
-    try {
-      if (!user) return; // userがnullならメールの送り先がないのでこの関数は不要
-      if (user.emailVerified) return; // 認証されているなら不要
-      await sendEmailVerification(user);
-      await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
-    } catch (error) {
-      alert("Email認証のメール送信に失敗しました。");
-    }
+  const sendVerifyEmail = async (user: User) => {
+    if (!user.emailVerified) await sendEmailVerification(user);
   };
 
-  return { user, isUserLoading, signIn, signUp, logout, emailVerified };
+  const jumpToEmailVerifiedPageIfNotVerified = async () => {
+    await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
+  };
+
+  return { user, isUserLoading, signIn, signUp, logout, sendVerifyEmail };
 };

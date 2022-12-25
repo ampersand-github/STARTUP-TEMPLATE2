@@ -12,6 +12,7 @@ import {
   ADDRESS_PAGE,
   ANOTHER_PAGE,
   API_PRACTICE_PAGE,
+  BACKEND_PRACTICE_PAGE,
   PROFILE_PAGE,
   TOP_PAGE,
   WISE_SAYING_PAGE,
@@ -62,6 +63,7 @@ export default function My() {
           <CustomListItem text={"名言"} href={WISE_SAYING_PAGE} />
           <CustomListItem text={"レイアウトが違うページ"} href={ANOTHER_PAGE} />
           <CustomListItem text={"API動作確認"} href={API_PRACTICE_PAGE} />
+          <CustomListItem text={"バックエンド動作確認"} href={BACKEND_PRACTICE_PAGE} />
           <Divider />
         </List>
 

@@ -15,3 +15,4 @@ const getFirebaseApp = () => getApps()[0] || initializeApp(config);
 export const firebaseApp = getFirebaseApp();
 
 export const firebaseAuth: Auth = getAuth(firebaseApp);
+export const getToken = () => firebaseAuth.currentUser?.getIdToken();

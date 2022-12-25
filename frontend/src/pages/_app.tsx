@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { theme } from "../services/constraints/themes";
+import { theme } from "@/services/constraints/themes";
 import Head from "next/head";
 import React, { ReactElement, ReactNode } from "react";
 import BasicLayout from "src/components/layouts/basic-layout";
