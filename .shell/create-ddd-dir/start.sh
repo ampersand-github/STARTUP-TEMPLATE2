@@ -4,8 +4,8 @@ echo "= = = = = START = = = = = "
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 echo "変数宣言"
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-pascalName="Sample"
-camelName="sample"
+pascalName="Sample" # <- ここを変える 頭大文字
+camelName="sample" # <- ここを変える 頭小文字
 srcDir="../../backend/src"
 targetDir="${srcDir}/${camelName}"
 
@@ -19,6 +19,7 @@ fi
 
 mkdir "${targetDir}"
 mkdir "${targetDir}/domain"
+mkdir "${targetDir}/domain/dummy"
 mkdir "${targetDir}/domain/value-object"
 touch "${targetDir}/domain/value-object/.gitkeep"
 mkdir "${targetDir}/domain/entity"
@@ -83,6 +84,15 @@ createDomainIdTestFile "${targetDir}" $pascalName $camelName
 
 source ./templates/domain.interface.sh
 createDomainInterfaceFile "${targetDir}" $pascalName $camelName
+
+source ./templates/domain-id.test.sh
+createDomainIdTestFile "${targetDir}" $pascalName $camelName
+
+source ./templates/make-domain-dummy.sh
+createMakeDomainDummyFile "${targetDir}" $pascalName $camelName
+
+source ./templates/make-domain-dummy.test.sh
+createMakeDomainDummyTestFile "${targetDir}" $pascalName $camelName
 
 # その他
 
