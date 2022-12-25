@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthGuard, CustomRequest } from "src/module/auth/auth.guard";
-import { CreateAccountUseCase } from "src/acount/use-case/create-account.use-case";
+import { CreateAccountUseCase } from "src/account/use-case/create-account.use-case";
 import { FindAccountUseCase } from "../use-case/find-account.use-case";
 
 @Controller("account")

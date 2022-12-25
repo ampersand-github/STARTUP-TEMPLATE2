@@ -1,11 +1,13 @@
-import { AccountId } from "src/acount/domain/account-id";
 import { Account } from "../domain/account";
-import { AccountRepository } from "../repository/account.repository";
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
+import { IAccountRepository } from "../domain/interface/account.repository.interface";
+import { AccountId } from "../domain/account-id";
 
 @Injectable()
 export class FindAccountUseCase {
-  constructor(private readonly accountRepository: AccountRepository) {}
+  constructor(
+    @Inject("AccountRepositoryProvide") private readonly accountRepository: IAccountRepository
+  ) {}
 
   public async execute(id: string): Promise<Account> {
     try {

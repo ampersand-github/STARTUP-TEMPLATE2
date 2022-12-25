@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { IAccountRepository } from "src/acount/domain/interface/account.repository.interface";
 import { PrismaService } from "src/module/prisma/prisma.service";
 import { Account } from "../domain/account";
 import { AccountId } from "../domain/account-id";
+import { IAccountRepository } from "../domain/interface/account.repository.interface";
 
 @Injectable()
 export class AccountRepository implements IAccountRepository {
@@ -15,7 +15,7 @@ export class AccountRepository implements IAccountRepository {
   public async findOne(id: AccountId): Promise<Account> {
     try {
       const result = await this.prisma.accounts.findUnique({ where: { id: id.toString() } });
-      return await Account.reBuild({}, AccountId.reBuild(result.id));
+      return await Account.reBuild({ something1: "", something2: 1 }, AccountId.reBuild(result.id));
     } catch (e) {
       console.log(e.message);
       throw new Error(e.message);
@@ -23,6 +23,15 @@ export class AccountRepository implements IAccountRepository {
   }
 
   public async getAll(): Promise<Account[]> {
+    this.prisma.address.findUnique({
+      where: {
+        accountId: "",
+      },
+    });
+    this.prisma.accounts.findUnique({
+      where: { id: "" },
+      include: { address: true },
+    });
     return Promise.resolve([]);
   }
 

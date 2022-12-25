@@ -1,4 +1,4 @@
-import { Account } from "src/acount/domain/account";
+import { Account } from "../account";
 import { AccountId } from "../account-id";
 
 export interface IAccountRepository {
