@@ -10,10 +10,9 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
-    "start:debug": "NODE_ENV=development nest start --debug --watch",
+    "start:backend": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "docker:start": " docker-compose -p TEMPLATE --env-file .env.development up -d",
-    "_docker:start": " docker-compose -p TEMPLATE --env-file .env.development up",
     "docker:down": "docker-compose -p TEMPLATE --env-file .env.development down --volumes",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -56,6 +55,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "deep-equal": "^2.1.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -69,7 +69,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "ulid": "^2.3.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -85,6 +86,9 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "moduleNameMapper": {
+      "src(.*)$": "<rootDir>/$1"
+    },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
