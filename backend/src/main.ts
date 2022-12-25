@@ -8,7 +8,7 @@ async function bootstrap() {
   const fastify = new FastifyAdapter();
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, fastify);
 
-  // 以下セキュリティ
+  // セキュリティ
   await app.register(helmet);
   app.enableCors();
   await app.register(fastifyCsrf);
