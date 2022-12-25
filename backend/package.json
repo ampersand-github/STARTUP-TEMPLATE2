@@ -17,6 +17,7 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:studio": "prisma studio",
+    "prisma:generate": "prisma generate",
     "prisma:migration": "dotenv -e .env.development npx prisma migrate dev",
     "prisma:deploy:dev": "dotenv -e .env.development npx prisma migrate deploy",
     "prisma:deploy:prod": "dotenv -e .env.production npx prisma migrate deploy",

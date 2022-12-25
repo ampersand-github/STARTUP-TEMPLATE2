@@ -1,4 +1,4 @@
-import { Account, IAccount } from "src/account/domain/account";
+import { Account, IAccount } from "../account";
 import { AccountId } from "../account-id";
 
 // - - - - - - - - - - - - - - - - - -

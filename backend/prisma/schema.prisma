@@ -10,23 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+// 命名規則
+// https://qiita.com/genzouw/items/35022fa96c120e67c637
+
+model samples {
+  id            String      @id
+  something1    String
+  something2    Int
+}
+
 model accounts {
   id            String      @id
+  address       address?
 }
 
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
-}
-
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model address {
+  id            String      @id
+  post_code     String
+  prefecture    String
+  city          String
+  town          String
+  block         String?
+  //
+  account       accounts    @relation(fields: [accountId], references: [id])
+  accountId     String      @unique
 }

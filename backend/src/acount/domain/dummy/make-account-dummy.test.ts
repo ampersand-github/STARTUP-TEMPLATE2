@@ -1,6 +1,6 @@
-import { defaultAccount, makeAccountDummy } from "src/account/domain/dummy/make-account-dummy";
-import { Account } from "src/account/domain/account";
-import { AccountId } from "src/account/domain/account-id";
+import { Account } from "../account";
+import { AccountId } from "../account-id";
+import { defaultAccount, makeAccountDummy } from "./make-account-dummy";
 
 describe("makeAccountDummy", () => {
   describe("インスタンスが生成できる", () => {
