@@ -31,7 +31,12 @@ export class AuthGuard implements CanActivate {
     this.requestValidator = new RequestValidator();
   }
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  private pullOutToken(request: CustomRequest): string {
+    const authorization = request.headers.authorization;
+    return authorization.split(" ")[1];
+  }
+
+  public async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = await context.switchToHttp().getRequest<CustomRequest>();
     this.requestValidator.validateRequest(request);
     this.requestValidator.validateBearer(request.headers.authorization);
@@ -39,10 +44,5 @@ export class AuthGuard implements CanActivate {
     const uid = await this.authService.execute(token);
     request.uid = uid;
     return true;
-  }
-
-  private pullOutToken(request: CustomRequest): string {
-    const authorization = request.headers.authorization;
-    return authorization.split(" ")[1];
   }
 }
