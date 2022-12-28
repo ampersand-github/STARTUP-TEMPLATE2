@@ -10,29 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 // 命名規則
 // https://qiita.com/genzouw/items/35022fa96c120e67c637
 
 model samples {
-  id            String      @id
-  something1    String
-  something2    Int
+  id     String @id
+  gender String
+  age    Int
 }
 
 model accounts {
-  id            String      @id
-  address       address?
+  id      String   @id
+  address address?
 }
 
 model address {
-  id            String      @id
-  post_code     String
-  prefecture    String
-  city          String
-  town          String
-  block         String?
+  id         String   @id
+  post_code  String
+  prefecture String
+  city       String
+  town       String
+  block      String?
   //
-  account       accounts    @relation(fields: [accountId], references: [id])
-  accountId     String      @unique
+  account    accounts @relation(fields: [accountId], references: [id])
+  accountId  String   @unique
 }
