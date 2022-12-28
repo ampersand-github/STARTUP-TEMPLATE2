@@ -13,21 +13,18 @@
     "start:backend": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "docker:start": " docker-compose -p TEMPLATE --env-file .env.development up -d",
-    "docker:down": "docker-compose -p TEMPLATE --env-file .env.development down --volumes",
+    "docker:down": "docker-compose -p TEMPLATE --env-file .env.development down",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:studio": "prisma studio",
-    "prisma:generate": "prisma generate",
-    "prisma:migration": "dotenv -e .env.development npx prisma migrate dev",
+    "prisma:migration": "npx prisma format && dotenv -e .env.development npx prisma migrate dev && npx prisma generate",
     "prisma:deploy:dev": "dotenv -e .env.development npx prisma migrate deploy",
     "prisma:deploy:prod": "dotenv -e .env.production npx prisma migrate deploy",
     "prisma:reset": "dotenv -e .env.development npx prisma migrate reset",
     "prisma:seed": "dotenv -e .env.development npx prisma db seed",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test": "dotenv -e .env.development -- jest --forceExit --detectOpenHandles --runInBand",
+    "test:watch": "dotenv -e .env.development -- jest --watch --forceExit --detectOpenHandles --runInBand",
+    "test:cov": "dotenv -e .env.development -- jest --coverage --forceExit --detectOpenHandles --runInBand"
   },
   "dependencies": {
     "@fastify/csrf-protection": "^6.1.0",
@@ -38,6 +35,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/platform-fastify": "^9.2.0",
     "@prisma/client": "^4.8.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "firebase-admin": "^11.3.0",
     "helmet": "^6.0.1",
@@ -79,7 +78,6 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
     "testRegex": ".*.test|spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -88,9 +86,10 @@
       "**/*.(t|j)s"
     ],
     "moduleNameMapper": {
-      "src(.*)$": "<rootDir>/$1"
+      "src(.*)$": "<rootDir>/src/$1"
     },
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "globalSetup": "<rootDir>/jest-setup.ts"
   }
 }
