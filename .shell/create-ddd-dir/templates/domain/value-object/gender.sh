@@ -28,6 +28,12 @@ export class Gender extends ValueObject<IGender> {
   public constructor(props: IGender) {
     super(props);
   }
+
+  public static getType(value: string): GenderType {
+    const key: string = Object.keys(GenderType).filter((key) => GenderType[key] == value)[0];
+    if (!key) throw new Error(\`\${this.name}が取得できませんでした。\`);
+    return GenderType[key];
+  }
 }
 " > "${targetDir}/domain/value-object/gender.ts"
 }
