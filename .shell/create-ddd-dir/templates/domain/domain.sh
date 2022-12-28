@@ -6,21 +6,23 @@ pascalName="$2"
 camelName="$3"
 
 echo "
+import { Age } from \"src/${camelName}/domain/value-object/age\";
+import { Gender } from \"src/${camelName}/domain/value-object/gender\";
 import { AggregateRoot } from \"src/__shared__/domain/aggregate-root\";
 import { ${pascalName}Id } from \"./${camelName}-id\";
 
 export interface I${pascalName} {
-  something1: string;
-  something2: number;
+  gender: Gender;
+  age: Age;
 }
 
 export class ${pascalName} extends AggregateRoot<I${pascalName}, ${pascalName}Id> {
-  public get something1(): I${pascalName}[\"something1\"] {
-    return this._props.something1;
+  public get gender(): I${pascalName}[\"gender\"] {
+    return this._props.gender;
   }
 
-  public get something2(): I${pascalName}[\"something2\"] {
-    return this._props.something2;
+  public get age(): I${pascalName}[\"age\"] {
+    return this._props.age;
   }
 
   private constructor(props: I${pascalName}, id: ${pascalName}Id) {
@@ -34,6 +36,11 @@ export class ${pascalName} extends AggregateRoot<I${pascalName}, ${pascalName}Id
 
   public static reBuild(props: I${pascalName}, id: ${pascalName}Id): ${pascalName} {
     return new ${pascalName}(props, id);
+  }
+  public addAge(): ${pascalName} {
+    const newAge = this.age.addAge();
+    const newPros = { ...this._props, age: newAge };
+    return ${pascalName}.reBuild(newPros, this.id);
   }
 }
 

@@ -5,7 +5,7 @@ camelName="$3"
 
 echo "
 responseDto
-" > "${targetDir}/use-case/${camelName}.response-dto.ts"
+" > "${targetDir}/use-case/response/${camelName}.response-dto.ts"
 }
 
 

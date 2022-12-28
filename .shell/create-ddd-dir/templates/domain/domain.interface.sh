@@ -11,10 +11,9 @@ import { ${pascalName}Id } from \"./${camelName}-id\";
 
 export interface I${pascalName}Repository {
   count(id: ${pascalName}Id): Promise<number>;
-  getAll(): Promise<${pascalName}[]>;
   findOne(id: ${pascalName}Id): Promise<${pascalName}>;
   save(${camelName}: ${pascalName}): Promise<${pascalName}>;
 }
 
-" > "${targetDir}/domain/${camelName}.interface.ts"
+" > "${targetDir}/domain/interface/${camelName}.interface.ts"
 }
