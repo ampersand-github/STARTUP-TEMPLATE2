@@ -15,7 +15,7 @@
     "docker:start": " docker-compose -p TEMPLATE --env-file .env.development up -d",
     "docker:down": "docker-compose -p TEMPLATE --env-file .env.development down",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "prisma:studio": "prisma studio",
     "prisma:migration": "npx prisma format && dotenv -e .env.development npx prisma migrate dev && npx prisma generate",
     "prisma:deploy:dev": "dotenv -e .env.development npx prisma migrate deploy",

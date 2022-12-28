@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "src/module/auth/auth.module";
 import { AccountModule } from "./acount/account.module";
+import { QueryServiceModule } from "src/module/query-service/query-service.module";
+import { SampleModule } from "src/sample/sample.module";
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { AccountModule } from "./acount/account.module";
     }),
     AuthModule,
     AccountModule,
+    QueryServiceModule,
+    SampleModule,
   ],
   controllers: [],
   providers: [],

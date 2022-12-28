@@ -47,11 +47,13 @@ describe("SampleController", () => {
         .post("/sample")
         .set("Authorization", `Bearer `)
         .send({ age: 20, gender: "男性" })
-        .expect(201)
-        .expect((res) => {
+        .expect(201);
+      /*
+              .expect((res) => {
           // console.log(res.status);
           // console.log(res.body);
         });
+       */
     });
   });
 
