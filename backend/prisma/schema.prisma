@@ -20,8 +20,11 @@ model samples {
 }
 
 model accounts {
-  id      String   @id
-  address address?
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  address   address?
+  profiles  profiles?
 }
 
 model address {
@@ -31,7 +34,22 @@ model address {
   city       String
   town       String
   block      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   //
   account    accounts @relation(fields: [accountId], references: [id])
   accountId  String   @unique
+}
+
+model profiles {
+  id        String   @id
+  iconPath  String?
+  nickName  String?
+  motto     String?
+  profile   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //
+  account   accounts @relation(fields: [accountId], references: [id])
+  accountId String   @unique
 }
