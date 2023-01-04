@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, CircularProgress, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { PostalCodeTextField } from "@/components/elements/text-field/address-form/postcal-code";
 import { PrefectureTextField } from "@/components/elements/text-field/address-form/prefecture";
@@ -26,11 +26,10 @@ const defaultAddressValue: IAddress = {
 export interface IAddressForm {
   address?: IAddress;
   onSubmit: (data: IAddress) => void;
-  isFetching: boolean;
   changePostCode: (value: string) => void;
 }
 
-export const AddressForm = ({ address, onSubmit, isFetching, changePostCode }: IAddressForm) => {
+export const AddressForm = ({ address, onSubmit, changePostCode }: IAddressForm) => {
   const {
     control,
     handleSubmit,
@@ -52,8 +51,6 @@ export const AddressForm = ({ address, onSubmit, isFetching, changePostCode }: I
     if (watchPostalCode.length !== 7) return;
     changePostCode(watchPostalCode);
   }, [watchPostalCode]);
-
-  if (isFetching) return <CircularProgress />;
 
   return (
     <Stack component="form" noValidate onSubmit={handleSubmit(onSubmit)} spacing={2}>

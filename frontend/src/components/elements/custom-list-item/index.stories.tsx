@@ -1,12 +1,14 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LinkText, ILinkText } from ".";
+import { CustomListItem, ICustomListItem } from ".";
 
 export default {
-  title: "elements/LinkText",
-  component: LinkText,
-} as ComponentMeta<typeof LinkText>;
+  title: "elements/CustomListItem",
+  component: CustomListItem,
+} as ComponentMeta<typeof CustomListItem>;
 
-const Template: ComponentStory<typeof LinkText> = (args: ILinkText) => <LinkText {...args} />;
+const Template: ComponentStory<typeof CustomListItem> = (args: ICustomListItem) => (
+  <CustomListItem {...args} />
+);
 
 export const Default = Template.bind({});
-Default.args = { pageUrl: "/", text: "text" };
+Default.args = { text: "text", href: "/" };

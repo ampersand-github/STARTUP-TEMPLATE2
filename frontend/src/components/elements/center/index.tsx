@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import { ReactNode } from "react";
 
 export interface ICenter {
@@ -6,5 +6,9 @@ export interface ICenter {
 }
 
 export const Center = ({ children }: ICenter) => {
-  return <Box m="auto">{children}</Box>;
+  return (
+    <Container sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      {children}
+    </Container>
+  );
 };
