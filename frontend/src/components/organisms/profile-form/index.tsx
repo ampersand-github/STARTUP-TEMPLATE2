@@ -3,9 +3,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Space } from "@/components/elements/space";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { MottoTextField } from "@/components/elements/text-field/profile-form/motto";
+import { ProfileTextField } from "@/components/elements/text-field/profile-form/profile";
+import { UserNameTextField } from "@/components/elements/text-field/profile-form/user-name";
 
 export interface IProfile {
   iconPath: string;
+  userName: string;
+  motto: string;
+  profile: string;
 }
 
 export interface IProfileForm {
@@ -37,34 +43,12 @@ export const ProfileForm = ({ profile }: IProfileForm) => {
           <input hidden accept="image/*" multiple type="file" onChange={onUpload} />
         </Button>
         <Stack spacing={0.5} justifyContent="center" alignItems="flex-start" flexGrow={1}>
-          <TextField
-            fullWidth
-            variant="standard"
-            label="ユーザー名"
-            placeholder={"山田太郎"}
-            type="text"
-            inputProps={{ maxLength: 30 }}
-            multiline
-          ></TextField>
-
-          <TextField
-            fullWidth
-            variant="standard"
-            label="座右の銘"
-            placeholder={"芸人末路哀れは覚悟の前"}
-            type="text"
-            inputProps={{ maxLength: 60 }}
-            multiline
-          ></TextField>
+          <UserNameTextField errors={errors} control={control} />
+          <MottoTextField errors={errors} control={control} />
         </Stack>
       </Stack>
       <Space height={2} />
-      <TextField
-        placeholder={"プロフィールを記入してください"}
-        multiline
-        minRows={4}
-        inputProps={{ maxLength: 400 }}
-      ></TextField>
+      <ProfileTextField errors={errors} control={control} />
       <Space height={4} />
       <Button variant="contained" type="submit">
         送信する
