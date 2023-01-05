@@ -7,9 +7,13 @@ import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import * as React from "react";
 import { LinkText } from "src/components/elements/text/link-text";
 import { AMPERSAND_PAGE, SIGN_IN_PAGE } from "src/services/constraints/url/page-url";
-import { SignFormContainer } from "src/components/organisms/sign/index.container";
+import { SignForm } from "@/components/organisms/sign";
+import { useAuth } from "@/services/hooks/use-auth";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
+  const { user, signUp } = useAuth();
+  const router = useRouter();
   const theme = useTheme();
   const text = "会員登録";
 
@@ -25,7 +29,7 @@ export default function SignUp() {
       ></SignIcon>
 
       {/* サインインフォーム */}
-      <SignFormContainer text={text} signType={"sign-up"} />
+      <SignForm text={text} user={user} router={router} signUp={signUp} />
 
       {/* 下部のコンテンツ */}
       <Grid container>

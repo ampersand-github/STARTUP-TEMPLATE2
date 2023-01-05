@@ -16,6 +16,7 @@ import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/url/page-u
 import { FirebaseError } from "@firebase/app";
 import { authErrorList } from "src/services/constraints/firebase-auth-error";
 import { UseCreateAccount } from "@/services/hooks/api/use-create-account";
+import nookies from "nookies";
 
 export type IAuth = User | null;
 export interface IUseAuth {
@@ -42,6 +43,7 @@ export const useAuth = (): IUseAuth => {
   const [user, setUser] = useRecoilState(authState);
   const { mutate } = UseCreateAccount();
   const [isAccountTableCreated, setIsAccountTableCreated] = useState<boolean>(false);
+  const idTokenUrl = "/api/id-token/save-id-token";
 
   useEffect(() => {
     setIsUserLoading(true);
@@ -54,13 +56,38 @@ export const useAuth = (): IUseAuth => {
     }
 
     return onAuthStateChanged(firebaseAuth, async (user: IAuth) => {
-      console.log("onAuthStateChanged",user?.uid);
+      console.log("onAuthStateChanged", user?.uid);
       setUser(user);
 
       // メール認証をしていない場合は認証メールを承認してもらうページに飛ぶ
       if (user && !user.emailVerified) await jumpToEmailVerifiedPageIfNotVerified();
       setIsUserLoading(false);
     });
+  }, []);
+
+  useEffect(() => {
+    return firebaseAuth.onIdTokenChanged(async (user) => {
+      if (!user) {
+        setUser(null);
+        nookies.set(undefined, "session", "", { path: "/" });
+      } else {
+        setUser(user);
+        const newToken = await user.getIdToken(true);
+        await fetch(idTokenUrl, { method: "POST", body: newToken });
+      }
+    });
+  }, []);
+  // force refresh the token every 10 minutes
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = firebaseAuth.currentUser;
+      if (user) {
+        const newToken = await user.getIdToken(true);
+        await fetch(idTokenUrl, { method: "POST", body: newToken });
+      }
+    }, 10 * 60 * 1000);
+    // clean up setInterval
+    return () => clearInterval(handle);
   }, []);
 
   /**
@@ -74,13 +101,20 @@ export const useAuth = (): IUseAuth => {
         password
       );
 
+      // アカウントテーブルがなかったらつくる
+      mutate();
+
+      const id = await result.user.getIdToken();
+      await fetch(idTokenUrl, { method: "POST", body: id });
       // 認証済みユーザーは一つ前の画面に戻る
+      /*
       if (result.user.emailVerified) {
         await router.back();
         return;
       } else {
         await jumpToEmailVerifiedPageIfNotVerified();
       }
+  */
     } catch (e) {
       if (e instanceof FirebaseError) {
         // エラーからエラーコードを探す
