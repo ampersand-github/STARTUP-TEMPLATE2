@@ -4,7 +4,7 @@ pascalName="$2"
 camelName="$3"
 
 echo "
-import { ${pascalName} } from \"src/${camelName}/domain/sample\";
+import { ${pascalName} } from \"../../domain/sample\";
 
 export class ${pascalName}ResponseDto {
   private readonly age: number;

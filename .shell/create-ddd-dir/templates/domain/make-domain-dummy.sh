@@ -6,7 +6,7 @@ pascalName="$2"
 camelName="$3"
 
 echo "
-import { ${pascalName}Id } from \"src/${camelName}/domain/${camelName}-id\";
+import { ${pascalName}Id } from \"../${camelName}-id\";
 import { I${pascalName}, ${pascalName} } from \"../${camelName}\";
 import { Age } from \"../value-object/age\";
 import { Gender, GenderType } from \"../value-object/gender\";

@@ -8,10 +8,10 @@ camelName="$3"
 echo "
 import { PrismaService } from \"src/module/prisma/prisma.service\";
 import { ${pascalName}Repository } from \"./${camelName}.repository\";
-import { make${pascalName}Dummy } from \"src/${camelName}/domain/dummy/make-${camelName}-dummy\";
+import { make${pascalName}Dummy } from \"../domain/dummy/make-${camelName}-dummy\";
 import { I${pascalName}, ${pascalName} } from \"../domain/${camelName}\";
-import { Age } from \"src/${camelName}/domain/value-object/age\";
-import { Gender, GenderType } from \"src/${camelName}/domain/value-object/gender\";
+import { Age } from \"../domain/value-object/age\";
+import { Gender, GenderType } from \"../domain/value-object/gender\";
 
 describe(\"${pascalName}Repository\", () => {
   const prisma = new PrismaService();

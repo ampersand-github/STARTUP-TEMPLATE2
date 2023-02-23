@@ -31,7 +31,7 @@ export class ${pascalName}Controller {
 
   @UseGuards(AuthGuard)
   @Post()
-  public async save${pascalName}(
+  public async save(
     @Req() request: CustomRequest,
     @Body() dto: Save${pascalName}RequestDto
   ): Promise<void> {

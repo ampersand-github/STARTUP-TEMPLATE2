@@ -6,8 +6,8 @@ pascalName="$2"
 camelName="$3"
 
 echo "
-import { Age } from \"src/${camelName}/domain/value-object/age\";
-import { Gender } from \"src/${camelName}/domain/value-object/gender\";
+import { Age } from \"./value-object/age\";
+import { Gender } from \"./value-object/gender\";
 import { AggregateRoot } from \"src/__shared__/domain/aggregate-root\";
 import { ${pascalName}Id } from \"./${camelName}-id\";
 

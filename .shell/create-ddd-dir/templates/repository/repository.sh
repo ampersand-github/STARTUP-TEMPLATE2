@@ -41,7 +41,7 @@ export class ${pascalName}Repository implements I${pascalName}Repository {
       const result: ${camelName}s = await this.prisma.${camelName}s.upsert({
         where: { id: id },
         create: { id: id, ...property },
-        update: { ...property },
+        update: property,
       });
 
       return ${camelName}Mapper(result);

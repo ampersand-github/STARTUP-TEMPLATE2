@@ -9,7 +9,7 @@ echo "
 import { ${camelName}s } from \"@prisma/client\";
 import { I${pascalName}, ${pascalName} } from \"../domain/${camelName}\";
 import { Gender } from \"../domain/value-object/gender\";
-import { Age } from \"src/${camelName}/domain/value-object/age\";
+import { Age } from \"../domain/value-object/age\";
 import { ${pascalName}Id } from \"../domain/${camelName}-id\";
 
 export const ${camelName}Mapper = (${camelName}: ${camelName}s): ${pascalName} => {

@@ -6,7 +6,7 @@ pascalName="$2"
 camelName="$3"
 
 echo "
-import { ${pascalName} } from \"src/${camelName}/domain/${camelName}\";
+import { ${pascalName} } from \"../${camelName}\";
 import { ${pascalName}Id } from \"../${camelName}-id\";
 
 export interface I${pascalName}Repository {

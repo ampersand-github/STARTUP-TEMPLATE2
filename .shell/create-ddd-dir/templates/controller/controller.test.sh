@@ -8,7 +8,7 @@ import * as request from \"supertest\";
 import { Test } from \"@nestjs/testing\";
 import { FastifyAdapter, NestFastifyApplication } from \"@nestjs/platform-fastify\";
 import { PrismaService } from \"src/module/prisma/prisma.service\";
-import { ${pascalName}Module } from \"src/${camelName}/${camelName}.module\";
+import { ${pascalName}Module } from \"../${camelName}.module\";
 import { ExecutionContext, UnauthorizedException } from \"@nestjs/common\";
 import { AuthGuard, CustomRequest } from \"src/module/auth/auth.guard\";
 
