@@ -1,7 +1,7 @@
-import { Age } from "src/sample/domain/value-object/age";
-import { Gender } from "src/sample/domain/value-object/gender";
 import { AggregateRoot } from "src/__shared__/domain/aggregate-root";
 import { SampleId } from "./sample-id";
+import { Age } from "./value-object/age";
+import { Gender } from "./value-object/gender";
 
 export interface ISample {
   gender: Gender;

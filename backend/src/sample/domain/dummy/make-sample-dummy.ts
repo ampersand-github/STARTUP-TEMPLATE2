@@ -1,4 +1,4 @@
-import { SampleId } from "src/sample/domain/sample-id";
+import { SampleId } from "../sample-id";
 import { ISample, Sample } from "../sample";
 import { Age } from "../value-object/age";
 import { Gender, GenderType } from "../value-object/gender";

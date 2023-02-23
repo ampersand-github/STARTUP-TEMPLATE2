@@ -2,7 +2,7 @@ import * as request from "supertest";
 import { Test } from "@nestjs/testing";
 import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
 import { PrismaService } from "src/module/prisma/prisma.service";
-import { SampleModule } from "src/sample/sample.module";
+import { SampleModule } from "../sample.module";
 import { ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { AuthGuard, CustomRequest } from "src/module/auth/auth.guard";
 
@@ -47,13 +47,11 @@ describe("SampleController", () => {
         .post("/sample")
         .set("Authorization", `Bearer `)
         .send({ age: 20, gender: "男性" })
-        .expect(201);
-      /*
-              .expect((res) => {
+        .expect(201)
+        .expect((res) => {
           // console.log(res.status);
           // console.log(res.body);
         });
-       */
     });
   });
 
@@ -75,7 +73,10 @@ describe("SampleController", () => {
       return request(app.getHttpServer())
         .get("/sample")
         .set("Authorization", `Bearer `)
-        .expect(500);
+        .expect(500)
+        .expect((res) => {
+          expect(res.statusCode).toStrictEqual(500);
+        });
     });
   });
 });

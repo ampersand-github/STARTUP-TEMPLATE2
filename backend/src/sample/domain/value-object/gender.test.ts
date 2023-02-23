@@ -1,4 +1,4 @@
-import { Gender, GenderType } from "src/sample/domain/value-object/gender";
+import { Gender, GenderType } from "../../domain/value-object/gender";
 
 describe("Gender", (): void => {
   test("オブジェクトを生成できる", () => {

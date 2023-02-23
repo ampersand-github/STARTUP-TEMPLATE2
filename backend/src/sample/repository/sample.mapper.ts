@@ -1,7 +1,7 @@
 import { samples } from "@prisma/client";
 import { ISample, Sample } from "../domain/sample";
 import { Gender } from "../domain/value-object/gender";
-import { Age } from "src/sample/domain/value-object/age";
+import { Age } from "../domain/value-object/age";
 import { SampleId } from "../domain/sample-id";
 
 export const sampleMapper = (sample: samples): Sample => {

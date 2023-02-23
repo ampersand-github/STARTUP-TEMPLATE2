@@ -4,19 +4,19 @@ import { SampleId } from "../domain/sample-id";
 import { SampleResponseDto } from "./response/sample.response-dto";
 
 @Injectable()
-export class FindOneSampleUseCase {
+export class MayBeSampleUseCase {
   constructor(
     @Inject("SampleRepositoryProvide") private readonly sampleRepository: ISampleRepository
   ) {}
 
-  public async execute(id: string): Promise<SampleResponseDto> {
+  public async execute(id: string): Promise<SampleResponseDto | null> {
     try {
       const sampleId = SampleId.reBuild(id);
       const sample = await this.sampleRepository.findOne(sampleId);
       if (sample) return new SampleResponseDto(sample);
-      throw new Error("データが見つかりません");
+      return null;
     } catch (e) {
-      // console.log(e.message);
+      console.log(e.message);
       throw new Error(e.message);
     }
   }

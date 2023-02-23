@@ -1,4 +1,4 @@
-import { Sample } from "src/sample/domain/sample";
+import { Sample } from "../sample";
 import { SampleId } from "../sample-id";
 
 export interface ISampleRepository {

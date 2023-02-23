@@ -33,7 +33,7 @@ export class SampleRepository implements ISampleRepository {
       const result: samples = await this.prisma.samples.upsert({
         where: { id: id },
         create: { id: id, ...property },
-        update: { ...property },
+        update: property,
       });
 
       return sampleMapper(result);

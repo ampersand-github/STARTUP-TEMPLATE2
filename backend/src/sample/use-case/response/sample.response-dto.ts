@@ -1,4 +1,4 @@
-import { Sample } from "src/sample/domain/sample";
+import { Sample } from "../../domain/sample";
 
 export class SampleResponseDto {
   private readonly age: number;

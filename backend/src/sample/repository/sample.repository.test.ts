@@ -1,9 +1,9 @@
 import { PrismaService } from "src/module/prisma/prisma.service";
 import { SampleRepository } from "./sample.repository";
-import { makeSampleDummy } from "src/sample/domain/dummy/make-sample-dummy";
+import { makeSampleDummy } from "../domain/dummy/make-sample-dummy";
 import { ISample, Sample } from "../domain/sample";
-import { Age } from "src/sample/domain/value-object/age";
-import { Gender, GenderType } from "src/sample/domain/value-object/gender";
+import { Age } from "../domain/value-object/age";
+import { Gender, GenderType } from "../domain/value-object/gender";
 
 describe("SampleRepository", () => {
   const prisma = new PrismaService();
