@@ -9,7 +9,7 @@ export class Money extends ValueObject<IMoney> {
   public readonly MAX_PRICE = 999999999999;
 
   public get value() {
-    return this.props.value;
+    return this._props.value;
   }
 
   public constructor(props: IMoney) {

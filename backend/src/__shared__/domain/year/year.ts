@@ -6,7 +6,7 @@ export interface IYear {
 
 export class Year extends ValueObject<IYear> {
   public get value() {
-    return this.props.value;
+    return this._props.value;
   }
 
   public readonly MIN_YEAR: number = 1901;
