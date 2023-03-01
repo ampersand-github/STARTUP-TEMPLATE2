@@ -21,10 +21,7 @@ export interface IProfileForm {
 export const ProfileForm = ({ profile }: IProfileForm) => {
   const {
     control,
-    handleSubmit,
     formState: { errors },
-    setValue,
-    watch,
   } = useForm<IProfile>();
 
   const url = "https://t.pimg.jp/080/791/225/1/80791225.jpg";
