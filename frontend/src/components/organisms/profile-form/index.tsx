@@ -28,7 +28,9 @@ export const ProfileForm = ({ profile }: IProfileForm) => {
   } = useForm<IProfile>();
 
   const url = "https://t.pimg.jp/080/791/225/1/80791225.jpg";
-  const onUpload = () => {};
+  const onUpload = () => {
+    console.log("onUpload");
+  };
   return (
     <Stack>
       <Stack spacing={3} direction="row" alignItems="center">
