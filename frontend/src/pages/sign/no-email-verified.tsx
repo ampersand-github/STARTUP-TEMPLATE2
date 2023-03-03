@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { User } from "@firebase/auth";
 import { useRouter } from "next/router";
 
+// メール認証していないときにのみ表示するページ
 export default function NoEmailVerified() {
   const { user, isUserLoading, sendVerifyEmail } = useAuth();
   const [isSendEmail, setIsSendEmail] = useState(false);
@@ -19,12 +20,12 @@ export default function NoEmailVerified() {
       if (isSendEmail) return;
       if (!user) return;
       if (user.emailVerified) return router.push("/");
-      await sendVerifyEmail(user);
+      console.log("sendVerifyEmail");
+      // await sendVerifyEmail(user);
       setIsSendEmail(true);
     })();
   }, [isUserLoading, user]);
 
-  // メール認証していないときにのみ表示するページ
   if (isUserLoading) return <CircularProgress />;
   return (
     <Stack>

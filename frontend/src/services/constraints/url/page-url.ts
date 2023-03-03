@@ -4,6 +4,7 @@ export const ANOTHER_PAGE = "/practice/another-layout";
 export const WISE_SAYING_PAGE = "/wise-saying";
 export const API_PRACTICE_PAGE = "/practice/api-page";
 export const BACKEND_PRACTICE_PAGE = "/practice/backend-page";
+export const BACKEND_PRACTICE_AUTH_PAGE = "/practice/auth";
 
 // signページ
 export const SIGN_UP_PAGE = "/sign/sign-up";

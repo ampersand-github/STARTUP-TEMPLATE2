@@ -12,6 +12,7 @@ import {
   ADDRESS_PAGE,
   ANOTHER_PAGE,
   API_PRACTICE_PAGE,
+  BACKEND_PRACTICE_AUTH_PAGE,
   BACKEND_PRACTICE_PAGE,
   PROFILE_PAGE,
   TOP_PAGE,
@@ -21,8 +22,8 @@ import * as React from "react";
 import { useAuth } from "src/services/hooks/use-auth";
 import { CustomListItem } from "src/components/elements/custom-list-item";
 
-export default function My() {
-  const { user, logout, isUserLoading } = useAuth();
+const My = () => {
+  const { user, isUserLoading, logout } = useAuth();
   const _ListSubheader = (text: string) => (
     <Typography color={"primary"} variant={"subtitle1"} fontWeight={"bold"}>
       {text}
@@ -64,6 +65,7 @@ export default function My() {
           <CustomListItem text={"レイアウトが違うページ"} href={ANOTHER_PAGE} />
           <CustomListItem text={"API動作確認"} href={API_PRACTICE_PAGE} />
           <CustomListItem text={"バックエンド動作確認"} href={BACKEND_PRACTICE_PAGE} />
+          <CustomListItem text={"SSRの認証の動作確認"} href={BACKEND_PRACTICE_AUTH_PAGE} />
           <Divider />
         </List>
 
@@ -72,4 +74,5 @@ export default function My() {
       </Stack>
     </Container>
   );
-}
+};
+export default My;

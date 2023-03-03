@@ -31,6 +31,7 @@ export class AuthService {
   async isVerified(token: string): Promise<IVerifiedStateResponseDto> {
     try {
       const mayBeDecodedIdToken = await this.verifyIdToken(token);
+      console.log("mayBeDecodedIdToken", mayBeDecodedIdToken);
       if (!mayBeDecodedIdToken) return verifiedStateResponseDto(false, false);
       return mayBeDecodedIdToken.email_verified
         ? verifiedStateResponseDto(true, true)
