@@ -20,10 +20,11 @@ export const withAuth = <P extends { [key: string]: unknown }>(
     if (!idToken) {
       context.res.setHeader("Location", "/sign/sign-in");
       context.res.statusCode = 302;
+      return inner ? inner(context) : { props: {} };
     }
 
     try {
-      // 認証に失敗したらログイン画面に飛ぶ
+      // 認証に失敗したらログイン画面に飛ぶ -> エラーケースに記述
       const verifiedIdToken: DecodedIdToken = await verifyIdToken(idToken as string);
 
       // email認証がしていない場合、email認証してねページへ飛ぶ
