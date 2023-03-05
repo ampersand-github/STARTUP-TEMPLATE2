@@ -10,6 +10,7 @@ import { AMPERSAND_PAGE, SIGN_IN_PAGE } from "src/services/constraints/url/page-
 import { SignForm } from "@/components/organisms/sign";
 import { useAuth } from "@/services/hooks/use-auth";
 import { useRouter } from "next/router";
+import { setup } from "@/services/lib/csrf";
 
 export default function SignUp() {
   const { user, signUp } = useAuth();
@@ -47,3 +48,6 @@ export default function SignUp() {
     </Container>
   );
 }
+export const getServerSideProps = setup(async () => {
+  return { props: {} };
+});

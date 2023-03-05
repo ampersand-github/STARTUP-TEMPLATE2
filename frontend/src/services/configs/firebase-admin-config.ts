@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
 
 const firebasePrivateKey = process.env.FIREBASE_PRIVATE_KEY as string;
@@ -16,5 +17,10 @@ admin.apps.length ? admin.app() : initializeApp();
 const firebaseAdminAuth = admin.auth();
 
 export const verifyIdToken = async (idToken: string): Promise<DecodedIdToken> => {
-  return await firebaseAdminAuth.verifyIdToken(idToken as string, true);
+  return await firebaseAdminAuth.verifyIdToken(idToken, true);
+};
+
+export const revokeRefreshTokens = async (token: string): Promise<void> => {
+  const decodedIdToken = await firebaseAdminAuth.verifyIdToken(token);
+  return await firebaseAdminAuth.revokeRefreshTokens(decodedIdToken.uid);
 };

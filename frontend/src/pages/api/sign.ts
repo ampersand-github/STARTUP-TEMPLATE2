@@ -1,3 +1,4 @@
+import { csrf } from "@/services/lib/csrf";
 import { NextApiRequest, NextApiResponse } from "next";
 import { setCookie } from "nookies";
 
@@ -12,9 +13,8 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     if (!idToken) return res.status(404).send("Not Found");
 
     // クッキー設定
-    const SESSION_KEY = "token";
     const COOKIE_OPTIONS = {
-      maxAge: 60 * 60 * 24, // 1日
+      maxAge: 60 * 60, // 1H
       httpOnly: true,
       secure: true, // set this to false in local (non-HTTPS) development // todo 開発環境ならfalseにする
       path: "/",
@@ -22,7 +22,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       sameSite: "strict",
       signed: true,
     };
-    setCookie({ res }, SESSION_KEY, idToken, COOKIE_OPTIONS);
+    setCookie({ res }, "token", idToken, COOKIE_OPTIONS);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);
@@ -31,4 +31,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(200).json({ status: true });
 };
 
-export default handler;
+export default csrf(handler);

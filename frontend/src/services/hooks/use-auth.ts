@@ -25,6 +25,7 @@ export interface IUseAuth {
   signUp: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   sendVerifyEmail: (user: User) => Promise<void>;
+  refreshIdToken: (user: User) => Promise<void>;
 }
 
 const authState = atom<IAuth>({
@@ -42,7 +43,8 @@ export const useAuth = (): IUseAuth => {
   const [user, setUser] = useRecoilState(authState);
   const { mutate } = UseCreateAccount();
   const [isAccountTableCreated, setIsAccountTableCreated] = useState<boolean>(false);
-  const idTokenUrl = "/api/login-v2";
+  const signApiUrl = "/api/sign";
+  const logoutApiUrl = "/api/sign-out";
 
   useEffect(() => {
     setIsUserLoading(true);
@@ -56,46 +58,24 @@ export const useAuth = (): IUseAuth => {
 
     return onAuthStateChanged(firebaseAuth, async (user: IAuth) => {
       setUser(user);
-      console.log("user", user);
 
       // メール認証をしていない場合は認証メールを承認してもらうページに飛ぶ
       if (user && !user.emailVerified) await jumpToEmailVerifiedPageIfNotVerified();
+
       setIsUserLoading(false);
     });
   }, []);
 
-  /*
-  useEffect(() => {
-    return firebaseAuth.onIdTokenChanged(async (user) => {
-      if (!user) {
-        setUser(null);
-        nookies.set(undefined, "session", "", { path: "/" });
-      } else {
-        setUser(user);
-        const newToken = await user.getIdToken(true);
-        // この行は nookies.set でいい気がする
-        await fetch(idTokenUrl, { method: "POST", body: newToken });
-      }
-    });
-  }, []);
- */
-
-  /*
   // force refresh the token every 10 minutes
   useEffect(() => {
     const handle = setInterval(async () => {
-      console.log("force refresh the token every 10 minutes");
+      // console.log("force refresh the token every 10 minutes");
       const user = firebaseAuth.currentUser;
-      if (user) {
-        const newToken = await user.getIdToken(true);
-        console.log(newToken);
-        await fetch(idTokenUrl, { method: "POST", body: newToken });
-      }
+      if (user) await refreshIdToken(user);
     }, 10 * 60 * 1000);
     // clean up setInterval
     return () => clearInterval(handle);
   }, []);
- */
 
   /**
    * サインイン
@@ -112,8 +92,12 @@ export const useAuth = (): IUseAuth => {
       // アカウントテーブルがなかったらつくる
       mutate();
 
+      // トークンをApiRoute経由でクッキーに保存する(サーバーサイドクッキー)
       const idToken = await result.user.getIdToken(true);
-      await fetch(idTokenUrl, { method: "POST", body: idToken });
+      await fetch(signApiUrl, { method: "POST", body: idToken });
+
+      // トップページに戻る
+      await router.push("/");
     } catch (e) {
       if (e instanceof FirebaseError) {
         // エラーからエラーコードを探す
@@ -137,12 +121,20 @@ export const useAuth = (): IUseAuth => {
   const signUp = async (email: string, password: string) => {
     try {
       setIsAccountTableCreated(false); // 念の為falseにする。
-      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+
+      // firebaseでサインアップ
+      const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+
       // signUp時点ではemail認証していないので強制的にEmail認証させる
       await jumpToEmailVerifiedPageIfNotVerified();
+
       // テーブルがなければ作成する。メール認証していないが、
       // メール認証していなければ、動かせないのでこのタイミングで作成しても問題ない
       mutate();
+
+      // トークンをApiRoute経由でクッキーに保存する(サーバーサイドクッキー)
+      const idToken = await userCredential.user.getIdToken(true);
+      await fetch(signApiUrl, { method: "POST", body: idToken });
     } catch (e) {
       if (e instanceof FirebaseError) {
         // エラーからエラーコードを探す
@@ -163,10 +155,11 @@ export const useAuth = (): IUseAuth => {
    * ログアウト
    */
   const logout = async () => {
+    if (!user) return;
     try {
+      await fetch(logoutApiUrl, { method: "DELETE" });
       await signOut(firebaseAuth);
       await router.push("/");
-      // nookies.destroy(context, "session", { path: "/" });
     } catch (error) {
       alert("サインアウトに失敗しました。");
     }
@@ -183,5 +176,21 @@ export const useAuth = (): IUseAuth => {
     await router.push(SIGN_NO_EMAIL_VERIFIED_PAGE);
   };
 
-  return { user, isUserLoading, signIn, signUp, logout, sendVerifyEmail };
+  /**
+   * idTokenの更新
+   */
+  const refreshIdToken = async (user: User) => {
+    const newToken = await user.getIdToken(true);
+    await fetch(signApiUrl, { method: "POST", body: newToken });
+  };
+
+  return {
+    user,
+    isUserLoading,
+    signIn,
+    signUp,
+    logout,
+    sendVerifyEmail,
+    refreshIdToken,
+  };
 };

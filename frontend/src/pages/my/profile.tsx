@@ -5,7 +5,6 @@ import { IProfile, ProfileTemplate } from "@/components/templates/my/profie-temp
 import { UseQueryProfiles } from "@/services/hooks/api/use-query-profiles";
 import { Loading } from "@/components/organisms/loading";
 import { GetServerSideProps } from "next";
-import { allowAccessToAuthUser } from "@/services/allow-access/allow-access-to-auth-user";
 import nookies from "nookies";
 import axios from "axios";
 import { axiosConfig } from "@/services/configs/axios-config";
@@ -46,10 +45,6 @@ export default function Profile({ props }: IProfileSSR) {
 
 // サーバサイドで実行する処理(getServerSideProps)を定義する
 export const getServerSideProps: GetServerSideProps<IItem> = async (context) => {
-  console.log("getServerSideProps");
-  const isAllow = await allowAccessToAuthUser(context);
-  if (isAllow) return isAllow;
-
   // プロフィールの取得
   const idToken = nookies.get(context).session;
   const mayBeProfile = await axios.get("/profile/may-be", await axiosConfig(idToken));

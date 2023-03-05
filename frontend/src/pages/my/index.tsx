@@ -21,6 +21,8 @@ import {
 import * as React from "react";
 import { useAuth } from "src/services/hooks/use-auth";
 import { CustomListItem } from "src/components/elements/custom-list-item";
+import { GetServerSideProps } from "next";
+import { withAuth } from "@/services/hoc/with-auth";
 
 const My = () => {
   const { user, isUserLoading, logout } = useAuth();
@@ -76,3 +78,10 @@ const My = () => {
   );
 };
 export default My;
+
+export const getServerSideProps: GetServerSideProps = withAuth(async (context) => {
+  const token = context.req.cookies.token || ("" as string);
+  return {
+    props: { token: token },
+  };
+});

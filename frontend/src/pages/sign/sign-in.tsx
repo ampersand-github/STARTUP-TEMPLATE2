@@ -11,6 +11,7 @@ import { NextPage } from "next";
 import { useAuth } from "@/services/hooks/use-auth";
 import { useRouter } from "next/router";
 import { SignForm } from "@/components/organisms/sign";
+import { setup } from "@/services/lib/csrf";
 
 const SignIn: NextPage = () => {
   const { user, signIn } = useAuth();
@@ -48,5 +49,9 @@ const SignIn: NextPage = () => {
     </Container>
   );
 };
+
+export const getServerSideProps = setup(async () => {
+  return { props: {} };
+});
 
 export default SignIn;
