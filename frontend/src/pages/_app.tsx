@@ -11,6 +11,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ModalProvider } from "react-modal-hook";
 import { TransitionGroup } from "react-transition-group";
+import { SnackbarProvider } from "notistack";
+import SnackbarCloseButton from "@/components/elements/button/snackbar-close-button";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -51,8 +53,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           <ReactQueryDevtools initialIsOpen={false} />
           <ModalProvider rootComponent={TransitionGroup}>
             <ThemeProvider theme={theme}>
-              {getLayout(<Component {...pageProps} />)}
-              <CssBaseline />
+              <SnackbarProvider
+                action={(snackbarKey) => <SnackbarCloseButton snackbarKey={snackbarKey} />}
+              >
+                {getLayout(<Component {...pageProps} />)}
+                <CssBaseline />
+              </SnackbarProvider>
             </ThemeProvider>
           </ModalProvider>
         </QueryClientProvider>
