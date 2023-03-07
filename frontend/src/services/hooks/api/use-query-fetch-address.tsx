@@ -3,7 +3,7 @@ import { axiosConfig } from "src/services/configs/axios-config";
 import { useQuery } from "@tanstack/react-query";
 import { API_FETCH_ADDRESS } from "src/services/constraints/url/api-url";
 import { QUERY_KEY_ADDRESS } from "src/services/constraints/tan-stack-query/query-key";
-import { joinUrl } from "src/services/functions/join-rul";
+import { joinUrl } from "@/services/lib/join-rul";
 import { IAddress } from "src/components/organisms/address-form";
 
 interface results {
