@@ -6,7 +6,11 @@ import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import { useTheme } from "@mui/material";
 import { LinkText } from "src/components/elements/text/link-text";
-import { AMPERSAND_PAGE, SIGN_UP_PAGE } from "src/services/constraints/url/page-url";
+import {
+  AMPERSAND_PAGE,
+  PASSWORD_FORGET_PAGE,
+  SIGN_UP_PAGE,
+} from "src/services/constraints/url/page-url";
 import { NextPage } from "next";
 import { useAuth } from "@/services/hooks/use-auth";
 import { useRouter } from "next/router";
@@ -36,7 +40,7 @@ const SignIn: NextPage = () => {
       {/* 下部のコンテンツ */}
       <Grid container>
         <Grid item xs>
-          <LinkText text={"パスワードを忘れた場合"} pageUrl={"#"} />
+          <LinkText text={"パスワードを忘れた場合"} pageUrl={PASSWORD_FORGET_PAGE} />
         </Grid>
         <Grid item>
           <LinkText text={"会員登録"} pageUrl={SIGN_UP_PAGE} />
@@ -50,8 +54,7 @@ const SignIn: NextPage = () => {
   );
 };
 
+export default SignIn;
 export const getServerSideProps = setup(async () => {
   return { props: {} };
 });
-
-export default SignIn;

@@ -32,11 +32,8 @@ export default function SignUp() {
       {/* サインインフォーム */}
       <SignForm text={text} user={user} router={router} signUp={signUp} />
 
-      {/* 下部のコンテンツ */}
       <Grid container>
-        <Grid item xs>
-          <LinkText text={"パスワードを忘れた場合"} pageUrl={"#"} />
-        </Grid>
+        <Grid item xs />
         <Grid item>
           <LinkText text={"ログイン"} pageUrl={SIGN_IN_PAGE} />
         </Grid>

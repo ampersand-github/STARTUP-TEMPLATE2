@@ -10,6 +10,7 @@ export const BACKEND_PRACTICE_AUTH_PAGE = "/practice/auth";
 export const SIGN_UP_PAGE = "/sign/sign-up";
 export const SIGN_IN_PAGE = "/sign/sign-in";
 export const SIGN_NO_EMAIL_VERIFIED_PAGE = "/sign/no-email-verified";
+export const PASSWORD_FORGET_PAGE = "/sign/password-forget";
 
 // マイページ
 export const MY_PAGE = "/my";
