@@ -14,8 +14,8 @@ import { RecoilAtomKeys } from "src/services/constraints/recoil/recoil-atom-key"
 import { useRouter } from "next/router";
 import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/url/page-url";
 import { FirebaseError } from "@firebase/app";
-import { authErrorList } from "src/services/constraints/firebase-auth-error";
 import { UseCreateAccount } from "@/services/hooks/api/use-create-account";
+import { selectErrorMessage } from "../lib/auth/select-error-message";
 
 export type IAuth = User | null;
 export interface IUseAuth {
@@ -48,6 +48,7 @@ export const useAuth = (): IUseAuth => {
 
   useEffect(() => {
     setIsUserLoading(true);
+    console.log("user", user?.toJSON());
 
     // 新規登録した人のためにアカウントテーブルをつくる
     // if (user && user.emailVerified && !isAccountTableCreated) {
@@ -99,19 +100,7 @@ export const useAuth = (): IUseAuth => {
       // トップページに戻る
       await router.push("/");
     } catch (e) {
-      if (e instanceof FirebaseError) {
-        // エラーからエラーコードを探す
-        const code = e.code;
-        const mayBeAuthError = authErrorList.find((one) => one.code === code);
-
-        // 一致したらアラートを出す
-        if (mayBeAuthError) {
-          alert(mayBeAuthError.message);
-          return; // 下のアラートと重ならないための処理
-        }
-      }
-
-      alert("ログインに失敗しました");
+      e instanceof FirebaseError ? alert(selectErrorMessage(e)) : alert("ログインに失敗しました");
     }
   };
 
@@ -136,18 +125,7 @@ export const useAuth = (): IUseAuth => {
       const idToken = await userCredential.user.getIdToken(true);
       await fetch(signApiUrl, { method: "POST", body: idToken });
     } catch (e) {
-      if (e instanceof FirebaseError) {
-        // エラーからエラーコードを探す
-        const code = e.code;
-        const mayBeAuthError = authErrorList.find((one) => one.code === code);
-
-        // 一致したらアラートを出す
-        if (mayBeAuthError) {
-          alert(mayBeAuthError.message);
-          return; // 下のアラートと重ならないための処理
-        }
-      }
-      alert("新規の登録に失敗しました");
+      e instanceof FirebaseError ? alert(selectErrorMessage(e)) : alert("ログインに失敗しました");
     }
   };
 
