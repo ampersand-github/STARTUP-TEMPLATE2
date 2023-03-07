@@ -1,9 +1,9 @@
 // https://github.com/iamhosseindhv/notistack/issues/156
 
 import * as React from "react";
-import IconButton from "@mui/material/IconButton/IconButton";
 import { SnackbarKey, useSnackbar } from "notistack";
 import { Close } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 interface ISnackbarKey {
   snackbarKey: SnackbarKey;
