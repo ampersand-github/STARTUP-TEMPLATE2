@@ -21,16 +21,12 @@
     "axios": "^1.2.1",
     "firebase": "^9.14.0",
     "firebase-admin": "^11.5.0",
-    "next": "13.0.5",
+    "next": "13.2.3",
     "next-csrf": "^0.2.1",
-    "next-firebase-auth": "^1.0.0-canary.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.40.0",
-    "react-hooks-use-modal": "^3.2.0",
-    "react-modal-hook": "^3.0.2",
-    "recoil": "^0.7.6",
-    "zod": "^3.20.2"
+    "recoil": "^0.7.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -46,13 +42,12 @@
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-modal": "^3.13.1",
+    "@testing-library/react": "^14.0.0",
+    "@types/node": "18.14.6",
+    "@types/react": "18.0.28",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
-    "babel-loader": "^8.3.0",
+    "babel-loader": "^9.1.2",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.11",
@@ -64,9 +59,7 @@
     "nookies": "^2.5.2",
     "notistack": "^3.0.0",
     "prettier": "^2.8.1",
-    "react-firebaseui": "^6.0.0",
-    "react-modal": "^3.16.1",
-    "typescript": "4.9.3"
+    "typescript": "4.9.5"
   },
   "husky": {
     "hooks": {
