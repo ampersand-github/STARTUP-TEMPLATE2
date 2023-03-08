@@ -48,7 +48,6 @@ export const useAuth = (): IUseAuth => {
 
   useEffect(() => {
     setIsUserLoading(true);
-    console.log("user", user?.toJSON());
 
     // 新規登録した人のためにアカウントテーブルをつくる
     // if (user && user.emailVerified && !isAccountTableCreated) {
