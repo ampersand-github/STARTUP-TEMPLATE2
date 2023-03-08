@@ -1,6 +1,6 @@
 import { useTheme } from "@mui/material";
 import Container from "@mui/material/Container";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import Grid from "@mui/material/Grid";
 import { CopyRightText } from "src/components/elements/text/copy-right-text";
@@ -20,7 +20,7 @@ export default function SignUp() {
 
   return (
     <Container maxWidth={"xs"}>
-      <Space height={8} />
+      <SizedBox height={8} />
 
       {/* ログインアイコン */}
       <SignIcon
@@ -38,7 +38,7 @@ export default function SignUp() {
           <LinkText text={"ログイン"} pageUrl={SIGN_IN_PAGE} />
         </Grid>
       </Grid>
-      <Space height={8} />
+      <SizedBox height={8} />
 
       {/* コピーライト */}
       <CopyRightText pageUrl={AMPERSAND_PAGE} />

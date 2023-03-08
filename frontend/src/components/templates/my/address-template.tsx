@@ -1,6 +1,6 @@
 import { Breadcrumbs, Link, Stack, Typography } from "@mui/material";
 import { MY_PAGE } from "@/services/constraints/url/page-url";
-import { Space } from "@/components/elements/space";
+import { SizedBox } from "@/components/elements/space";
 import React from "react";
 import { AddressForm, IAddress } from "@/components/organisms/address-form";
 
@@ -22,11 +22,11 @@ export const AddressTemplate = ({ address, onSubmit, changePostCode }: IAddressT
         </Link>
         <Typography color="textPrimary">住所設定</Typography>
       </Breadcrumbs>
-      <Space height={6} />
+      <SizedBox height={6} />
       <Typography variant={"h6"} fontWeight={"bold"} sx={{ opacity: 0.8 }}>
         住所設定
       </Typography>
-      <Space height={3} />
+      <SizedBox height={3} />
       <AddressForm address={address} onSubmit={onSubmit} changePostCode={changePostCode} />
     </Stack>
   );

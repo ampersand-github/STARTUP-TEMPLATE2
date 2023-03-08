@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { IUseAuth } from "src/services/hooks/use-auth";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import {
   ANOTHER_PAGE,
   API_PRACTICE_PAGE,
@@ -51,7 +51,7 @@ export const MyDrawer = ({ isOpen, toggle, user, logout }: IMyDrawer) => {
             <ListItem sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <Typography variant={"body2"}>{user?.email}</Typography>
             </ListItem>
-            <Space height={2}></Space>
+            <SizedBox height={2}></SizedBox>
             <Divider />
           </List>
         )}

@@ -7,7 +7,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import { IAddress } from "src/components/organisms/address-form";
 
 interface IMyDialog {
@@ -23,7 +23,7 @@ export const AddressSelectDialog = ({ hideModal, open, address, setAddress }: IM
       <Box sx={{ padding: 3 }}>
         <FormControl>
           <FormLabel id="demo-radio-buttons-group-label">住所を選択してください</FormLabel>
-          <Space height={2} />
+          <SizedBox height={2} />
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"

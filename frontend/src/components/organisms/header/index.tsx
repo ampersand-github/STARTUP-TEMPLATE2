@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { AppBar } from "@mui/material";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import { SIGN_IN_PAGE, SIGN_UP_PAGE } from "src/services/constraints/url/page-url";
 import { IUseAuth } from "src/services/hooks/use-auth";
 import { SiteLogo } from "src/components/elements/site-logo";
@@ -47,7 +47,7 @@ export const Header = ({ user, isUserLoading, isMobileSize, palette }: IHeader) 
               <Typography variant="body2">会員登録</Typography>
             </Button>
 
-            <Space width={isMobileSize ? 0.5 : 1} />
+            <SizedBox width={isMobileSize ? 0.5 : 1} />
 
             {/* ログイン */}
             <Button
@@ -61,7 +61,7 @@ export const Header = ({ user, isUserLoading, isMobileSize, palette }: IHeader) 
           </>
         )}
 
-        <Space width={isMobileSize ? 2 : 4} />
+        <SizedBox width={isMobileSize ? 2 : 4} />
 
         {/* マイページ */}
         <IconButton size="large" edge="start" aria-label="menu" color="inherit" href={"/my"}>

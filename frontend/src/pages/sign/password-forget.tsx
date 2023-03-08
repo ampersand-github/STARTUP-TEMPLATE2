@@ -1,6 +1,6 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import { Box, Button, useTheme } from "@mui/material";
@@ -32,7 +32,7 @@ const PasswordForget: NextPage = () => {
 
   return (
     <Container maxWidth={"xs"}>
-      <Space height={8} />
+      <SizedBox height={8} />
 
       {/* ログインアイコン */}
       <SignIcon

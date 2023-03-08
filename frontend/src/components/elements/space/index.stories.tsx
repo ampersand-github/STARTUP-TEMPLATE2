@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { ISpace, Space } from ".";
+import { ISizedBox, SizedBox } from ".";
 
 export default {
-  title: "elements/Space",
-  component: Space,
+  title: "elements/SizedBox",
+  component: SizedBox,
   decorators: [
     (Story) => {
       return (
@@ -14,9 +14,9 @@ export default {
       );
     },
   ],
-} as ComponentMeta<typeof Space>;
+} as ComponentMeta<typeof SizedBox>;
 
-const Template: ComponentStory<typeof Space> = (args: ISpace) => <Space {...args} />;
+const Template: ComponentStory<typeof SizedBox> = (args: ISizedBox) => <SizedBox {...args} />;
 
 export const Default = Template.bind({});
 Default.args = { width: 3, height: 12 };

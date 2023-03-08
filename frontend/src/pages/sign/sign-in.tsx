@@ -1,7 +1,7 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { Space } from "src/components/elements/space";
+import { SizedBox } from "src/components/elements/space";
 import { CopyRightText } from "src/components/elements/text/copy-right-text";
 import { SignIcon } from "src/components/elements/sign/sign-icon";
 import { useTheme } from "@mui/material";
@@ -25,7 +25,7 @@ const SignIn: NextPage = () => {
 
   return (
     <Container maxWidth={"xs"}>
-      <Space height={8} />
+      <SizedBox height={8} />
 
       {/* ログインアイコン */}
       <SignIcon
@@ -46,7 +46,7 @@ const SignIn: NextPage = () => {
           <LinkText text={"会員登録"} pageUrl={SIGN_UP_PAGE} />
         </Grid>
       </Grid>
-      <Space height={8} />
+      <SizedBox height={8} />
 
       {/* コピーライト */}
       <CopyRightText pageUrl={AMPERSAND_PAGE} />

@@ -1,6 +1,6 @@
 import { Avatar, Badge, Button, Stack } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import { Space } from "@/components/elements/space";
+import { SizedBox } from "@/components/elements/space";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { MottoTextField } from "@/components/elements/text-field/profile-form/motto";
@@ -46,9 +46,9 @@ export const ProfileForm = ({ profile }: IProfileForm) => {
           <MottoTextField errors={errors} control={control} />
         </Stack>
       </Stack>
-      <Space height={2} />
+      <SizedBox height={2} />
       <ProfileTextField errors={errors} control={control} />
-      <Space height={4} />
+      <SizedBox height={4} />
       <Button variant="contained" type="submit">
         送信する
       </Button>
