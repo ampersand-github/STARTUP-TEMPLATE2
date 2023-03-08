@@ -1,5 +1,5 @@
 export const TOP_PAGE = "/";
-export const GREAT_PARSON_PAGE = "/great-person";
+export const MAINTENANCE_PAGE = "/maintenance";
 export const ANOTHER_PAGE = "/practice/another-layout";
 export const WISE_SAYING_PAGE = "/wise-saying";
 export const API_PRACTICE_PAGE = "/practice/api-page";
