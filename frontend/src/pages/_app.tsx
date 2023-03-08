@@ -9,10 +9,10 @@ import { NextPage } from "next";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ModalProvider } from "react-modal-hook";
-import { TransitionGroup } from "react-transition-group";
 import { SnackbarProvider } from "notistack";
 import SnackbarCloseButton from "@/components/elements/button/snackbar-close-button";
+import { DefaultSeo } from "next-seo";
+import { SeoConfig } from '@/services/configs/seo-config';
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -45,13 +45,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <React.StrictMode>
       <Head>
-        <title>テンプレートサイト</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <DefaultSeo {...SeoConfig}/>
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <ModalProvider rootComponent={TransitionGroup}>
             <ThemeProvider theme={theme}>
               <SnackbarProvider
                 action={(snackbarKey) => <SnackbarCloseButton snackbarKey={snackbarKey} />}
@@ -60,7 +59,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                 <CssBaseline />
               </SnackbarProvider>
             </ThemeProvider>
-          </ModalProvider>
         </QueryClientProvider>
       </RecoilRoot>
     </React.StrictMode>
