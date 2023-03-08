@@ -12,7 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
 import SnackbarCloseButton from "@/components/elements/button/snackbar-close-button";
 import { DefaultSeo } from "next-seo";
-import { SeoConfig } from '@/services/configs/seo-config';
+import { SeoConfig } from "@/services/configs/seo-config";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -47,18 +47,18 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <DefaultSeo {...SeoConfig}/>
+      <DefaultSeo {...SeoConfig} />
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-            <ThemeProvider theme={theme}>
-              <SnackbarProvider
-                action={(snackbarKey) => <SnackbarCloseButton snackbarKey={snackbarKey} />}
-              >
-                {getLayout(<Component {...pageProps} />)}
-                <CssBaseline />
-              </SnackbarProvider>
-            </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <SnackbarProvider
+              action={(snackbarKey) => <SnackbarCloseButton snackbarKey={snackbarKey} />}
+            >
+              {getLayout(<Component {...pageProps} />)}
+              <CssBaseline />
+            </SnackbarProvider>
+          </ThemeProvider>
         </QueryClientProvider>
       </RecoilRoot>
     </React.StrictMode>

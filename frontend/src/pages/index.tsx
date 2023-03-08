@@ -10,7 +10,7 @@ export default function Home() {
     "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   return (
     <Stack>
-      <NextSeo  />
+      <NextSeo />
       <>
         {text} {text} {text} {text} {text} {text} {text} {text} {text} {text}
         {text} {text} {text} {text} {text} {text} {text} {text} {text} {text}
