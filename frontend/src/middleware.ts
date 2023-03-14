@@ -3,12 +3,23 @@ import type { NextRequest } from "next/server";
 import { MAINTENANCE_PAGE } from "@/services/constraints/url/page-url";
 
 export function middleware(request: NextRequest) {
-  console.log("middleware");
+  // console.log("middleware");
+
+  // ベーシック認証
+  // console.log("ベーシック認証");
+  const isAuthorized = authorizeBasicAuth(request);
+  if (!isAuthorized)
+    return new Response(`Basic Auth Required.`, {
+      status: 401,
+      headers: { "WWW-Authenticate": 'Basic realm="Secure Area"' },
+    });
 
   // メンテナンスモード
+  // console.log("メンテナンスモード");
   if (process.env.IS_MAINTENANCE === "true")
     return NextResponse.redirect(new URL(MAINTENANCE_PAGE, request.url));
 
+  //
   return NextResponse.next();
 }
 
@@ -24,4 +35,20 @@ export const config = {
    * - /maintenance
    */
   matcher: "/((?!api|_next/static|_next/image|favicon.ico|maintenance).*)",
+};
+
+const authorizeBasicAuth = (request: NextRequest): boolean => {
+  if (process.env.IS_BASIC_AUTH === "true") {
+    const basicAuth = request.headers.get("authorization");
+    if (basicAuth) {
+      const authValue = basicAuth.split(" ")[1];
+      const [user, password] = atob(authValue).split(":");
+      // console.log(user,password)
+      const envUser = process.env.IS_BASIC_AUTH_USER;
+      const envPassword = process.env.IS_BASIC_AUTH_PASSWORD;
+      if (user === envUser && password === envPassword) return true;
+    }
+    return false;
+  }
+  return true;
 };
