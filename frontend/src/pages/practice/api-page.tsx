@@ -1,8 +1,9 @@
 import { Stack, Typography } from "@mui/material";
 import { UseQueryPersons } from "src/services/hooks/api/use-query-persons";
 import { UseQueryAccount } from "@/services/hooks/api/use-query-account";
+import { NextPage } from "next";
 
-export default function ApiPage() {
+const ApiPage: NextPage = () => {
   const { isLoading: isLoadingP, error: errorP, data: todos } = UseQueryPersons();
   const { isLoading: isLoadingA, error: errorA, data: accounts } = UseQueryAccount();
   if (errorP || errorA) return <span>Error</span>;
@@ -15,4 +16,5 @@ export default function ApiPage() {
       <Typography> {JSON.stringify(todos.data)}</Typography>
     </Stack>
   );
-}
+};
+export default ApiPage;

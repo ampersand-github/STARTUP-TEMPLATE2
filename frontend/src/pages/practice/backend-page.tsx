@@ -1,9 +1,11 @@
 import { Stack, Typography } from "@mui/material";
+import { NextPage } from "next";
 
-export default function BackendPage() {
+const BackendPage: NextPage = () => {
   return (
     <Stack>
       <Typography>バックエンド動作確認用ページ</Typography>
     </Stack>
   );
-}
+};
+export default BackendPage;

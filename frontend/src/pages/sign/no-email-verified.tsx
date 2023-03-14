@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { User } from "@firebase/auth";
 import { useRouter } from "next/router";
 import { LinkText } from "@/components/elements/text/link-text";
+import { NextPage } from "next";
 
 // メール認証していないときにのみ表示するページ
-export default function NoEmailVerified() {
+const NoEmailVerified: NextPage = () => {
   const { user, isUserLoading, sendVerifyEmail, logout, refreshIdToken } = useAuth();
   const router = useRouter();
   const email = user?.email as string;
@@ -41,4 +42,5 @@ export default function NoEmailVerified() {
       <Button onClick={logout}>メールアドレスを誤ったので会員登録し直す</Button>
     </Stack>
   );
-}
+};
+export default NoEmailVerified;

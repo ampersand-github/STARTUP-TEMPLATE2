@@ -54,7 +54,7 @@ const SignIn: NextPage = () => {
   );
 };
 
-export default SignIn;
 export const getServerSideProps = setup(async () => {
   return { props: {} };
 });
+export default SignIn;

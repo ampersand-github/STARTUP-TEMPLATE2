@@ -11,8 +11,9 @@ import { SignForm } from "@/components/organisms/sign";
 import { useAuth } from "@/services/hooks/use-auth";
 import { useRouter } from "next/router";
 import { setup } from "@/services/lib/csrf";
+import { NextPage } from "next";
 
-export default function SignUp() {
+const SignUp: NextPage = () => {
   const { user, signUp } = useAuth();
   const router = useRouter();
   const theme = useTheme();
@@ -44,7 +45,8 @@ export default function SignUp() {
       <CopyRightText pageUrl={AMPERSAND_PAGE} />
     </Container>
   );
-}
+};
 export const getServerSideProps = setup(async () => {
   return { props: {} };
 });
+export default SignUp;

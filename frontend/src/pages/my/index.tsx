@@ -21,10 +21,10 @@ import {
 import * as React from "react";
 import { useAuth } from "src/services/hooks/use-auth";
 import { CustomListItem } from "src/components/elements/custom-list-item";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { withAuth } from "@/services/hoc/with-auth";
 
-const My = () => {
+const My: NextPage = () => {
   const { user, isUserLoading, logout } = useAuth();
   const _ListSubheader = (text: string) => (
     <Typography color={"primary"} variant={"subtitle1"} fontWeight={"bold"}>
@@ -77,7 +77,6 @@ const My = () => {
     </Container>
   );
 };
-export default My;
 
 export const getServerSideProps: GetServerSideProps = withAuth(async (context) => {
   const token = context.req.cookies.token || ("" as string);
@@ -85,3 +84,5 @@ export const getServerSideProps: GetServerSideProps = withAuth(async (context) =
     props: { token: token },
   };
 });
+
+export default My;

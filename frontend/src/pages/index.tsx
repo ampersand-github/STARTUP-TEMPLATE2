@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 
-export default function Home() {
+const Home: NextPage = () => {
   const text =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
     "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -17,4 +18,5 @@ export default function Home() {
       </>
     </Stack>
   );
-}
+};
+export default Home;
