@@ -7,6 +7,7 @@ import { User } from "@firebase/auth";
 import { useRouter } from "next/router";
 import { LinkText } from "@/components/elements/text/link-text";
 import { NextPage } from "next";
+import { NoEmailVerifiedTemplate } from "@/components/templates/sign/no-email-verified-template";
 
 // メール認証していないときにのみ表示するページ
 const NoEmailVerified: NextPage = () => {
@@ -28,19 +29,14 @@ const NoEmailVerified: NextPage = () => {
   }, [isUserLoading, user]);
 
   if (isUserLoading) return <CircularProgress />;
+
   return (
-    <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-      <Typography>{email}に認証メールを送信しました。</Typography>
-      <Stack direction={"row"}>
-        <Typography>認証したら</Typography>
-        <LinkText pageUrl={"/"} text={"こちら"} />
-        <Typography>をタップしてください。</Typography>
-      </Stack>
-      <SizedBox height={1}></SizedBox>
-      <Button onClick={() => sendVerifyEmail(user as User)}>認証メールを再送する</Button>
-      <SizedBox height={1}></SizedBox>
-      <Button onClick={logout}>メールアドレスを誤ったので会員登録し直す</Button>
-    </Stack>
+    <NoEmailVerifiedTemplate
+      user={user as User}
+      email={email}
+      sendVerifyEmail={sendVerifyEmail}
+      logout={logout}
+    />
   );
 };
 export default NoEmailVerified;

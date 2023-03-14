@@ -2,6 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import nookies from "nookies";
 import { verifyIdToken } from "@/services/configs/firebase-admin-config";
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
+import { SIGN_IN_PAGE, SIGN_NO_EMAIL_VERIFIED_PAGE } from "@/services/constraints/url/page-url";
 
 type InnerGetServerSideProps<P extends { [key: string]: unknown }> = (
   context: GetServerSidePropsContext
@@ -18,7 +19,7 @@ export const withAuth = <P extends { [key: string]: unknown }>(
 
     // クッキーがない場合はログインしていないとみなし、ログイン画面に飛ぶ
     if (!idToken) {
-      context.res.setHeader("Location", "/sign/sign-in");
+      context.res.setHeader("Location", SIGN_IN_PAGE);
       context.res.statusCode = 302;
       return inner ? inner(context) : { props: {} };
     }
@@ -29,14 +30,14 @@ export const withAuth = <P extends { [key: string]: unknown }>(
 
       // email認証がしていない場合、email認証してねページへ飛ぶ
       if (!verifiedIdToken.email_verified) {
-        context.res.setHeader("Location", "/sign/no-email-verified");
+        context.res.setHeader("Location", SIGN_NO_EMAIL_VERIFIED_PAGE);
         context.res.statusCode = 302;
       }
     } catch (e) {
       // 認証失敗時はエラーで返却されるのでtry-catch文を使う
       // todo errorInfo.codeに合わせて遷移先とメッセージをつくりたい
       console.log(e);
-      context.res.setHeader("Location", "/sign/sign-in");
+      context.res.setHeader("Location", SIGN_IN_PAGE);
       context.res.statusCode = 302;
     }
 

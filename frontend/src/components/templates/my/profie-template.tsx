@@ -13,7 +13,7 @@ export interface IProfile {
   iconPath: string;
 }
 
-export const ProfileTemplate = ({ onUpload }: IProfileTemplate) => {
+export const ProfileTemplate = ({ onUpload }: IProfileTemplate): JSX.Element => {
   return (
     <Stack>
       <Breadcrumbs aria-label="breadcrumb">

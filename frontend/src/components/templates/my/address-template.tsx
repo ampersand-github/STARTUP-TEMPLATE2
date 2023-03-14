@@ -10,7 +10,11 @@ export interface IAddressTemplate {
   changePostCode: (value: string) => void;
 }
 
-export const AddressTemplate = ({ address, onSubmit, changePostCode }: IAddressTemplate) => {
+export const AddressTemplate = ({
+  address,
+  onSubmit,
+  changePostCode,
+}: IAddressTemplate): JSX.Element => {
   return (
     <Stack>
       <Breadcrumbs aria-label="breadcrumb">

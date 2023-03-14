@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { IUseAuth } from "src/services/hooks/use-auth";
-import { NextRouter } from "next/router";
 import { useState } from "react";
 
 export interface ISignForm {
@@ -13,7 +12,6 @@ export interface ISignForm {
   user: IUseAuth["user"];
   signIn?: IUseAuth["signIn"];
   signUp?: IUseAuth["signUp"];
-  router: NextRouter;
 }
 
 export const SignForm = ({ text, signIn, signUp }: ISignForm) => {

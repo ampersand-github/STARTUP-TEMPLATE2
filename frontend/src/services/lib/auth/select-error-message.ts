@@ -5,13 +5,13 @@ interface IAuthError {
   message: string;
 }
 const authErrorList: IAuthError[] = [
-  { code: "auth/invalid-email", message: "メールアドレスの形式が間違っています" },
-  { code: "auth/weak-password", message: "パスワードの強度を上げてください" },
-  { code: "auth/user-disabled", message: "ユーザーが無効です" },
-  { code: "auth/user-not-found", message: "ユーザーが存在しません" },
-  { code: "auth/wrong-password", message: "パスワードが間違っています" },
-  { code: "auth/too-many-requests", message: "時間をおいて再度、お試しください" },
-  { code: "auth/email-already-in-use", message: "メールアドレスはすでに登録されています" },
+  { code: "ssrPage/invalid-email", message: "メールアドレスの形式が間違っています" },
+  { code: "ssrPage/weak-password", message: "パスワードの強度を上げてください" },
+  { code: "ssrPage/user-disabled", message: "ユーザーが無効です" },
+  { code: "ssrPage/user-not-found", message: "ユーザーが存在しません" },
+  { code: "ssrPage/wrong-password", message: "パスワードが間違っています" },
+  { code: "ssrPage/too-many-requests", message: "時間をおいて再度、お試しください" },
+  { code: "ssrPage/email-already-in-use", message: "メールアドレスはすでに登録されています" },
 ];
 
 export const selectErrorMessage = (firebaseError: FirebaseError): string => {
