@@ -9,10 +9,11 @@ import { NextPage } from "next";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { SnackbarProvider } from "notistack";
-import SnackbarCloseButton from "@/components/elements/button/snackbar-close-button";
 import { DefaultSeo } from "next-seo";
 import { SeoConfig } from "@/services/configs/seo-config";
+import { ModalProvider } from "react-modal-hook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs
@@ -52,12 +53,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <ThemeProvider theme={theme}>
-            <SnackbarProvider
-              action={(snackbarKey) => <SnackbarCloseButton snackbarKey={snackbarKey} />}
-            >
+            <ModalProvider>
+              <ToastContainer />
               {getLayout(<Component {...pageProps} />)}
               <CssBaseline />
-            </SnackbarProvider>
+            </ModalProvider>
           </ThemeProvider>
         </QueryClientProvider>
       </RecoilRoot>

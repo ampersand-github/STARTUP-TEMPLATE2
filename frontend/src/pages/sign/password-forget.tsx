@@ -2,23 +2,23 @@ import * as React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useEnqueueSnackbar } from "@/services/hooks/use-enqueue-snackbar";
 import { resetPassword } from "@/services/lib/auth/reset-password";
 import { PasswordForgetTemplate } from "@/components/templates/sign/password-forget-template";
+import { toast } from "react-toastify";
+import { SIGN_IN_PAGE } from "@/services/constraints/url/page-url";
 
 const PasswordForget: NextPage = () => {
   const [email, setEmail] = useState("");
   const router = useRouter();
-  const { snackbar } = useEnqueueSnackbar();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = await resetPassword(email);
     if (result.isOk) {
-      snackbar({ message: "メールを送信しました", variant: "success" });
-      router.back();
+      toast.success("メールを送信しました");
+      await router.push(SIGN_IN_PAGE);
     }
-    if (!result.isOk) snackbar({ message: result.message || "", variant: "error" });
+    if (!result.isOk) toast.error(result.message || "");
   };
 
   return (
