@@ -1,7 +1,7 @@
 import { LinkText } from "@/components/elements/text/link-text";
 import { SizedBox } from "@/components/elements/space";
 import * as React from "react";
-import { IAuth, IUseAuth } from "@/services/hooks/use-auth";
+import { IUseAuth } from "@/services/hooks/use-auth";
 import Container from "@mui/material/Container";
 import { SignIcon } from "@/components/elements/sign/sign-icon";
 import { SignForm } from "@/components/organisms/sign";
@@ -15,11 +15,10 @@ import { CopyRightText } from "@/components/elements/text/copy-right-text";
 import { theme } from "@/services/constraints/themes";
 
 export interface ISignInTemplate {
-  user: IAuth;
   signIn: IUseAuth["signIn"];
 }
 
-export const SignInTemplate = ({ user, signIn }: ISignInTemplate): JSX.Element => {
+export const SignInTemplate = ({ signIn }: ISignInTemplate): JSX.Element => {
   const text = "ログイン";
 
   return (
@@ -34,7 +33,7 @@ export const SignInTemplate = ({ user, signIn }: ISignInTemplate): JSX.Element =
       ></SignIcon>
 
       {/* サインインフォーム */}
-      <SignForm text={text} user={user} signIn={signIn} />
+      <SignForm text={text} signIn={signIn} />
 
       {/* 下部のコンテンツ */}
       <Grid container>

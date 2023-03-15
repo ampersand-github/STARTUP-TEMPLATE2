@@ -10,14 +10,13 @@ import {
 } from "@/services/constraints/url/page-url";
 import * as React from "react";
 import { IUseAuth } from "@/services/hooks/use-auth";
-import { User } from "@firebase/auth";
 
 export interface IMyTemplate {
-  user: User;
+  email: string;
   logout: IUseAuth["logout"];
 }
 
-export const MyTemplate = ({ user, logout }: IMyTemplate): JSX.Element => {
+export const MyTemplate = ({ email, logout }: IMyTemplate): JSX.Element => {
   const _ListSubheader = (text: string) => (
     <Typography color={"primary"} variant={"subtitle1"} fontWeight={"bold"}>
       {text}
@@ -36,7 +35,7 @@ export const MyTemplate = ({ user, logout }: IMyTemplate): JSX.Element => {
 
         {/* 内部ページ */}
         <List subheader={_ListSubheader("アカウント")}>
-          <CustomListItem text={user.email as string} href={TOP_PAGE} />
+          <CustomListItem text={email} href={TOP_PAGE} />
           <CustomListItem text={"プロフィール"} href={PROFILE_PAGE} />
           <CustomListItem text={"住所"} href={ADDRESS_PAGE} />
           <Divider />

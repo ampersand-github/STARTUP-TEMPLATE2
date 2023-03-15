@@ -9,7 +9,6 @@ import { useState } from "react";
 
 export interface ISignForm {
   text: string;
-  user: IUseAuth["user"];
   signIn?: IUseAuth["signIn"];
   signUp?: IUseAuth["signUp"];
 }

@@ -1,11 +1,9 @@
-import { Button, CircularProgress, Stack, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { useAuth } from "src/services/hooks/use-auth";
 import * as React from "react";
-import { SizedBox } from "src/components/elements/space";
 import { useEffect, useState } from "react";
 import { User } from "@firebase/auth";
 import { useRouter } from "next/router";
-import { LinkText } from "@/components/elements/text/link-text";
 import { NextPage } from "next";
 import { NoEmailVerifiedTemplate } from "@/components/templates/sign/no-email-verified-template";
 
@@ -32,9 +30,8 @@ const NoEmailVerified: NextPage = () => {
 
   return (
     <NoEmailVerifiedTemplate
-      user={user as User}
       email={email}
-      sendVerifyEmail={sendVerifyEmail}
+      sendVerifyEmail={() => sendVerifyEmail(user as User)}
       logout={logout}
     />
   );

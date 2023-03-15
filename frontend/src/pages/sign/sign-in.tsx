@@ -5,9 +5,9 @@ import { setup } from "@/services/lib/csrf";
 import { SignInTemplate } from "@/components/templates/sign/sign-in-template";
 
 const SignIn: NextPage = () => {
-  const { user, signIn } = useAuth();
+  const { signIn } = useAuth();
 
-  return <SignInTemplate user={user} signIn={signIn} />;
+  return <SignInTemplate signIn={signIn} />;
 };
 
 export const getServerSideProps = setup(async () => {

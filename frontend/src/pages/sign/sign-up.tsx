@@ -5,9 +5,9 @@ import { NextPage } from "next";
 import { SignUpTemplate } from "@/components/templates/sign/sign-up-template";
 
 const SignUp: NextPage = () => {
-  const { user, signUp } = useAuth();
+  const { signUp } = useAuth();
 
-  return <SignUpTemplate user={user} signUp={signUp} />;
+  return <SignUpTemplate signUp={signUp} />;
 };
 export const getServerSideProps = setup(async () => {
   return { props: {} };

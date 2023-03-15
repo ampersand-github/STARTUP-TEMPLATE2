@@ -1,4 +1,3 @@
-import { CircularProgress } from "@mui/material";
 import * as React from "react";
 import { useAuth } from "src/services/hooks/use-auth";
 import { GetServerSideProps, NextPage } from "next";
@@ -10,18 +9,13 @@ interface IMy {
 }
 
 const My: NextPage<IMy> = (props: IMy) => {
-  const { user, isUserLoading, logout } = useAuth();
-  const token = props.props.token;
-  console.log(token);
+  const { user, logout } = useAuth();
 
-  if (isUserLoading) return <CircularProgress />;
-
-  return user ? <MyTemplate user={user} logout={logout} /> : <></>;
+  return <MyTemplate email={user?.email ? user.email : "loading..."} logout={logout} />;
 };
 
 export const getServerSideProps: GetServerSideProps = withAuth(async (context) => {
   const token = context.req.cookies.token || "";
-  // TODO アカウントをDBから引っ張る？
   return {
     props: { token: token },
   };
