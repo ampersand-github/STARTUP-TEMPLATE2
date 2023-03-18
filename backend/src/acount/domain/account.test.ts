@@ -1,10 +1,10 @@
+import { Email } from "./value-object/email";
 import { Account, IAccount } from "./account";
 import { AccountId } from "./account-id";
 
 describe("Account", () => {
   const props: IAccount = {
-    something1: "something1",
-    something2: 1,
+    email: new Email({ value: "sample@gmail.com" }),
   };
 
   describe("オブジェクトの生成", () => {
@@ -24,7 +24,8 @@ describe("Account", () => {
 
   describe("値を取得できる", () => {
     it("値を取得できる", () => {
-      // const actual = Account.create(props);
+      const actual = Account.create(props);
+      expect(actual.email).toStrictEqual(props.email);
     });
   });
 });

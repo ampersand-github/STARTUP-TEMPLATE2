@@ -1,19 +1,14 @@
 import { AccountId } from "./account-id";
 import { AggregateRoot } from "src/__shared__/domain/aggregate-root";
+import { Email } from "./value-object/email";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IAccount {
-  something1: string;
-  something2: number;
+  email: Email;
 }
 
 export class Account extends AggregateRoot<IAccount, AccountId> {
-  public get something1(): IAccount["something1"] {
-    return this._props.something1;
-  }
-
-  public get something2(): IAccount["something2"] {
-    return this._props.something2;
+  public get email(): IAccount["email"] {
+    return this._props.email;
   }
 
   private constructor(props: IAccount, id: AccountId) {

@@ -1,21 +1,20 @@
 import { Account, IAccount } from "../account";
 import { AccountId } from "../account-id";
+import { Email } from "../value-object/email";
 
 // - - - - - - - - - - - - - - - - - -
 // デフォルト値
 // - - - - - - - - - - - - - - - - - - - - - - - -
 export const defaultAccount: IAccount = {
-  something1: "something",
-  something2: 10,
+  email: new Email({ value: "sample@gmail.com" }),
 };
 
 // - - - - - - - - - - - - - - - - - - - - - - - -
 // テスト用インスタンス作成
 // - - - - - - - - - - - - - - - - - - - - - - - -
-export const makeAccountDummy = ({
+export const makeFakeAccount = ({
   id = AccountId.create(),
-  something1 = defaultAccount.something1,
-  something2 = defaultAccount.something2,
+  email = defaultAccount.email,
 }): Account => {
-  return Account.reBuild({ something1: something1, something2: something2 }, id);
+  return Account.reBuild({ email }, id);
 };
