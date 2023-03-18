@@ -7,8 +7,8 @@
     "dev:frontend": "next dev -p 3010",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./ --ext .ts,tsx,js",
-    "format": "prettier --write 'src/**/*.{ts,tsx}'",
+    "lint:frontend": "eslint ./ --ext .ts,tsx,js",
+    "format:frontend": "prettier --write 'src/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -28,7 +28,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.40.0",
     "react-toastify": "^9.1.1",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
