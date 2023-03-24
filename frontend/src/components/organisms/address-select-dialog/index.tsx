@@ -17,7 +17,7 @@ interface IMyDialog {
   setAddress: (address: IAddress) => void;
 }
 
-export const AddressSelectDialog = ({ hideModal, open, address, setAddress }: IMyDialog) => {
+export const AddressSelectDialog = ({ hideModal, open = true, address, setAddress }: IMyDialog) => {
   return (
     <Dialog open={open} onClose={hideModal} fullWidth={true}>
       <Box sx={{ padding: 3 }}>

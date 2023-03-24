@@ -5,7 +5,7 @@ import React from "react";
 import { AddressForm, IAddress } from "@/components/organisms/address-form";
 
 export interface IAddressTemplate {
-  address: IAddress;
+  address?: IAddress;
   onSubmit: (data: IAddress) => void;
   changePostCode: (value: string) => void;
 }
