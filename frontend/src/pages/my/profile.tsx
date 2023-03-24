@@ -41,7 +41,7 @@ const Profile: NextPage<IProfileSSR> = ({ props }: IProfileSSR) => {
 };
 
 // サーバサイドで実行する処理(getServerSideProps)を定義する
-export const getServerSideProps: GetServerSideProps<IItem> = async (context) => {
+export const getServerSideProps: GetServerSideProps<IItem> = async () => {
   // プロフィールの取得
   // const idToken = nookies.get(context).session;
   // const mayBeProfile = await axios.get("/profile/may-be", await axiosConfig(idToken));

@@ -3,17 +3,20 @@ import { MY_PAGE } from "@/services/constraints/url/page-url";
 import { SizedBox } from "@/components/elements/space";
 import React from "react";
 import { AddressForm, IAddress } from "@/components/organisms/address-form";
+import { Loading } from "@/components/organisms/loading";
 
 export interface IAddressTemplate {
   address?: IAddress;
+  isLoading: boolean;
   onSubmit: (data: IAddress) => void;
-  changePostCode: (value: string) => void;
+  changePostalCode: (value: string) => void;
 }
 
 export const AddressTemplate = ({
   address,
+  isLoading,
   onSubmit,
-  changePostCode,
+  changePostalCode,
 }: IAddressTemplate): JSX.Element => {
   return (
     <Stack>
@@ -31,7 +34,11 @@ export const AddressTemplate = ({
         住所設定
       </Typography>
       <SizedBox height={3} />
-      <AddressForm address={address} onSubmit={onSubmit} changePostCode={changePostCode} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <AddressForm address={address} onSubmit={onSubmit} changePostalCode={changePostalCode} />
+      )}
     </Stack>
   );
 };

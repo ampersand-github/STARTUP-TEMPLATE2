@@ -15,5 +15,5 @@ export const Default = Template.bind({});
 Default.args = {
   address: undefined,
   onSubmit: (data) => console.log(data),
-  changePostCode: (value: string) => console.log(value),
+  changePostalCode: (value: string) => console.log(value),
 };

@@ -16,5 +16,5 @@ Default.args = {
   address: undefined,
   onSubmit: (data) => console.log(data),
   isFetching: false,
-  changePostCode: (value: string) => console.log(value),
+  changePostalCode: (value: string) => console.log(value),
 };

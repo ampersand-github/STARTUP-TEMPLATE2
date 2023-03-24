@@ -12,10 +12,10 @@ export interface IAddress {
   prefecture: string;
   city: string;
   town: string;
-  block?: string;
+  block: string;
 }
 
-const defaultAddressValue: IAddress = {
+export const defaultAddressValue: IAddress = {
   postalCode: "",
   prefecture: "",
   city: "",
@@ -26,10 +26,10 @@ const defaultAddressValue: IAddress = {
 export interface IAddressForm {
   address?: IAddress;
   onSubmit: (data: IAddress) => void;
-  changePostCode: (value: string) => void;
+  changePostalCode: (value: string) => void;
 }
 
-export const AddressForm = ({ address, onSubmit, changePostCode }: IAddressForm) => {
+export const AddressForm = ({ address, onSubmit, changePostalCode }: IAddressForm) => {
   const {
     control,
     handleSubmit,
@@ -48,8 +48,8 @@ export const AddressForm = ({ address, onSubmit, changePostCode }: IAddressForm)
   }, [address]);
 
   useEffect(() => {
-    if (watchPostalCode.length !== 7) return;
-    changePostCode(watchPostalCode);
+    if (watchPostalCode?.length !== 7) return;
+    changePostalCode(watchPostalCode);
   }, [watchPostalCode]);
 
   return (

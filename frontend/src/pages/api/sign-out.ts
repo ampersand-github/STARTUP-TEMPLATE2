@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { destroyCookie, parseCookies } from "nookies";
 import { revokeRefreshTokens } from "@/services/configs/firebase-admin-config";
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     // "DELETE"以外は、"404 Not Found"を返す

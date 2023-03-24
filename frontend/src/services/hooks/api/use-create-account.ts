@@ -5,9 +5,9 @@ import { axiosConfig } from "@/services/configs/axios-config";
 import { getToken } from "@/services/configs/firebase-config";
 
 export const UseCreateAccount = () => {
-  return useMutation(async () => {
+  return useMutation(async (email: string) => {
     const token = await getToken();
-    const data = "";
+    const data = { email: email };
     return axios.post(API_CREATE_ACCOUNT, data, await axiosConfig(token));
   });
 };

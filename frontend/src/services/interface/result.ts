@@ -1,4 +1,4 @@
-export interface Result {
+export interface Result<T> {
   isOk: boolean;
-  message?: string;
+  value?: T;
 }

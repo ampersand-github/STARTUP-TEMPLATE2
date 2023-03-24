@@ -16,9 +16,9 @@ interface results {
   prefcode: string;
   zipcode: string;
 }
-export const useQueryFetchAddress = (postCode: string) => {
+export const useQueryFetchAddress = (postalCode: string) => {
   const fetch = async (): Promise<IAddress[]> => {
-    const url = joinUrl(API_FETCH_ADDRESS, { postCode: postCode });
+    const url = joinUrl(API_FETCH_ADDRESS, { postalCode: postalCode });
     const res = await axios.get(url, await axiosConfig());
     if (res.data.results.length === null) return [];
     return res.data.results.map((one: results) => {

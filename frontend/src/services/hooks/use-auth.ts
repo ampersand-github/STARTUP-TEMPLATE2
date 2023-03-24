@@ -51,8 +51,8 @@ export const useAuth = (): IUseAuth => {
 
     // 新規登録した人のためにアカウントテーブルをつくる
     // if (user && user.emailVerified && !isAccountTableCreated) {
-    if (user && user.emailVerified && !isAccountTableCreated) {
-      mutate();
+    if (user && user.email && user.emailVerified && !isAccountTableCreated) {
+      mutate(user.email);
       setIsAccountTableCreated(true);
     }
 
@@ -90,7 +90,7 @@ export const useAuth = (): IUseAuth => {
       );
 
       // アカウントテーブルがなかったらつくる
-      mutate();
+      mutate(email);
 
       // トークンをApiRoute経由でクッキーに保存する(サーバーサイドクッキー)
       const idToken = await result.user.getIdToken(true);
@@ -118,7 +118,7 @@ export const useAuth = (): IUseAuth => {
 
       // テーブルがなければ作成する。メール認証していないが、
       // メール認証していなければ、動かせないのでこのタイミングで作成しても問題ない
-      mutate();
+      mutate(email);
 
       // トークンをApiRoute経由でクッキーに保存する(サーバーサイドクッキー)
       const idToken = await userCredential.user.getIdToken(true);

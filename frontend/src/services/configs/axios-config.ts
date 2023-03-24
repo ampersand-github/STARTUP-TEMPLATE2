@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-export const axiosConfig = async (token?: string): Promise<AxiosRequestConfig> => {
+export const axiosConfig = (token?: string): AxiosRequestConfig => {
   return {
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
     timeout: 3000,

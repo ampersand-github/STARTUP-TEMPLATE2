@@ -2,7 +2,6 @@ import { csrf } from "@/services/lib/csrf";
 import { NextApiRequest, NextApiResponse } from "next";
 import { setCookie } from "nookies";
 
-// todo csrf対策が必要
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   try {
     // "POST"以外は、"404 Not Found"を返す
