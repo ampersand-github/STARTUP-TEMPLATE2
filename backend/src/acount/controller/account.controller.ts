@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthGuard, CustomRequest } from "src/module/auth/auth.guard";
 import { CreateAccountUseCase } from "../use-case/create-account.use-case";
 import { FindAccountUseCase } from "../use-case/find-account.use-case";
+import { SaveAccountRequestDto } from "src/acount/controller/request/save-account.request-dto";
 
 @Controller("account")
 export class AccountController {
@@ -24,7 +25,11 @@ export class AccountController {
 
   @UseGuards(AuthGuard)
   @Post()
-  public async createAccount(@Req() request: CustomRequest): Promise<void> {
-    return await this.createAccountUseCase.execute(request.uid);
+  public async createAccount(
+    @Req() request: CustomRequest,
+    @Body() dto: SaveAccountRequestDto
+  ): Promise<void> {
+    console.log("1", dto);
+    return await this.createAccountUseCase.execute(request.uid, dto);
   }
 }

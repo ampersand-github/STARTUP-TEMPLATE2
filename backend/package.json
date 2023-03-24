@@ -27,6 +27,7 @@
     "test:cov": "dotenv -e .env.development -- jest --coverage --forceExit --detectOpenHandles --runInBand"
   },
   "dependencies": {
+    "@badrap/result": "^0.2.13",
     "@fastify/csrf-protection": "^6.1.0",
     "@fastify/helmet": "^10.1.0",
     "@nestjs/common": "^9.0.0",
