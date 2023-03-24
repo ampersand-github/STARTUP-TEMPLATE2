@@ -26,7 +26,7 @@ export class AddressRepository implements IAddressRepository {
       const id = address.id.toString();
       const accountId = address.accountId.toString();
       const property = {
-        post_code: address.postCode.value,
+        post_code: address.postalCode.value,
         prefecture: address.prefecture.value,
         city: address.city,
         town: address.town,

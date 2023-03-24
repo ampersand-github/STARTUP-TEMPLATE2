@@ -1,24 +1,24 @@
 import { AggregateRoot } from "src/__shared__/domain/aggregate-root";
 import { AddressId } from "./address-id";
 import { Prefecture } from "./value-object/prefecture";
-import { PostCode } from "./value-object/post-code";
+import { PostalCode } from "./value-object/post-code";
 import { AccountId } from "src/acount/domain/account-id";
 
 export interface IAddress {
   accountId: AccountId;
-  postCode: PostCode;
+  postalCode: PostalCode;
   prefecture: Prefecture;
   city: string;
   town: string;
-  block?: string;
+  block: string;
 }
 
 export class Address extends AggregateRoot<IAddress, AddressId> {
   public get accountId(): IAddress["accountId"] {
     return this._props.accountId;
   }
-  public get postCode(): IAddress["postCode"] {
-    return this._props.postCode;
+  public get postalCode(): IAddress["postalCode"] {
+    return this._props.postalCode;
   }
 
   public get prefecture(): IAddress["prefecture"] {

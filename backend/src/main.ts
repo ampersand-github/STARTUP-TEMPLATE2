@@ -10,7 +10,9 @@ async function bootstrap() {
 
   // セキュリティ
   await app.register(helmet);
-  app.enableCors();
+  app.enableCors({
+    origin: "http://localhost:3010", //アクセス許可するオリジン
+  });
   await app.register(fastifyCsrf);
 
   // アプリケーション

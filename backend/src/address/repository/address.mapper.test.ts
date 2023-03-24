@@ -21,7 +21,7 @@ describe("addressMapper", (): void => {
     expect(actual).toStrictEqual(expect.any(Address));
     expect(actual.id).toStrictEqual(AddressId.reBuild(props.id));
 
-    expect(actual.postCode.value).toStrictEqual(props.post_code);
+    expect(actual.postalCode.value).toStrictEqual(props.post_code);
     expect(actual.prefecture.value).toStrictEqual(props.prefecture);
     expect(actual.city).toStrictEqual(props.city);
     expect(actual.town).toStrictEqual(props.town);

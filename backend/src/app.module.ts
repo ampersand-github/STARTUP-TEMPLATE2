@@ -5,6 +5,7 @@ import { AccountModule } from "./acount/account.module";
 import { QueryServiceModule } from "src/module/query-service/query-service.module";
 import { SampleModule } from "src/sample/sample.module";
 import { ProfileModule } from "src/profile/profile.module";
+import { AddressModule } from "src/address/address.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ProfileModule } from "src/profile/profile.module";
     SampleModule,
     AccountModule,
     ProfileModule,
+    AddressModule,
   ],
   controllers: [],
   providers: [],

@@ -66,7 +66,7 @@ describe("AddressController", () => {
           expect(res.body).toStrictEqual({
             block: null,
             city: "千代田区",
-            postCode: "1000001",
+            postalCode: "1000001",
             prefecture: "東京都",
             town: "千代田1-1",
           });
@@ -96,7 +96,7 @@ describe("AddressController", () => {
       return request(app.getHttpServer())
         .post("/address")
         .set("Authorization", `Bearer `)
-        .send({ postCode: "1000001", prefecture: "東京都", city: "千代田区", town: "千代田1-1" })
+        .send({ postalCode: "1000001", prefecture: "東京都", city: "千代田区", town: "千代田1-1" })
         .expect(201);
     });
   });

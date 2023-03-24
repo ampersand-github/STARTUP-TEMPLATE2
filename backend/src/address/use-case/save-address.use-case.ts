@@ -3,7 +3,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { AddressId } from "../domain/address-id";
 import { IAddressRepository } from "../domain/interface/address.interface";
 import { SaveAddressRequestDto } from "../controller/request/save-address.request-dto";
-import { PostCode } from "src/address/domain/value-object/post-code";
+import { PostalCode } from "src/address/domain/value-object/post-code";
 import { Prefecture } from "src/address/domain/value-object/prefecture";
 import { AccountId } from "src/acount/domain/account-id";
 
@@ -18,14 +18,13 @@ export class SaveAddressUseCase {
       const accountId = AccountId.reBuild(id);
       const one: Address | undefined = await this.addressRepository.findOne(accountId);
       const addressId = one ? one.id : AddressId.create();
-
       const props: IAddress = {
         accountId: one ? one.accountId : accountId,
-        postCode: new PostCode({ value: dto.postCode }),
+        postalCode: new PostalCode({ value: dto.postalCode }),
         prefecture: new Prefecture({ value: dto.prefecture }),
         city: dto.city,
         town: dto.town,
-        block: dto.block,
+        block: dto.block ? dto.block : "",
       };
       const address: Address = Address.reBuild(props, addressId);
       await this.addressRepository.save(address);

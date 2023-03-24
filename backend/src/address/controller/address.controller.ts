@@ -4,15 +4,18 @@ import { SaveAddressUseCase } from "../use-case/save-address.use-case";
 import { FindOneAddressUseCase } from "../use-case/find-one-address.use-case";
 import { SaveAddressRequestDto } from "./request/save-address.request-dto";
 import { AddressResponseDto } from "../use-case/response/address.response-dto";
+import { AddressResultResponseDto } from "src/address/use-case/response/address-result.response-dto";
+import { ResultOneAddressUseCase } from "src/address/use-case/result-one-address.use-case";
 
+@UseGuards(AuthGuard)
 @Controller("address")
 export class AddressController {
   constructor(
     private readonly saveAddressUseCase: SaveAddressUseCase,
-    private readonly findOneAddressUseCase: FindOneAddressUseCase
+    private readonly findOneAddressUseCase: FindOneAddressUseCase,
+    private readonly resultOneAddressUseCase: ResultOneAddressUseCase
   ) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   public async findOne(@Req() request: CustomRequest): Promise<AddressResponseDto> {
     try {
@@ -22,13 +25,24 @@ export class AddressController {
     }
   }
 
-  @UseGuards(AuthGuard)
+  @Get("result")
+  public async resultOne(@Req() request: CustomRequest): Promise<AddressResultResponseDto> {
+    try {
+      const a = await this.resultOneAddressUseCase.execute(request.uid);
+      console.log(a);
+      return a;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
   @Post()
   public async save(
     @Req() request: CustomRequest,
     @Body() dto: SaveAddressRequestDto
   ): Promise<void> {
     try {
+      console.log(dto);
       return await this.saveAddressUseCase.execute(request.uid, dto);
     } catch (e) {
       throw new Error(e.message);

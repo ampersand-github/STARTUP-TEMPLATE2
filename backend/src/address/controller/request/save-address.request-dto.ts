@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class SaveAddressRequestDto {
   @IsNotEmpty()
   @IsString()
-  postCode: string;
+  postalCode: string;
 
   @IsNotEmpty()
   @IsString()
@@ -17,7 +17,7 @@ export class SaveAddressRequestDto {
   @IsString()
   town: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   block: string;
 }
