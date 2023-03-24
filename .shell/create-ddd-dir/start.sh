@@ -4,8 +4,8 @@ echo "= = = = = START = = = = = "
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 echo "変数宣言"
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-pascalName="Sample" # <- ここを変える 頭大文字
-camelName="sample" # <- ここを変える 頭小文字
+pascalName="Address" # <- ここを変える 頭大文字
+camelName="address" # <- ここを変える 頭小文字
 srcDir="../../backend/src"
 targetDir="${srcDir}/${camelName}"
 
