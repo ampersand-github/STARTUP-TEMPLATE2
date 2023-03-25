@@ -26,7 +26,7 @@ export const makeFakeAddress = ({
   prefecture = defaultAddress.prefecture,
   city = defaultAddress.city,
   town = defaultAddress.town,
-  block = undefined,
+  block = defaultAddress.block,
 }): Address => {
   return Address.reBuild({ accountId, postalCode, prefecture, city, town, block }, id);
 };

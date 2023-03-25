@@ -4,10 +4,11 @@ import { AddressModule } from "../address.module";
 import { AddressRepository } from "src/address/repository/address.repository";
 import { AccountId } from "src/acount/domain/account-id";
 import { AccountRepository } from "src/acount/repository/account.repository";
-import { successCase } from "src/address/controller/test/find-one/success-case";
 import { createModuleRef } from "src/__shared__/controller/test/create-module-ref";
-import { errorCase_noData } from "src/address/controller/test/find-one/error-case-no-data";
-import { saveSuccessCase } from "src/address/controller/test/save/save-success-case";
+import { findOne_errorCase_noData } from "src/address/controller/test/find-one/find-one-error-case-no-data";
+import { findOne_successCase } from "./test/find-one/find-one-success-case";
+import { save_successCase_create } from "src/address/controller/test/save/save-success-case-create";
+import { save_successCase_update } from "src/address/controller/test/save/save-success-case_update";
 
 describe("AddressController", () => {
   let app: NestFastifyApplication;
@@ -41,16 +42,19 @@ describe("AddressController", () => {
 
   describe("findOne", () => {
     it(`正常/200/データを取得できる`, async () => {
-      await successCase(app, accountR, addressR, accountId);
+      await findOne_successCase(app, prisma, accountR, addressR, accountId);
     });
     it(`以上/500/データがないので取得できない`, async () => {
-      await errorCase_noData(app);
+      await findOne_errorCase_noData(app, prisma);
     });
   });
 
   describe("save", () => {
-    it(`正常/201/データを保存できる`, async () => {
-      await saveSuccessCase(app, accountR, addressR, accountId);
+    it(`正常/201/データを作成できる`, async () => {
+      await save_successCase_create(app, prisma, accountR, addressR, accountId);
+    });
+    it(`正常/201/データを更新できる`, async () => {
+      await save_successCase_update(app, prisma, accountR, addressR, accountId);
     });
   });
 });

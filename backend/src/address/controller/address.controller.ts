@@ -40,7 +40,6 @@ export class AddressController {
     @Body() dto: SaveAddressRequestDto
   ): Promise<void> {
     try {
-      console.log(dto);
       return await this.saveAddressUseCase.execute(request.uid, dto);
     } catch (e) {
       throw new Error(e.message);
