@@ -28,9 +28,7 @@ export class AddressController {
   @Get("result")
   public async resultOne(@Req() request: CustomRequest): Promise<AddressResultResponseDto> {
     try {
-      const a = await this.resultOneAddressUseCase.execute(request.uid);
-      console.log(a);
-      return a;
+      return await this.resultOneAddressUseCase.execute(request.uid);
     } catch (e) {
       throw new Error(e.message);
     }

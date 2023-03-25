@@ -4,14 +4,14 @@ describe("Prefecture", (): void => {
   test("オブジェクトを生成できる", () => {
     const prefecture = "東京都";
     const actual = new Prefecture({ value: prefecture });
-    expect(actual.value).toStrictEqual(Prefecture);
+    expect(actual.value).toStrictEqual(prefecture);
   });
 
   describe("通常ケース", (): void => {
     test("県名が正しい", () => {
       const prefecture = "東京都";
       const actual = new Prefecture({ value: prefecture });
-      expect(actual.value).toStrictEqual(Prefecture);
+      expect(actual.value).toStrictEqual(prefecture);
     });
   });
 

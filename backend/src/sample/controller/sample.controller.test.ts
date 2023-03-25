@@ -1,10 +1,8 @@
 import * as request from "supertest";
-import { Test } from "@nestjs/testing";
 import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
 import { PrismaService } from "src/module/prisma/prisma.service";
-import { SampleModule } from "../sample.module";
-import { ExecutionContext, UnauthorizedException } from "@nestjs/common";
-import { AuthGuard, CustomRequest } from "src/module/auth/auth.guard";
+import { SampleModule } from "src/sample/sample.module";
+import { createModuleRef } from "src/__shared__/controller/test/create-module-ref";
 
 describe("SampleController", () => {
   let app: NestFastifyApplication;
@@ -12,28 +10,17 @@ describe("SampleController", () => {
   const uid = "userId";
 
   beforeAll(async () => {
+    // テスト前にテーブルを初期化
     await prisma.allTruncateForMysql();
-    const moduleRef = await Test.createTestingModule({ imports: [SampleModule] })
-      .overrideGuard(AuthGuard)
-      .useValue({
-        // 認証をモック
-        canActivate: async (context: ExecutionContext) => {
-          const request = context.switchToHttp().getRequest<CustomRequest>();
-          if (!request.headers.authorization)
-            throw new UnauthorizedException("認証エラー（テスト）");
-          request.uid = uid;
-          return true;
-        },
-      })
-      .compile();
+    // モックを差し込む
+    const moduleRef = await createModuleRef(uid, [SampleModule]);
     app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
     await app.init();
     await app.getHttpAdapter().getInstance().ready();
   });
 
   beforeEach(async () => {
-    const deleteSample = prisma.samples.deleteMany();
-    await prisma.$transaction([deleteSample]);
+    await prisma.samples.deleteMany();
   });
 
   afterAll(async () => {
@@ -42,16 +29,12 @@ describe("SampleController", () => {
   });
 
   describe("save", () => {
-    it("201", () => {
+    it("201", async () => {
       return request(app.getHttpServer())
         .post("/sample")
         .set("Authorization", `Bearer `)
         .send({ age: 20, gender: "男性" })
-        .expect(201)
-        .expect((res) => {
-          console.log(res.status);
-          console.log(res.body);
-        });
+        .expect(201);
     });
   });
 
@@ -64,7 +47,6 @@ describe("SampleController", () => {
         .set("Authorization", `Bearer `)
         .expect(200)
         .expect((res) => {
-          // console.log(res.status);
           expect(res.body).toStrictEqual(props);
         });
     });
@@ -73,10 +55,7 @@ describe("SampleController", () => {
       return request(app.getHttpServer())
         .get("/sample")
         .set("Authorization", `Bearer `)
-        .expect(500)
-        .expect((res) => {
-          expect(res.statusCode).toStrictEqual(500);
-        });
+        .expect(500);
     });
   });
 });
