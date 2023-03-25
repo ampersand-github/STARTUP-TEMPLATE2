@@ -10,7 +10,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "start": "nest start",
-    "start:backend": "NODE_ENV=development nest start --debug --watch",
+    "dev:backend": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "docker:start": " docker-compose -p TEMPLATE --env-file .env.development up -d",
     "docker:down": "docker-compose -p TEMPLATE --env-file .env.development down",
@@ -22,9 +22,9 @@
     "prisma:deploy:prod": "dotenv -e .env.production npx prisma migrate deploy",
     "prisma:reset": "dotenv -e .env.development npx prisma migrate reset",
     "prisma:seed": "dotenv -e .env.development npx prisma db seed",
-    "test": "dotenv -e .env.development -- jest --forceExit --detectOpenHandles --runInBand",
-    "test:watch": "dotenv -e .env.development -- jest --watch --forceExit --detectOpenHandles --runInBand",
-    "test:cov": "dotenv -e .env.development -- jest --coverage --forceExit --detectOpenHandles --runInBand"
+    "test": "dotenv -e .env.development -- jest --runInBand --config jest-config.js",
+    "test:watch": "dotenv -e .env.development -- jest --watch --runInBand --config jest-config.js",
+    "test:cov": "dotenv -e .env.development -- jest --coverage --runInBand --config jest-config.js"
   },
   "dependencies": {
     "@badrap/result": "^0.2.13",
@@ -72,25 +72,5 @@
     "tsconfig-paths": "4.1.0",
     "typescript": "^4.7.4",
     "ulid": "^2.3.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "testRegex": ".*.test|spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "moduleNameMapper": {
-      "src(.*)$": "<rootDir>/src/$1"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "globalSetup": "<rootDir>/jest-setup.ts"
   }
 }
