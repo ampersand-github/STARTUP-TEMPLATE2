@@ -22,9 +22,9 @@
     "prisma:deploy:prod": "dotenv -e .env.production npx prisma migrate deploy",
     "prisma:reset": "dotenv -e .env.development npx prisma migrate reset",
     "prisma:seed": "dotenv -e .env.development npx prisma db seed",
-    "test": "dotenv -e .env.development -- jest --runInBand --config jest-config.js",
-    "test:watch": "dotenv -e .env.development -- jest --watch --runInBand --config jest-config.js",
-    "test:cov": "dotenv -e .env.development -- jest --coverage --runInBand --config jest-config.js"
+    "test": "dotenv -e .env.development -- jest --runInBand",
+    "test:watch": "dotenv -e .env.development -- jest --watch --runInBand",
+    "test:cov": "dotenv -e .env.development -- jest --coverage --runInBand"
   },
   "dependencies": {
     "@badrap/result": "^0.2.13",
@@ -72,5 +72,33 @@
     "tsconfig-paths": "4.1.0",
     "typescript": "^4.7.4",
     "ulid": "^2.3.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testRegex": "\\.test\\.ts$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.ts"
+    ],
+    "moduleNameMapper": {
+      "src(.*)$": "<rootDir>/src/$1"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "coverageDirectory": "./.coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "testEnvironment": "node",
+    "globalSetup": "<rootDir>/jest-setup.ts"
   }
 }
