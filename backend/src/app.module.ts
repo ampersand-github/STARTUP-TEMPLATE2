@@ -6,6 +6,8 @@ import { QueryServiceModule } from "src/module/query-service/query-service.modul
 import { SampleModule } from "src/sample/sample.module";
 import { ProfileModule } from "src/profile/profile.module";
 import { AddressModule } from "src/address/address.module";
+import { LoggingModule } from "src/module/logging/logging.module";
+import { ExceptionModule } from "src/module/exception/exception.module";
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { AddressModule } from "src/address/address.module";
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
+    LoggingModule,
+    ExceptionModule,
     AuthModule,
     QueryServiceModule,
     SampleModule,
