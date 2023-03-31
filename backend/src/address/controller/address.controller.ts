@@ -6,13 +6,11 @@ import { SaveAddressRequestDto } from "./request/save-address.request-dto";
 import { AddressResponseDto } from "../use-case/response/address.response-dto";
 import { AddressResultResponseDto } from "src/address/use-case/response/address-result.response-dto";
 import { ResultOneAddressUseCase } from "src/address/use-case/result-one-address.use-case";
-import { LoggingService } from "src/module/logging/logging.service";
 
 @UseGuards(AuthGuard)
 @Controller("address")
 export class AddressController {
   constructor(
-    private readonly logger: LoggingService,
     private readonly saveAddressUseCase: SaveAddressUseCase,
     private readonly findOneAddressUseCase: FindOneAddressUseCase,
     private readonly resultOneAddressUseCase: ResultOneAddressUseCase

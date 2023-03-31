@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/module/prisma/prisma.service";
 import { Account } from "../domain/account";
 import { AccountId } from "../domain/account-id";
 import { IAccountRepository } from "../domain/interface/account.repository.interface";
 import { Email } from "src/acount/domain/value-object/email";
+import { PrismaService } from "src/module/prisma/prisma.service";
 
 @Injectable()
 export class AccountRepository implements IAccountRepository {

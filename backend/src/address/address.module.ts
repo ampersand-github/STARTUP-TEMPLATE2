@@ -6,11 +6,10 @@ import { AddressRepository } from "./repository/address.repository";
 import { FindOneAddressUseCase } from "./use-case/find-one-address.use-case";
 import { SaveAddressUseCase } from "./use-case/save-address.use-case";
 import { ResultOneAddressUseCase } from "src/address/use-case/result-one-address.use-case";
-import { LoggingModule } from "src/module/logging/logging.module";
 import { ExceptionModule } from "src/module/exception/exception.module";
 
 @Module({
-  imports: [AuthModule, PrismaModule, LoggingModule, ExceptionModule],
+  imports: [AuthModule, PrismaModule, ExceptionModule],
   controllers: [AddressController],
   providers: [
     { provide: "AddressRepositoryProvide", useClass: AddressRepository },

@@ -31,17 +31,19 @@ export class LoggingService implements LoggerService {
 
   private readonly loggerFormat = winston.format.combine(
     winston.format.timestamp({ format: `${this.dateFormat} HH:mm:ss` }),
-    winston.format.errors({ stack: true }),
     winston.format.printf(
       (info: TransformableInfo) =>
         `"${info.timestamp}", "${info.level}", "${info.url}"," ${info.method}", "${info.uid}", "${info.message}"`
     )
   );
 
-  private readonly createDevelopTransport = new winston.transports.Console({
-    level: "debug",
-    format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
-  });
+  private readonly consoleTransport = () => {
+    const { combine, colorize, simple } = winston.format;
+    return new winston.transports.Console({
+      level: "debug",
+      format: combine(colorize(), simple()),
+    });
+  };
 
   private readonly createLog = (logLevel: LogLevel, props: ILog) => {
     return this.logger.log({
@@ -62,7 +64,9 @@ export class LoggingService implements LoggerService {
       ],
     });
 
-    if (process.env.NODE_ENV !== "production") logger.add(this.createDevelopTransport);
+    if (process.env.NODE_ENV !== "production") {
+      logger.add(this.consoleTransport());
+    }
 
     this.logger = logger;
   }
