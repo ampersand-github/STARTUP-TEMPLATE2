@@ -1,11 +1,19 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class SaveProfileRequestDto {
   @IsNotEmpty()
-  @IsNumber()
-  age: number;
+  @IsString()
+  nickName: string;
 
   @IsNotEmpty()
   @IsString()
-  gender: string;
+  iconPath: string;
+
+  @IsNotEmpty()
+  @IsString()
+  motto: string;
+
+  @IsNotEmpty()
+  @IsString()
+  profileText: string;
 }

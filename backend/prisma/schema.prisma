@@ -43,14 +43,14 @@ model address {
 }
 
 model profiles {
-  id         String   @id
-  icon_path  String?
-  nick_name  String?
-  motto      String?
-  profile    String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id           String   @id
+  icon_path    String?
+  nick_name    String
+  motto        String
+  profile_text String
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
   //
-  account    accounts @relation(fields: [account_id], references: [id])
-  account_id String   @unique
+  account      accounts @relation(fields: [account_id], references: [id])
+  account_id   String   @unique
 }
