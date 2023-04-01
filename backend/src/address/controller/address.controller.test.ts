@@ -55,7 +55,7 @@ describe("AddressController", () => {
     it(`正常/200/データを取得できる`, async () => {
       await resultOne_successCase(app, prisma, accountR, addressR, accountId);
     });
-    it(`以上/500/データがないので取得できない`, async () => {
+    it(`異常/500/データがないので取得できない`, async () => {
       await resultOne_errorCase_noData(app, prisma);
     });
   });
