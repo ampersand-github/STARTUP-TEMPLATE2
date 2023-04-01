@@ -10,13 +10,17 @@ import { AccountId } from "src/acount/domain/account-id";
 export class AddressRepository implements IAddressRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  public async isExist(id: AccountId): Promise<boolean> {
+    const count = await this.prisma.address.count({ where: { account_id: id.toString() } });
+    return count > 0;
+  }
+
   public async findOne(id: AccountId): Promise<Address | undefined> {
     try {
       const account_id = id.toString();
       const result = await this.prisma.address.findUnique({ where: { account_id } });
       return result ? addressMapper(result) : undefined;
     } catch (e) {
-      console.log(e.message);
       throw new Error(e.message);
     }
   }
@@ -38,9 +42,9 @@ export class AddressRepository implements IAddressRepository {
         create: { id, account_id: accountId, ...property },
         update: property,
       });
+
       return addressMapper(result);
     } catch (e) {
-      console.log(e.message);
       throw new Error(e.message);
     }
   }

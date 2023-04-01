@@ -9,6 +9,8 @@ import { findOne_errorCase_noData } from "src/address/controller/test/find-one/f
 import { findOne_successCase } from "./test/find-one/find-one-success-case";
 import { save_successCase_create } from "src/address/controller/test/save/save-success-case-create";
 import { save_successCase_update } from "src/address/controller/test/save/save-success-case_update";
+import { resultOne_successCase } from "src/address/controller/test/result-one/result-one-success-case";
+import { resultOne_errorCase_noData } from "src/address/controller/test/result-one/result-one-error-case-no-data";
 
 describe("AddressController", () => {
   let app: NestFastifyApplication;
@@ -46,6 +48,15 @@ describe("AddressController", () => {
     });
     it(`以上/500/データがないので取得できない`, async () => {
       await findOne_errorCase_noData(app, prisma);
+    });
+  });
+
+  describe("resultOne", () => {
+    it(`正常/200/データを取得できる`, async () => {
+      await resultOne_successCase(app, prisma, accountR, addressR, accountId);
+    });
+    it(`以上/500/データがないので取得できない`, async () => {
+      await resultOne_errorCase_noData(app, prisma);
     });
   });
 

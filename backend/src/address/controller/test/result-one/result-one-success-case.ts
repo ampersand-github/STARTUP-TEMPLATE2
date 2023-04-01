@@ -8,7 +8,7 @@ import { AddressRepository } from "src/address/repository/address.repository";
 import { AccountId } from "src/acount/domain/account-id";
 import { PrismaService } from "src/module/prisma/prisma.service";
 
-export const findOne_successCase = async (
+export const resultOne_successCase = async (
   app: NestFastifyApplication,
   prisma: PrismaService,
   accountRepository: AccountRepository,
@@ -23,16 +23,19 @@ export const findOne_successCase = async (
   await addressRepository.save(fakeAddress);
 
   return request(app.getHttpServer())
-    .get("/address")
+    .get("/address/result")
     .set("Authorization", `Bearer `)
     .expect(200)
     .expect((res) => {
       expect(res.body).toStrictEqual({
-        postalCode: fakeAddress.postalCode.value,
-        prefecture: fakeAddress.prefecture.value,
-        city: fakeAddress.city,
-        town: fakeAddress.town,
-        block: fakeAddress.block,
+        isOk: true,
+        value: {
+          postalCode: fakeAddress.postalCode.value,
+          prefecture: fakeAddress.prefecture.value,
+          city: fakeAddress.city,
+          town: fakeAddress.town,
+          block: fakeAddress.block,
+        },
       });
     });
 };

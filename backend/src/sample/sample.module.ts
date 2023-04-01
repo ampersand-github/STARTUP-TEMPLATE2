@@ -6,9 +6,10 @@ import { SampleRepository } from "./repository/sample.repository";
 import { FindOneSampleUseCase } from "./use-case/find-one-sample.use-case";
 import { MayBeSampleUseCase } from "./use-case/may-be-sample.use-case";
 import { SaveSampleUseCase } from "./use-case/save-sample.use-case";
+import { ExceptionModule } from "src/module/exception/exception.module";
 
 @Module({
-  imports: [AuthModule, PrismaModule],
+  imports: [AuthModule, PrismaModule, ExceptionModule],
   controllers: [SampleController],
   providers: [
     { provide: "SampleRepositoryProvide", useClass: SampleRepository },

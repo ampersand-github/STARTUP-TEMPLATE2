@@ -64,7 +64,8 @@ export class LoggingService implements LoggerService {
       ],
     });
 
-    if (process.env.NODE_ENV !== "production") {
+    // ProductionとTest環境では、コンソールにログを出力しない
+    if (process.env.NODE_ENV === "development") {
       logger.add(this.consoleTransport());
     }
 

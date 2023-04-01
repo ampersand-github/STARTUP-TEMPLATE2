@@ -6,6 +6,7 @@ import { SaveSampleRequestDto } from "./request/save-sample.request-dto";
 import { SampleResponseDto } from "../use-case/response/sample.response-dto";
 import { MayBeSampleUseCase } from "../use-case/may-be-sample.use-case";
 
+@UseGuards(AuthGuard)
 @Controller("sample")
 export class SampleController {
   constructor(
@@ -14,29 +15,24 @@ export class SampleController {
     private readonly mayBeSampleUseCase: MayBeSampleUseCase
   ) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   public async findOne(@Req() request: CustomRequest): Promise<SampleResponseDto> {
     try {
       return await this.findOneSampleUseCase.execute(request.uid);
     } catch (e) {
-      // console.log(e.message);
       throw new Error(e.message);
     }
   }
 
-  @UseGuards(AuthGuard)
   @Get("may-be")
   public async mayBe(@Req() request: CustomRequest): Promise<SampleResponseDto | null> {
     try {
       return await this.mayBeSampleUseCase.execute(request.uid);
     } catch (e) {
-      // console.log(e.message);
       throw new Error(e.message);
     }
   }
 
-  @UseGuards(AuthGuard)
   @Post()
   public async save(
     @Req() request: CustomRequest,
@@ -45,7 +41,6 @@ export class SampleController {
     try {
       return await this.saveSampleUseCase.execute(request.uid, dto);
     } catch (e) {
-      // console.log(e.message);
       throw new Error(e.message);
     }
   }
