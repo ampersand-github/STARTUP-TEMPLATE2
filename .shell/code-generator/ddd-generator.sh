@@ -4,8 +4,8 @@ echo "= = = = = START = = = = = "
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 echo "変数宣言"
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-pascalName="Tutorial" # <- ここを変える 頭大文字
-camelName="tutorial" # <- ここを変える 頭小文字
+pascalName="Profile" # <- ここを変える 頭大文字
+camelName="profile" # <- ここを変える 頭小文字
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 srcDir="../../backend/src"

@@ -9,9 +9,9 @@ import { ${pascalName} } from \"../../domain/${camelName}\";
 export class ${pascalName}ResponseDto {
   private readonly age: number;
   private readonly gender: string;
-  public constructor(sample: ${pascalName}) {
-    this.age = sample.age.value;
-    this.gender = sample.gender.value;
+  public constructor(${camelName}: ${pascalName}) {
+    this.age = ${camelName}.age.value;
+    this.gender = ${camelName}.gender.value;
   }
 }
 " > "${targetDir}/use-case/response/${camelName}.response-dto.ts"
