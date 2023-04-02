@@ -1,9 +1,9 @@
 import axios from "axios";
-import { axiosConfig } from "src/services/configs/axios-config";
+import { axiosConfig } from "@/services/configs/axios-config";
 import { useQuery } from "@tanstack/react-query";
-import { API_OPERATION_CHECK } from "src/services/constraints/url/api-url";
-import { QUERY_KEY_OPERATION_CHECK } from "src/services/constraints/tan-stack-query/query-key";
-import { getToken } from "src/services/configs/firebase-config";
+import { API_OPERATION_CHECK } from "@/services/configs/url/api-url";
+import { QUERY_KEY_OPERATION_CHECK } from "@/services/configs/tan-stack-query/query-key";
+import { getToken } from "@/services/configs/firebase-config";
 
 export const UseQueryOperationCheck = () => {
   const fetch = async () => {

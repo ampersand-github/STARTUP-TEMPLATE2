@@ -1,10 +1,10 @@
 import axios from "axios";
-import { axiosConfig } from "src/services/configs/axios-config";
+import { axiosConfig } from "@/services/configs/axios-config";
 import { useQuery } from "@tanstack/react-query";
-import { API_FETCH_ADDRESS } from "src/services/constraints/url/api-url";
-import { QUERY_KEY_ADDRESS } from "src/services/constraints/tan-stack-query/query-key";
+import { API_FETCH_ADDRESS } from "@/services/configs/url/api-url";
+import { QUERY_KEY_ADDRESS } from "@/services/configs/tan-stack-query/query-key";
 import { joinUrl } from "@/services/lib/join-rul";
-import { IAddress } from "src/components/organisms/address-form";
+import { IAddress } from "@/components/organisms/address-form";
 
 interface results {
   address1: string; // 県

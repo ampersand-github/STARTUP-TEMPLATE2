@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { API_FETCH_ACCOUNT } from "@/services/constraints/url/api-url";
-import { QUERY_KEY_ACCOUNTS } from "@/services/constraints/tan-stack-query/query-key";
+import { API_FETCH_ACCOUNT } from "@/services/configs/url/api-url";
+import { QUERY_KEY_ACCOUNTS } from "@/services/configs/tan-stack-query/query-key";
 import { getToken } from "@/services/configs/firebase-config";
 import { axiosConfig } from "@/services/configs/axios-config";
 

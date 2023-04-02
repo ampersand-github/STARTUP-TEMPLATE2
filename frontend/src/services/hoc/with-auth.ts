@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import nookies from "nookies";
 import { verifyIdToken } from "@/services/configs/firebase-admin-config";
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
-import { SIGN_IN_PAGE, SIGN_NO_EMAIL_VERIFIED_PAGE } from "@/services/constraints/url/page-url";
+import { SIGN_IN_PAGE, SIGN_NO_EMAIL_VERIFIED_PAGE } from "@/services/configs/url/page-url";
 
 type InnerGetServerSideProps<P extends { [key: string]: unknown }> = (
   context: GetServerSidePropsContext

@@ -10,11 +10,11 @@ import {
   UserCredential,
 } from "@firebase/auth";
 import { firebaseAuth } from "src/services/configs/firebase-config";
-import { RecoilAtomKeys } from "src/services/constraints/recoil/recoil-atom-key";
+import { RecoilAtomKeys } from "src/services/configs/recoil/recoil-atom-key";
 import { useRouter } from "next/router";
-import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/constraints/url/page-url";
+import { SIGN_NO_EMAIL_VERIFIED_PAGE } from "src/services/configs/url/page-url";
 import { FirebaseError } from "@firebase/app";
-import { UseCreateAccount } from "@/services/hooks/api/use-create-account";
+import { UseCreateAccount } from "@/services/api/get/use-create-account";
 import { selectErrorMessage } from "../lib/auth/select-error-message";
 
 export type IAuth = User | null;
@@ -26,6 +26,7 @@ export interface IUseAuth {
   logout: () => Promise<void>;
   sendVerifyEmail: (user: User) => Promise<void>;
   refreshIdToken: (user: User) => Promise<void>;
+  idToken: string;
 }
 
 const authState = atom<IAuth>({
@@ -37,7 +38,16 @@ const authState = atom<IAuth>({
 /**
  * 認証
  */
-export const useAuth = (): IUseAuth => {
+export const useAuth = (): {
+  isUserLoading: boolean;
+  sendVerifyEmail: (user: User) => Promise<void>;
+  logout: () => Promise<void>;
+  refreshIdToken: (user: User) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
+  user: User | null;
+  signUp: (email: string, password: string) => Promise<void>;
+  idToken: string;
+} => {
   const router = useRouter();
   const [isUserLoading, setIsUserLoading] = useState<boolean>(true);
   const [user, setUser] = useRecoilState(authState);
@@ -45,6 +55,7 @@ export const useAuth = (): IUseAuth => {
   const [isAccountTableCreated, setIsAccountTableCreated] = useState<boolean>(false);
   const signApiUrl = "/api/sign";
   const logoutApiUrl = "/api/sign-out";
+  const [idToken, setIdToken] = useState<string>("");
 
   useEffect(() => {
     setIsUserLoading(true);
@@ -53,6 +64,7 @@ export const useAuth = (): IUseAuth => {
     // if (user && user.emailVerified && !isAccountTableCreated) {
     if (user && user.email && user.emailVerified && !isAccountTableCreated) {
       mutate(user.email);
+
       setIsAccountTableCreated(true);
     }
 
@@ -71,7 +83,10 @@ export const useAuth = (): IUseAuth => {
     const handle = setInterval(async () => {
       // console.log("force refresh the token every 10 minutes");
       const user = firebaseAuth.currentUser;
-      if (user) await refreshIdToken(user);
+      if (user) {
+        await refreshIdToken(user);
+        setIdToken(await user.getIdToken(true));
+      }
     }, 10 * 60 * 1000);
     // clean up setInterval
     return () => clearInterval(handle);
@@ -169,5 +184,6 @@ export const useAuth = (): IUseAuth => {
     logout,
     sendVerifyEmail,
     refreshIdToken,
+    idToken,
   };
 };

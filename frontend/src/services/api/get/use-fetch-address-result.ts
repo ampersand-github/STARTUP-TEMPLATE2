@@ -1,5 +1,5 @@
 import { axiosConfig } from "@/services/configs/axios-config";
-import { API_FETCH_ADDRESS_RESULT } from "@/services/constraints/url/api-url";
+import { API_FETCH_ADDRESS_RESULT } from "@/services/configs/url/api-url";
 import { Result } from "@/services/interface/result";
 import axios, { AxiosResponse } from "axios";
 import useSWR from "swr";

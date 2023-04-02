@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IAddress } from "@/components/organisms/address-form";
-import { useQueryFetchAddress } from "@/services/hooks/api/use-query-fetch-address";
+import { useQueryFetchAddress } from "@/services/api/get/use-query-fetch-address";
 import { useModal } from "react-modal-hook";
 import { AddressSelectDialog } from "@/components/organisms/address-select-dialog";
 
