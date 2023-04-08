@@ -1,5 +1,5 @@
-import { Center } from "@/components/elements/center";
 import { NextPage } from "next";
+import { Center } from "src/common/components/elements/center";
 
 const Custom404: NextPage = () => {
   return (

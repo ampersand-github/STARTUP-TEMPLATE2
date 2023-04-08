@@ -1,8 +1,8 @@
 import * as React from "react";
 import { NextPage } from "next";
-import { useAuth } from "@/services/hooks/use-auth";
-import { setup } from "@/services/lib/csrf";
-import { SignInTemplate } from "@/components/templates/sign/sign-in-template";
+import { useAuth } from "@common/hooks/use-auth";
+import { SignInTemplate } from "src/common/components/templates/sign/sign-in-template";
+import { setup } from "@common/lib/csrf";
 
 const SignIn: NextPage = () => {
   const { signIn } = useAuth();

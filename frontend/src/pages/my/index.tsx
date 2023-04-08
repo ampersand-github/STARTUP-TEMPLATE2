@@ -1,14 +1,14 @@
 import * as React from "react";
-import { useAuth } from "src/services/hooks/use-auth";
+import { useAuth } from "src/common/hooks/use-auth";
 import { GetServerSideProps, NextPage } from "next";
-import { withAuth } from "@/services/hoc/with-auth";
-import { MyTemplate } from "@/components/templates/my/my-template";
+import { MyTemplate } from "src/common/components/templates/my/my-template";
+import { withAuth } from "src/common/hoc/with-auth";
 
 interface IMy {
   props: { token: string };
 }
 
-const My: NextPage<IMy> = (props: IMy) => {
+const My: NextPage<IMy> = () => {
   const { user, logout } = useAuth();
 
   return <MyTemplate email={user?.email ? user.email : "loading..."} logout={logout} />;

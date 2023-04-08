@@ -1,7 +1,7 @@
-import { UseQueryPersons } from "src/services/hooks/api/use-query-persons";
-import { UseQueryAccount } from "@/services/hooks/api/use-query-account";
+import { UseQueryAccount } from "@common/api/get/use-query-account";
+import { UseQueryPersons } from "@common/api/get/use-query-persons";
 import { NextPage } from "next";
-import { ApiPageTemplate } from "@/components/templates/practice/api-page-template";
+import { ApiPageTemplate } from "src/common/components/templates/practice/api-page-template";
 
 const ApiPage: NextPage = () => {
   const { isLoading: isLoadingP, error: errorP, data: todos } = UseQueryPersons();

@@ -1,4 +1,4 @@
-import { csrf } from "@/services/lib/csrf";
+import { csrf } from "@common/lib/csrf";
 import { NextApiRequest, NextApiResponse } from "next";
 import { setCookie } from "nookies";
 

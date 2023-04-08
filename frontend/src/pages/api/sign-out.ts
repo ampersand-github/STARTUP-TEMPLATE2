@@ -1,6 +1,6 @@
+import { revokeRefreshTokens } from "@common/configs/firebase-admin-config";
 import { NextApiRequest, NextApiResponse } from "next";
 import { destroyCookie, parseCookies } from "nookies";
-import { revokeRefreshTokens } from "@/services/configs/firebase-admin-config";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

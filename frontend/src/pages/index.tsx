@@ -1,7 +1,7 @@
+import { HomeTemplate } from "@common/components/templates/home-template";
 import { Stack } from "@mui/material";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { HomeTemplate } from "@/components/templates/home-template";
 
 const Home: NextPage = () => {
   return (

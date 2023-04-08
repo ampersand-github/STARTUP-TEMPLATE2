@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import { useAuth } from "src/services/hooks/use-auth";
+import { useAuth } from "src/common/hooks/use-auth";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { User } from "@firebase/auth";

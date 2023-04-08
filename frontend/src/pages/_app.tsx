@@ -1,19 +1,19 @@
 import type { AppProps } from "next/app";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { theme } from "@/services/constraints/themes";
 import Head from "next/head";
 import React, { ReactElement, ReactNode } from "react";
-import BasicLayout from "src/components/layouts/basic-layout";
+import BasicLayout from "src/common/components/layouts/basic-layout";
 import { RecoilRoot } from "recoil";
 import { NextPage } from "next";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { DefaultSeo } from "next-seo";
-import { SeoConfig } from "@/services/configs/seo-config";
 import { ModalProvider } from "react-modal-hook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { theme } from "@common/configs/themes";
+import { SeoConfig } from "@common/configs/seo-config";
 
 // サンプル
 // https://github.com/mui/material-ui/tree/master/examples/nextjs

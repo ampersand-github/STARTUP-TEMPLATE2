@@ -1,13 +1,13 @@
 import { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import { AddressTemplate } from "@/components/templates/my/address-template";
-import { IAddress } from "@/components/organisms/address-form";
-import { withAuth } from "@/services/hoc/with-auth";
-import { useAddressData } from "@/services/hooks/use-address-data";
-import { useFetchAddressResult } from "@/services/hooks/api/use-fetch-address-result";
-import { saveAddress } from "@/services/hooks/api/save-address";
 import Error from "next/error";
 import { toast } from "react-toastify";
+import { useFetchAddressResult } from "@common/api/get/use-fetch-address-result";
+import { useAddressData } from "@common/hooks/use-address-data";
+import { IAddress } from "src/common/components/organisms/address-form";
+import { saveAddress } from "@common/api/post/save-address";
+import { AddressTemplate } from "src/common/components/templates/my/address-template";
+import { withAuth } from "@common/hoc/with-auth";
 
 interface ISsrProps {
   props: { token: string };
