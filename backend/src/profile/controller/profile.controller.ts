@@ -11,7 +11,7 @@ import { ProfileResultResponseDto } from "src/profile/use-case/response/profile-
 @Controller("profile")
 export class ProfileController {
   constructor(
-    private readonly saveProfileUseCase: SaveProfileUseCase,
+    private readonly avatarUrlUseCase: SaveProfileUseCase,
     private readonly findOneProfileUseCase: FindOneProfileUseCase,
     private readonly resultOneProfileUseCase: ResultOneProfileUseCase
   ) {}
@@ -25,9 +25,10 @@ export class ProfileController {
     }
   }
 
-  @Get()
+  @Get("result")
   public async resultOne(@Req() request: CustomRequest): Promise<ProfileResultResponseDto> {
     try {
+      console.log("resultOne");
       return await this.resultOneProfileUseCase.execute(request.uid);
     } catch (e) {
       throw new Error(e.message);
@@ -40,7 +41,8 @@ export class ProfileController {
     @Body() dto: SaveProfileRequestDto
   ): Promise<void> {
     try {
-      return await this.saveProfileUseCase.execute(request.uid, dto);
+      console.log("save", dto);
+      return await this.avatarUrlUseCase.execute(request.uid, dto);
     } catch (e) {
       throw new Error(e.message);
     }

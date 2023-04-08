@@ -1,18 +1,9 @@
 import { Address, IAddress } from "./address";
 import { AddressId } from "./address-id";
-import { PostalCode } from "./value-object/post-code";
-import { Prefecture } from "./value-object/prefecture";
-import { AccountId } from "src/acount/domain/account-id";
+import { defaultAddress } from "src/address/domain/fake/make-fake-address";
 
 describe("Address", () => {
-  const props: IAddress = {
-    accountId: AccountId.reBuild("BAAB6A12-85F7-40E3-8414-5E9C692D3609"),
-    postalCode: new PostalCode({ value: "1000001" }),
-    prefecture: new Prefecture({ value: "東京都" }),
-    city: "千代田区",
-    town: "千代田1-1",
-    block: "千代田ビル",
-  };
+  const props: IAddress = defaultAddress;
 
   describe("オブジェクトの生成", () => {
     it("createできる", () => {

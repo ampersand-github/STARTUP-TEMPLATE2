@@ -3,7 +3,6 @@ import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "src/module/auth/auth.module";
 import { AccountModule } from "./acount/account.module";
 import { QueryServiceModule } from "src/module/query-service/query-service.module";
-import { SampleModule } from "src/sample/sample.module";
 import { ProfileModule } from "src/profile/profile.module";
 import { AddressModule } from "src/address/address.module";
 import { LoggingModule } from "src/module/logging/logging.module";
@@ -20,7 +19,6 @@ import { ExceptionModule } from "src/module/exception/exception.module";
     ExceptionModule,
     AuthModule,
     QueryServiceModule,
-    SampleModule,
     AccountModule,
     ProfileModule,
     AddressModule,
