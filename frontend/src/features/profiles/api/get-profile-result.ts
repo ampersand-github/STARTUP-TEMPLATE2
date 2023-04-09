@@ -1,15 +1,16 @@
-import { useFetchBaseWithAuth } from "src/common/api/base/use-fetch-base-with-auth";
-import { API_PROFILES } from "src/common/configs/url/api-url";
-import { responseProfileResultDto } from "src/features/profiles/interfaces/response-profile-result-dto";
+import { useBaseWithAuth } from "@common/api/base/use-base-with-auth";
+import { responseProfileResultDto } from "@features/profiles/interfaces/response-profile-result-dto";
+import { QueryKey } from "@common/configs/tan-stack-query/query-key";
+import { ApiUrl } from "@common/configs/url/api-url";
 
-export const useFetchProfileResult = () => {
-  const key = "profileResult";
-  const url = API_PROFILES + "/result";
+export const useProfileResult = () => {
+  const key = QueryKey.PROFILES_RESULT;
+  const url = ApiUrl.PROFILES_RESULT;
   const {
     data: profileResult,
     isLoading: isProfileResultLoading,
     error: profileResultError,
-  } = useFetchBaseWithAuth<responseProfileResultDto>(key, url);
+  } = useBaseWithAuth<responseProfileResultDto>(key, url);
 
   return { profileResult, isProfileResultLoading, profileResultError };
 };

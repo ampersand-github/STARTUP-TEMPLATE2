@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
-import { API_PROFILES } from "src/common/configs/url/api-url";
-import { useFetchBaseWithAuth } from "src/common/api/base/use-fetch-base-with-auth";
-import { responseProfileResultDto } from "@features/profiles/interfaces/response-profile-result-dto";
-import { firebaseAuth, storage } from "src/common/configs/firebase-config";
+import { ApiUrl } from "@common/configs/url/api-url";
+import { useBaseWithAuth } from "@common/api/base/use-base-with-auth";
+import { firebaseAuth, storage } from "@common/configs/firebase-config";
 import { getDownloadURL, ref } from "@firebase/storage";
+import { QueryKey } from "@common/configs/tan-stack-query/query-key";
+import { Result } from "@common/interface/result";
 
 export const useAvatar = () => {
-  const defaultImage = "/vercel.svg";
+  const defaultImage = "/placeholder.png";
   const [imageUrl, setImageUrl] = useState(defaultImage);
-  const key = "profileResult";
-  const url = API_PROFILES + "/result";
-  const {
-    data: profileResult,
-    isLoading: isProfileResultLoading,
-    refetch: refetchAvatar,
-  } = useFetchBaseWithAuth<responseProfileResultDto>(key, url);
+  const key = QueryKey.AVATAR_RESULT;
+  const url = ApiUrl.AVATAR_RESULT;
+  const { data, isLoading, refetch: refetchAvatar } = useBaseWithAuth<Result<string>>(key, url);
 
   useEffect(() => {
     (async () => {
-      if (isProfileResultLoading) return;
-      if (!profileResult?.value?.iconPath) return;
-      const downLoadUrl = `users/${firebaseAuth.currentUser?.uid}/public/${profileResult.value.iconPath}`;
+      if (isLoading) return;
+      if (!data?.value) {
+        setImageUrl("/person.png");
+        return;
+      }
+      const downLoadUrl = `users/${firebaseAuth.currentUser?.uid}/public/${data.value}`;
       const storageRef = ref(storage, downLoadUrl);
-      const data = await getDownloadURL(storageRef);
-      setImageUrl(data);
+      const url = await getDownloadURL(storageRef);
+      setImageUrl(url);
     })();
-  }, [profileResult, isProfileResultLoading]);
+  }, [data, isLoading]);
 
   return { imageUrl, refetchAvatar };
 };

@@ -1,52 +1,39 @@
-import { Button, Stack } from "@mui/material";
-import React, { Suspense } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
 import { IProfile } from "@features/profiles/interfaces/profile-interface";
-import { initialProfileValue } from "src/features/profiles/initial-values/initial-profile-value";
-import { ProfileTextField } from "src/common/components/elements/text-field/profile-form/profile";
-import { SizedBox } from "src/common/components/elements/space";
-import { MottoTextField } from "src/common/components/elements/text-field/profile-form/motto";
-import { UserNameTextField } from "src/common/components/elements/text-field/profile-form/user-name";
 import { saveProfile } from "@features/profiles/api/save-profile";
-import { useFetchProfileResult } from "@features/profiles/api/get-profile-result";
-import { AvatarEditor } from "@features/profiles/components/avatar-editer";
+import { useProfileResult } from "@features/profiles/api/get-profile-result";
+import { useAvatar } from "@features/profiles/api/use-avatar";
+import { uploadAvatar } from "@features/profiles/api/upload-avatar";
+import { ProfileFormPresenter } from "./index.presenter";
 
-export const ProfileFormV2 = () => {
-  const { profileResult } = useFetchProfileResult();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IProfile>({
-    defaultValues:
-      profileResult && profileResult.isOk && profileResult.value
-        ? {
-            iconPath: profileResult.value.iconPath,
-            motto: profileResult.value.motto,
-            userName: profileResult.value.nickname,
-            profile: profileResult.value.profileText,
-          }
-        : initialProfileValue,
-  });
-  const onSubmit = saveProfile;
+export const ProfileForm = () => {
+  const { profileResult } = useProfileResult();
+  const { imageUrl, refetchAvatar } = useAvatar();
+
+  const profile = (): IProfile | undefined =>
+    profileResult?.isOk && profileResult.value
+      ? {
+          iconPath: profileResult.value.iconPath,
+          motto: profileResult.value.motto,
+          profile: profileResult.value.profileText,
+          userName: profileResult.value.nickname,
+        }
+      : undefined;
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+    if (e.target.files) {
+      const images = e.target.files[0];
+      await uploadAvatar(images);
+      await refetchAvatar();
+    }
+  };
+
   return (
-    <Stack component="form" onSubmit={handleSubmit(onSubmit)}>
-      <>{JSON.stringify(profileResult)}</>
-      <Stack spacing={3} direction="row" alignItems="center">
-        <Suspense fallback={<>loading</>}>
-          <AvatarEditor />
-        </Suspense>
-        <Stack spacing={0.5} justifyContent="center" alignItems="flex-start" flexGrow={1}>
-          <UserNameTextField errors={errors} control={control} />
-          <MottoTextField errors={errors} control={control} />
-        </Stack>
-      </Stack>
-      <SizedBox height={2} />
-      <ProfileTextField errors={errors} control={control} />
-      <SizedBox height={4} />
-      <Button variant="contained" type="submit">
-        送信する
-      </Button>
-    </Stack>
+    <ProfileFormPresenter
+      imageUrl={imageUrl}
+      profile={profile()}
+      onAvatarChange={handleChange}
+      onSubmit={saveProfile}
+    />
   );
 };

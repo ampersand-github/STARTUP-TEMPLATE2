@@ -1,3 +1,4 @@
+// todo refactoring
 export interface IProfile {
   iconPath: string;
   userName: string;

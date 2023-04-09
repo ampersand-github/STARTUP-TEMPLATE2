@@ -1,7 +1,7 @@
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { TextField } from "@mui/material";
 import React from "react";
-import { IProfile } from "@/components/organisms/profile-form";
+import { IProfile } from "@features/profiles/interfaces/profile-interface";
 
 export interface IProfileTextField {
   control: Control<IProfile>;
