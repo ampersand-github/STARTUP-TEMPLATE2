@@ -3,7 +3,7 @@ const path = require("path");
 // https://dev.classmethod.jp/articles/tried-to-add-storybook-to-nextjs-project/
 module.exports = {
   typescript: { reactDocgen: false },
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/**/*.stories.tsx"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -17,7 +17,9 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@/components": path.resolve(__dirname, "../src/components"),
+      "src": path.resolve(__dirname, "../src"),
+      "@common": path.resolve(__dirname, "../src/common"),
+      "@features": path.resolve(__dirname, "../src/features"),
     };
     return config;
   },
