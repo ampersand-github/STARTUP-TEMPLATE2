@@ -8,12 +8,13 @@ import { UserNameTextField } from "@features/profiles/components/profile-form/ui
 import { MottoTextField } from "./ui/motto-text-field";
 import { AvatarEditor } from "./ui/avatar-editer";
 import { initialProfileValue } from "@features/profiles/initial-values/initial-profile-value";
+import { AxiosResponse } from "axios";
 
 interface Props {
   imageUrl: string;
   profile?: IProfile;
   onAvatarChange: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
-  onSubmit: (data: IProfile) => Promise<void>;
+  onSubmit: (data: IProfile) => Promise<AxiosResponse>;
 }
 
 export const ProfileFormPresenter = ({ imageUrl, profile, onAvatarChange, onSubmit }: Props) => {
