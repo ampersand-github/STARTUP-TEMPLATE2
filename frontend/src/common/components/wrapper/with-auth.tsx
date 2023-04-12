@@ -2,7 +2,7 @@ import { SIGN_IN_PAGE } from "@common/configs/url/page-url";
 import { useAuth } from "@common/hooks/use-auth";
 import { useRouter } from "next/router";
 import React, { ReactNode, useEffect } from "react";
-import { Loading } from "src/common/components/organisms/loading";
+import { Loading } from "@common/components/ui/loading";
 
 type Props = { children: ReactNode };
 
