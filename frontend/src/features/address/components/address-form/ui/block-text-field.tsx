@@ -1,7 +1,7 @@
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { TextField } from "@mui/material";
 import React from "react";
-import { IAddress } from "@common/components/organisms/address-form";
+import { IAddress } from "@features/address/interfaces/address-interface";
 
 export interface IBlockTextField {
   control: Control<IAddress>;

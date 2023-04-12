@@ -1,17 +1,17 @@
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { TextField } from "@mui/material";
 import React from "react";
-import { IAddress } from "@common/components/organisms/address-form";
+import { IAddress } from "@features/address/interfaces/address-interface";
 
-export interface IPrefectureTextField {
+export interface ITownTextField {
   control: Control<IAddress>;
   errors: FieldErrors<IAddress>;
 }
 
-export const PrefectureTextField = ({ control, errors }: IPrefectureTextField) => {
+export const TownTextField = ({ control, errors }: ITownTextField) => {
   return (
     <Controller
-      name="prefecture"
+      name="town"
       control={control}
       rules={{
         required: { value: true, message: "入力必須です" },
@@ -19,14 +19,14 @@ export const PrefectureTextField = ({ control, errors }: IPrefectureTextField) =
       render={({ field }) => (
         <TextField
           {...field}
-          autoComplete={"address-level1"}
-          label="都道府県"
-          placeholder="東京都"
+          autoComplete={"address-level3"}
+          label="町名以下"
+          placeholder="千代田一丁目一番地"
           type="text"
           required={true}
-          inputProps={{ maxLength: 4 }}
-          error={errors.prefecture !== undefined}
-          helperText={errors.prefecture?.message}
+          inputProps={{ maxLength: 100 }}
+          error={errors.town !== undefined}
+          helperText={errors.town?.message}
         />
       )}
     />
