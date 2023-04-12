@@ -18,5 +18,5 @@ Default.args = {
   imageUrl: "/placeholder.png",
   profile: initialProfileValue,
   onAvatarChange: async (avatar) => console.log("avatar", avatar),
-  onSubmit: async (data: IProfile) => console.log("data", data),
+  onSubmit: async (data: IProfile): Promise<void> => console.log("data", data),
 };
