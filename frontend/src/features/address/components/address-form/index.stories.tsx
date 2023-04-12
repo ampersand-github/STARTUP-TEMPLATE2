@@ -11,7 +11,7 @@ export default {
 
 const onSubmit = async (data: IAddress) => console.log("submit", data);
 
-export const Template: ComponentStory<typeof AddressFormPresenter> = (args) => {
+export const Template: ComponentStory<typeof AddressFormPresenter> = () => {
   const {
     control,
     handleSubmit,
@@ -22,7 +22,7 @@ export const Template: ComponentStory<typeof AddressFormPresenter> = (args) => {
   );
 };
 
-export const WithValue: ComponentStory<typeof AddressFormPresenter> = (args) => {
+export const WithValue: ComponentStory<typeof AddressFormPresenter> = () => {
   const {
     control,
     handleSubmit,

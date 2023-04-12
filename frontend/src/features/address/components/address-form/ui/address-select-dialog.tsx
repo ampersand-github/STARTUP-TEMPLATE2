@@ -7,8 +7,8 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { SizedBox } from "@common/components/elements/space";
-import { IAddress } from "@common/components/organisms/address-form";
+import { SizedBox } from "@common/components/ui/space";
+import { IAddress } from "@features/address/interfaces/address-interface";
 
 interface IMyDialog {
   hideModal: () => void;

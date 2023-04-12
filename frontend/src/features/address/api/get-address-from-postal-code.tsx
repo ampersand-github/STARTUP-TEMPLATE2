@@ -1,12 +1,12 @@
 import { API_FETCH_ADDRESS } from "@common/configs/url/api-url";
 import { useModal } from "react-modal-hook";
-import { AddressSelectDialog } from "@common/components/organisms/address-select-dialog";
 import React, { useEffect, useState } from "react";
 import { joinUrl } from "@common/lib/join-rul";
 import axios from "axios";
 import { axiosConfig } from "@common/configs/axios-config";
 import { useQuery } from "@tanstack/react-query";
 import { IAddress } from "../interfaces/address-interface";
+import { AddressSelectDialog } from "../components/address-form/ui/address-select-dialog";
 
 interface results {
   address1: string; // 県
