@@ -1,8 +1,8 @@
 import { IProfile } from "@features/profiles/interfaces/profile-interface";
 import { requestProfileDto } from "@features/profiles/interfaces/request-profile-dto";
-import { postBase } from "@common/api/base/post-base";
+import { postBase } from "@common/api/post-base";
 import { initialProfileValue } from "@features/profiles/initial-values/initial-profile-value";
-import { ApiUrl } from "@common/configs/url/api-url";
+import { ApiUrl } from "@common/configs/api-url";
 
 export const saveProfile = async (data: IProfile): Promise<void> => {
   // postデータの作成

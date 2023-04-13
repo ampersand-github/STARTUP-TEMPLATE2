@@ -17,6 +17,6 @@ const getFirebaseApp = () => getApps()[0] || initializeApp(config);
 const firebaseApp = getFirebaseApp();
 
 export const firestore = getFirestore(firebaseApp);
-export const storage = getStorage(firebaseApp);
-export const firebaseAuth: Auth = getAuth(firebaseApp);
-export const getToken = () => firebaseAuth.currentUser?.getIdToken();
+export const fireStorage = getStorage(firebaseApp);
+export const fireAuth: Auth = getAuth(firebaseApp);
+export const getToken = () => fireAuth.currentUser?.getIdToken();

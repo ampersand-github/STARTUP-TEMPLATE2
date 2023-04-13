@@ -4,7 +4,7 @@ import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Stack } from "@mui/material";
 import { theme } from "@common/configs/themes";
-import { SizedBox } from "@common/components/elements/space";
+import { SizedBox } from "@common/components/ui/sized-box";
 
 interface Props {
   text: string;

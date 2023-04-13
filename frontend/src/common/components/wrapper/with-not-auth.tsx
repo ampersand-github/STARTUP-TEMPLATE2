@@ -1,7 +1,7 @@
-import { useAuth } from "@common/hooks/use-auth";
 import { useRouter } from "next/router";
 import React, { ReactNode, useEffect } from "react";
 import { Loading } from "@common/components/ui/loading";
+import { useAuth } from "@features/sign";
 
 type Props = { children: ReactNode };
 

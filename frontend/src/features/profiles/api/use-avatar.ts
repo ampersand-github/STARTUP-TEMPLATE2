@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ApiUrl } from "@common/configs/url/api-url";
-import { useBaseWithAuth } from "@common/api/base/use-base-with-auth";
-import { firebaseAuth, storage } from "@common/configs/firebase-config";
+import { ApiUrl } from "@common/configs/api-url";
+import { useBaseWithAuth } from "@common/api/use-base-with-auth";
+import { fireAuth, fireStorage } from "@common/configs/firebase-config";
 import { getDownloadURL, ref } from "@firebase/storage";
-import { QueryKey } from "@common/configs/tan-stack-query/query-key";
+import { QueryKey } from "@common/configs/query-key";
 import { Result } from "@common/interface/result";
 
 export const useAvatar = () => {
@@ -20,8 +20,8 @@ export const useAvatar = () => {
         setImageUrl("/person.png");
         return;
       }
-      const downLoadUrl = `users/${firebaseAuth.currentUser?.uid}/public/${data.value}`;
-      const storageRef = ref(storage, downLoadUrl);
+      const downLoadUrl = `users/${fireAuth.currentUser?.uid}/public/${data.value}`;
+      const storageRef = ref(fireStorage, downLoadUrl);
       const url = await getDownloadURL(storageRef);
       setImageUrl(url);
     })();

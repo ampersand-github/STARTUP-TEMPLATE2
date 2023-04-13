@@ -1,10 +1,10 @@
 import { NextPage } from "next";
-import { Center } from "src/common/components/elements/center";
+import { Center } from "src/common/components/ui/center";
 
 const Custom500: NextPage = () => {
   return (
     <Center>
-      <h1>500 - Server-side error occurred</h1>
+      <h1>問題が発生しました</h1>
     </Center>
   );
 };

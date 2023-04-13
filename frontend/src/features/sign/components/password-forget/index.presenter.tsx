@@ -1,12 +1,11 @@
 import React from "react";
 import Container from "@mui/material/Container";
-import { SizedBox } from "@common/components/elements/space";
-import { SignIcon } from "@common/../../../sign-icon";
-import { theme } from "@common/configs/themes";
+import { SizedBox } from "@common/components/ui/sized-box";
 import { Button, Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { IEmail } from "@features/sign/interfaces/email-interfeace";
+import { SignIcon } from "@features/sign/ui/sign-icon";
 
 interface Props {
   control: Control<IEmail>;
@@ -20,11 +19,7 @@ export const PasswordForgetPresenter = ({ control, errors, handleSubmit }: Props
       <SizedBox height={8} />
 
       {/* ログインアイコン */}
-      <SignIcon
-        text={"パスワードの再設定"}
-        color={theme.palette.common.white}
-        backGroundColor={theme.palette.primary.main}
-      ></SignIcon>
+      <SignIcon text={"パスワードの再設定"}></SignIcon>
 
       {/* サインインフォーム */}
       <Stack component="form" noValidate onSubmit={handleSubmit} spacing={2}>

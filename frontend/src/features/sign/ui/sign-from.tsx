@@ -1,39 +1,26 @@
 import * as React from "react";
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { IUseAuth } from "@common/hooks/use-auth";
 import { useState } from "react";
 
 export interface ISignForm {
   text: string;
-  signIn?: IUseAuth["signIn"];
-  signUp?: IUseAuth["signUp"];
+  signIn?: (email: string, password: string) => Promise<void>;
+  signUp?: (email: string, password: string) => Promise<void>;
 }
 
 export const SignForm = ({ text, signIn, signUp }: ISignForm) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    if (signIn) {
-      setIsLoading(true);
-      await signIn(data.get("email") as string, data.get("password") as string);
-    }
-
-    if (signUp) {
-      setIsLoading(true);
-      await signUp(data.get("email") as string, data.get("password") as string);
-    }
-    setIsLoading(false);
+    if (signIn) await signIn(data.get("email") as string, data.get("password") as string);
+    if (signUp) await signUp(data.get("email") as string, data.get("password") as string);
   };
-
-  if (isLoading) return <CircularProgress />;
 
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

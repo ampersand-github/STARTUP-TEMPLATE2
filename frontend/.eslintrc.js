@@ -25,8 +25,15 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
+  overrides: [
+    {
+      files: ["src/features/**/*"], // featuresディレクトリはfeatureディレクトリをインポートして良い
+      rules: { "no-restricted-imports": "off"},
+    },
+  ],
   rules: {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "no-restricted-imports": ["error", { patterns: ["@features/*/*"] }], // 二階層以上のディレクトリはimportできないようにする
   },
 };

@@ -7,7 +7,7 @@ atomic designをベースにしつつ、以下の改造を加える
 
 #### organisms層をpresentationalとcontainerに分ける
 - 以下のようにファイルを分ける
-    - `organisms/index.tsx`
+    - `organisms/user-name-text-field.tsx`
     - `organisms/index.container.tsx`
     - `organisms/index.stories.ts`
 - メリット

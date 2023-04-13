@@ -7,6 +7,7 @@ import { ProfileRepository } from "./repository/profile.repository";
 import { FindOneProfileUseCase } from "./use-case/find-one-profile.use-case";
 import { SaveProfileUseCase } from "./use-case/save-profile.use-case";
 import { ResultOneProfileUseCase } from "./use-case/result-one-profile.use-case";
+import { ResultOneAvatarUseCase } from "src/profile/use-case/result-one-avatar.use-case";
 
 @Module({
   imports: [AuthModule, PrismaModule, ExceptionModule],
@@ -16,6 +17,7 @@ import { ResultOneProfileUseCase } from "./use-case/result-one-profile.use-case"
     SaveProfileUseCase,
     FindOneProfileUseCase,
     ResultOneProfileUseCase,
+    ResultOneAvatarUseCase,
   ],
   exports: [],
 })

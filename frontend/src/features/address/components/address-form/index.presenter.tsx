@@ -1,11 +1,11 @@
 import { Button, Stack } from "@mui/material";
 import { IAddress } from "@features/address/interfaces/address-interface";
-import { PostalCodeTextField } from "./ui/postcal-code-text-field";
-import { CityTextField } from "./ui/city-text-field";
-import { PrefectureTextField } from "./ui/prefecture-text-field";
-import { TownTextField } from "./ui/town-text-field";
+import { PostalCodeTextField } from "../../ui/postcal-code-text-field";
+import { CityTextField } from "../../ui/city-text-field";
+import { PrefectureTextField } from "../../ui/prefecture-text-field";
+import { TownTextField } from "../../ui/town-text-field";
 import { Control, FieldErrors } from "react-hook-form";
-import { BlockTextField } from "./ui/block-text-field";
+import { BlockTextField } from "../../ui/block-text-field";
 
 interface Props {
   control: Control<IAddress>;

@@ -1,15 +1,16 @@
 import * as React from "react";
 import { NextPage } from "next";
-import { useAuth } from "@common/hooks/use-auth";
-import { SignUpTemplate } from "src/common/components/templates/sign/sign-up-template";
-import { setup } from "@common/lib/csrf";
+import { Suspense } from "react";
+import { WithNotAuth } from "@common/components/wrapper/with-not-auth";
+import { SignUpContainer } from "@features/sign";
 
 const SignUp: NextPage = () => {
-  const { signUp } = useAuth();
-
-  return <SignUpTemplate signUp={signUp} />;
+  return (
+    <WithNotAuth>
+      <Suspense fallback={<></>}>
+        <SignUpContainer />
+      </Suspense>
+    </WithNotAuth>
+  );
 };
-export const getServerSideProps = setup(async () => {
-  return { props: {} };
-});
 export default SignUp;

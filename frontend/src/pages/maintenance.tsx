@@ -1,6 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
-import { Center } from "@common/components/elements/center";
+import { Center } from "@common/components/ui/center";
 import { Typography } from "@mui/material";
 
 const Maintenance: NextPage = () => {

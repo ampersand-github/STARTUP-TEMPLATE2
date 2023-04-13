@@ -1,7 +1,7 @@
-import { useBaseWithAuth } from "@common/api/base/use-base-with-auth";
+import { useBaseWithAuth } from "@common/api/use-base-with-auth";
 import { responseProfileResultDto } from "@features/profiles/interfaces/response-profile-result-dto";
-import { QueryKey } from "@common/configs/tan-stack-query/query-key";
-import { ApiUrl } from "@common/configs/url/api-url";
+import { QueryKey } from "@common/configs/query-key";
+import { ApiUrl } from "@common/configs/api-url";
 
 export const useProfileResult = () => {
   const key = QueryKey.PROFILES_RESULT;

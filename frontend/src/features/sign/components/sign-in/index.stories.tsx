@@ -1,17 +1,20 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { SignInPresenter } from "./index.presenter";
 
 export default {
   title: "features/sign/sign-in",
   component: SignInPresenter,
-} as ComponentMeta<typeof SignInPresenter>;
+} as Meta<typeof SignInPresenter>;
 
-const Template: ComponentStory<typeof SignInPresenter> = (args) => {
-  return <SignInPresenter />;
+const Template: StoryFn<typeof SignInPresenter> = (args) => {
+  return <SignInPresenter {...args} />;
 };
 
-// return <SignInPresenter {...args} />;
+export const Default = {
+  render: Template,
 
-export const Default = Template.bind({});
-Default.args = {};
+  args: {
+    signIn: async () => console.log("signIn"),
+  },
+};

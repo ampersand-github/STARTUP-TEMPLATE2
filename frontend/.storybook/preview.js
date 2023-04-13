@@ -1,8 +1,9 @@
 import * as nextImage from 'next/image';
 
+// Nextのimageを使うための処理
 Object.defineProperty(nextImage, 'default', {
   configurable: true,
-  value: props => <img {...props} />
+  value: props => <img alt="storybook" {...props} />
 });
 
 
@@ -16,7 +17,7 @@ export const parameters = {
       },
     ],
   },
-  layout: "centered",
+  // layout: "centered", // centeredにすると横幅が狭くなるので、やらない
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {

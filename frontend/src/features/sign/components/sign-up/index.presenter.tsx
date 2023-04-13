@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
-import { SizedBox } from "@common/components/elements/space";
+import { SizedBox } from "@common/components/ui/sized-box";
 import { SignIcon } from "@features/sign/ui/sign-icon";
 import { SignForm } from "@features/sign/ui/sign-from";
-import { LinkText } from "@common/components/elements/text/link-text";
-import { SIGN_IN_PAGE } from "@common/configs/url/page-url";
+import { LinkText } from "@common/components/ui/text/link-text";
+import { SIGN_IN_PAGE } from "@common/configs/page-url";
 
 interface Props {
   signUp: (email: string, password: string) => Promise<void>;

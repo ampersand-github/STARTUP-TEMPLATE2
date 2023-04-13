@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { MAINTENANCE_PAGE } from "@common/configs/url/page-url";
+import { MAINTENANCE_PAGE } from "@common/configs/page-url";
 
 export function middleware(request: NextRequest) {
   // console.log("middleware");

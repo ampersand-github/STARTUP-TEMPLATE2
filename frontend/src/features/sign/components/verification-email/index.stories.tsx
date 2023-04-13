@@ -1,17 +1,22 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { VerificationMailPresenter } from "./index.presenter";
 
 export default {
   title: "features/sign/verification-mail",
   component: VerificationMailPresenter,
-} as ComponentMeta<typeof VerificationMailPresenter>;
+} as Meta<typeof VerificationMailPresenter>;
 
-const Template: ComponentStory<typeof VerificationMailPresenter> = (args) => {
-  return <VerificationMailPresenter />;
+const Template: StoryFn<typeof VerificationMailPresenter> = (args) => {
+  return <VerificationMailPresenter {...args} />;
 };
 
-// return <SignInPresenter {...args} />;
+export const Default = {
+  render: Template,
 
-export const Default = Template.bind({});
-Default.args = {};
+  args: {
+    email: "abc@gmail.com",
+    reSendVerifyEmail: async () => console.log("reSendVerifyEmail"),
+    logout: async () => console.log("logout"),
+  },
+};
