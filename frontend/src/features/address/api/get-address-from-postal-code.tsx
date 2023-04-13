@@ -1,4 +1,3 @@
-import { API_FETCH_ADDRESS } from "@common/configs/api-url";
 import { useModal } from "react-modal-hook";
 import React, { useEffect, useState } from "react";
 import { joinUrl } from "@common/lib/join-rul";
@@ -7,6 +6,7 @@ import { axiosConfig } from "@common/configs/axios-config";
 import { useQuery } from "@tanstack/react-query";
 import { IAddress } from "../interfaces/address-interface";
 import { AddressSelectDialog } from "../ui/address-select-dialog";
+import { ApiUrl } from "@common/configs/api-url";
 
 interface results {
   address1: string; // 県
@@ -20,7 +20,7 @@ interface results {
 }
 export const useAddressFromPostalCode = (postalCode: string) => {
   const fetch = async (): Promise<IAddress[]> => {
-    const url = joinUrl(API_FETCH_ADDRESS, { postalCode: postalCode });
+    const url = joinUrl(ApiUrl.API_FETCH_ADDRESS, { postalCode: postalCode });
     const res = await axios.get(url, await axiosConfig());
     if (res.data.results.length === null) return [];
     return res.data.results.map((one: results) => {

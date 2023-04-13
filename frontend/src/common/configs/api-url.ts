@@ -5,4 +5,5 @@ export enum ApiUrl {
   ADDRESS = "/address",
   ADDRESS_RESULT = "/address/result",
   ACCOUNT = "/account",
+  API_FETCH_ADDRESS = `https://zipcloud.ibsnet.co.jp/api/search?zipcode={postalCode}`,
 }
