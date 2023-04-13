@@ -1,4 +1,4 @@
-const path = require("path");
+import path from 'path';
 //　Next.jsプロジェクトにStorybookを導入したときに困ったこと
 // https://dev.classmethod.jp/articles/tried-to-add-storybook-to-nextjs-project/
 module.exports = {

@@ -1,6 +1,6 @@
 import { Center, ICenter } from "@common/components/ui/center/index";
 import { Box } from "@mui/material";
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
   title: "elements/Center",
