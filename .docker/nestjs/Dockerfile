@@ -13,7 +13,7 @@ COPY --chown=node:node package*.json ./
 
 RUN npm ci
 
-COPY --chown=node:node ../.. .
+COPY --chown=node:node ../../backend .
 
 USER node
 
@@ -29,7 +29,7 @@ COPY --chown=node:node package*.json ./
 
 COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
 
-COPY --chown=node:node ../.. .
+COPY --chown=node:node ../../backend .
 
 RUN npm run build
 

@@ -21,9 +21,9 @@ services:
       - ${DB_PORT}:3306
     command: --default-authentication-plugin=mysql_native_password --innodb-use-native-aio=0
     volumes:
-      - ./.docker/mysql/db:/var/lib/mysql
-      - ./.docker/mysql/logs:/var/log/mysql
-      - ./.docker/mysql/sql:/docker-entrypoint-initdb.d
+      - .mysql/db:/var/lib/mysql
+      - .mysql/logs:/var/log/mysql
+      - .mysql/sql:/docker-entrypoint-initdb.d
 volumes:
   db-store:
 
