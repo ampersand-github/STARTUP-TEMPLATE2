@@ -38,9 +38,9 @@ CREATE TABLE `address` (
 CREATE TABLE `profiles` (
     `id` VARCHAR(191) NOT NULL,
     `icon_path` VARCHAR(191) NULL,
-    `nick_name` VARCHAR(191) NULL,
-    `motto` VARCHAR(191) NULL,
-    `profile` VARCHAR(191) NULL,
+    `nick_name` VARCHAR(191) NOT NULL,
+    `motto` VARCHAR(191) NOT NULL,
+    `profile_text` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
     `account_id` VARCHAR(191) NOT NULL,
