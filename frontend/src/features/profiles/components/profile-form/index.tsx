@@ -5,12 +5,13 @@ import { useProfileResult } from "@features/profiles/api/get-profile-result";
 import { useAvatar } from "@features/profiles/api/use-avatar";
 import { uploadAvatar } from "@features/profiles/api/upload-avatar";
 import { ProfileFormPresenter } from "./index.presenter";
+import { initialProfileValue } from "@features/profiles/initial-values/initial-profile-value";
 
 export const ProfileForm = () => {
   const { profileResult } = useProfileResult();
   const { imageUrl, refetchAvatar } = useAvatar();
 
-  const profile = (): IProfile | undefined =>
+  const profile = (): IProfile =>
     profileResult?.isOk && profileResult.value
       ? {
           iconPath: profileResult.value.iconPath,
@@ -18,12 +19,12 @@ export const ProfileForm = () => {
           profile: profileResult.value.profileText,
           userName: profileResult.value.nickname,
         }
-      : undefined;
+      : initialProfileValue;
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.target.files) {
       const images = e.target.files[0];
-      await uploadAvatar(images);
+      await uploadAvatar(profile(), images);
       await refetchAvatar();
     }
   };

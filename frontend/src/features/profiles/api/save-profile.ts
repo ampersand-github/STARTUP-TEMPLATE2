@@ -3,6 +3,7 @@ import { requestProfileDto } from "@features/profiles/interfaces/request-profile
 import { postBase } from "@common/api/post-base";
 import { initialProfileValue } from "@features/profiles/initial-values/initial-profile-value";
 import { ApiUrl } from "@common/configs/api-url";
+import { toast } from "react-toastify";
 
 export const saveProfile = async (data: IProfile): Promise<void> => {
   // postデータの作成
@@ -14,4 +15,5 @@ export const saveProfile = async (data: IProfile): Promise<void> => {
   };
 
   await postBase(ApiUrl.PROFILES, postData);
+  toast.success("プロフィールを変更しました");
 };

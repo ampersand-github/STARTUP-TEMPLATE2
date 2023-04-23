@@ -8,6 +8,7 @@ import { UserNameTextField } from "@features/profiles/ui/user-name-text-field";
 import { MottoTextField } from "../../ui/motto-text-field";
 import { AvatarEditor } from "../../ui/avatar-editer";
 import { initialProfileValue } from "@features/profiles/initial-values/initial-profile-value";
+import { toast } from "react-toastify";
 
 interface Props {
   imageUrl: string;

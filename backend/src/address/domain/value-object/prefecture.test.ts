@@ -1,4 +1,4 @@
-import { Prefecture } from "./Prefecture";
+import { Prefecture } from "./prefecture";
 
 describe("Prefecture", (): void => {
   test("オブジェクトを生成できる", () => {
