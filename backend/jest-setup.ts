@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 
 export default () => {
-  config({ path: ".env.development" });
+  config({ path: ".env" });
   process.env.TZ = "Asia/Tokyo";
 };

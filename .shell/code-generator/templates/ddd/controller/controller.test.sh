@@ -20,7 +20,7 @@ describe(\"${pascalName}Controller\", () => {
 
   beforeAll(async () => {
     // テスト前にテーブルを初期化
-    await prisma.allTruncateForMysql();
+    await prisma.allTruncate();
     // モジュールを差し込む
     const moduleRef = await createModuleRef(uid, [${pascalName}Module]);
     app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());

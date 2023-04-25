@@ -15,7 +15,6 @@ export class FirebaseService {
         // https://zenn.dev/kenta0313/articles/4793935e820b6c
         privateKey: config.get("private_key").replace(/\\n/gm, "\n"),
       };
-
       if (firebase.apps.length === 0) {
         this.firebaseApp = firebase.initializeApp({
           credential: firebase.credential.cert(serviceAccount),

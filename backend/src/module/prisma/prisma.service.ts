@@ -13,20 +13,21 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     });
   }
 
-  async allTruncateForMysql() {
-    const allProperties = Object.keys(this);
-    const modelNames = allProperties.filter(
-      (x) => !(typeof x === "string" && (x.startsWith("$") || x.startsWith("_")))
-    );
+  async allTruncate() {
+    const tableNames = await this.$queryRaw<
+      Array<{ tablename: string }>
+    >`SELECT tablename FROM pg_tables WHERE schemaname='public'`;
 
-    // 外部キーを無効化
-    await this.$queryRaw`SET FOREIGN_KEY_CHECKS=0`;
+    const tables = tableNames
+      .map(({ tablename }) => tablename)
+      .filter((name) => name !== "_prisma_migrations")
+      .map((name) => `"public"."${name}"`)
+      .join(", ");
 
-    for (const modelName of modelNames) {
-      const query = `TRUNCATE TABLE ${modelName}`;
-      await this.$queryRawUnsafe(query);
+    try {
+      await this.$executeRawUnsafe(`TRUNCATE TABLE ${tables} CASCADE;`);
+    } catch (error) {
+      console.log({ error });
     }
-    // 外部キーを再度有効化
-    await this.$queryRaw`SET FOREIGN_KEY_CHECKS=1`;
   }
 }

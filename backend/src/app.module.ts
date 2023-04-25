@@ -13,7 +13,7 @@ import { ExceptionModule } from "src/module/exception/exception.module";
     ConfigModule.forRoot({
       // 全てのmoduleで使用できるように
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
+      envFilePath: `.env`,
     }),
     LoggingModule,
     ExceptionModule,

@@ -5,6 +5,7 @@ import helmet from "@fastify/helmet";
 import fastifyCsrf from "@fastify/csrf-protection";
 import { LoggingService } from "src/module/logging/logging.service";
 import { AllExceptionFilter } from "src/module/exception/all-exception.filter";
+import * as process from "process";
 
 async function bootstrap() {
   // const isDev = process.env.NODE_ENV === "development";
@@ -28,7 +29,7 @@ async function bootstrap() {
   await app.register(fastifyCsrf);
 
   // アプリケーション
-  await app.listen(3011, "0.0.0.0");
+  await app.listen(process.env.PORT || 3011, "0.0.0.0");
 }
 
 bootstrap();
