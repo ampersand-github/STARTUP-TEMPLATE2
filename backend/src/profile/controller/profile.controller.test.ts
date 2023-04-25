@@ -10,7 +10,7 @@ describe("ProfileController", () => {
 
   beforeAll(async () => {
     // テスト前にテーブルを初期化
-    await prisma.allTruncateForMysql();
+    await prisma.allTruncate();
     // モジュールを差し込む
     const moduleRef = await createModuleRef(uid, [ProfileModule]);
     app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());

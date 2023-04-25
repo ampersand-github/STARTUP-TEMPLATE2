@@ -22,7 +22,7 @@ describe("AddressController", () => {
 
   beforeAll(async () => {
     // テスト前にテーブルを初期化
-    await prisma.allTruncateForMysql();
+    await prisma.allTruncate();
     // モジュールを差し込む
     const moduleRef = await createModuleRef(uid, [AddressModule]);
     app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
