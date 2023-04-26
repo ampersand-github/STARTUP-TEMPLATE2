@@ -1,0 +1,43 @@
+steps:
+
+  # ビルド
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '--no-cache',
+      '-t', '${_REGISTRY}',
+       '-f', 'Dockerfile',
+      '.'
+    ]
+    id: Build
+
+  # プッシュ
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGISTRY}']
+    id: Push
+
+  # デプロイ
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run', 'deploy', '${_DEPLOY}',
+      '--image', '${_REGISTRY}',
+      '--region', 'asia-northeast1',
+      '--platform', 'managed',
+      '--allow-unauthenticated'
+    ]
+    id: Deploy
+
+images:
+  - ${_REGISTRY}
+
+substitutions:
+  _IMAGE_NAME: 'frontend-docker'
+  _DEPLOY: 'frontend-deploy'
+  _REGISTRY: 'asia.gcr.io/${PROJECT_ID}/${_IMAGE_NAME}'
+
+options:
+  dynamic_substitutions: true # これを追加すると、substitutionsが動的になる
+  substitution_option: 'ALLOW_LOOSE'
+
+
+# gcloud builds submit --config cloudbuild.yaml
