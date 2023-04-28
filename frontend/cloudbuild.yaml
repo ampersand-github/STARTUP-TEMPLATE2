@@ -5,8 +5,16 @@ steps:
     args: [
       'build',
       '--no-cache',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_API_KEY=${_NEXT_PUBLIC_FIREBASE_API_KEY}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${_NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_PROJECT_ID=${_NEXT_PUBLIC_FIREBASE_PROJECT_ID}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${_NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${_NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_APP_ID=${_NEXT_PUBLIC_FIREBASE_APP_ID}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${_NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}',
+      '--build-arg','NEXT_PUBLIC_FIREBASE_DATABASE_URL=${_NEXT_PUBLIC_FIREBASE_DATABASE_URL}',
       '-t', '${_REGISTRY}',
-       '-f', 'Dockerfile',
+      '-f', 'Dockerfile',
       '.'
     ]
     id: Build
@@ -38,6 +46,3 @@ substitutions:
 options:
   dynamic_substitutions: true # これを追加すると、substitutionsが動的になる
   substitution_option: 'ALLOW_LOOSE'
-
-
-# gcloud builds submit --config cloudbuild.yaml
