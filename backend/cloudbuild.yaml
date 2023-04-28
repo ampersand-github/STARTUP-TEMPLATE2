@@ -1,0 +1,47 @@
+steps:
+
+  # ビルド
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '--no-cache',
+      '--build-arg','PORT=${_PORT}',
+      '--build-arg','project_id=${_PROJECT_ID}',
+      '--build-arg','private_key=${_PRIVATE_KEY}',
+      '--build-arg','client_email=${_CLIENT_EMAIL}',
+      '--build-arg','origin=${_ORIGIN}',
+      '--build-arg','DATABASE_URL=${_DATABASE_URL}',
+      '-t', '${_REGISTRY}',
+      '-f', 'Dockerfile',
+      '.'
+    ]
+    id: Build
+
+  # プッシュ
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGISTRY}']
+    id: Push
+
+  # デプロイ
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run', 'deploy', '${_DEPLOY}',
+      '--image', '${_REGISTRY}',
+      '--region', 'asia-northeast1',
+      '--platform', 'managed',
+      '--allow-unauthenticated',
+      '--add-cloudsql-instances', 'startup-template2-stagin-79af5:asia-northeast1:startup-template2-db'
+    ]
+    id: Deploy
+
+images:
+  - ${_REGISTRY}
+
+substitutions:
+  _IMAGE_NAME: 'backend-docker'
+  _DEPLOY: 'backend-deploy'
+  _REGISTRY: 'asia.gcr.io/${PROJECT_ID}/${_IMAGE_NAME}'
+
+options:
+  dynamic_substitutions: true # これを追加すると、substitutionsが動的になる
+  substitution_option: 'ALLOW_LOOSE'
