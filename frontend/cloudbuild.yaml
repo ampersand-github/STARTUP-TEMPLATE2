@@ -13,6 +13,7 @@ steps:
       '--build-arg','NEXT_PUBLIC_FIREBASE_APP_ID=${_NEXT_PUBLIC_FIREBASE_APP_ID}',
       '--build-arg','NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${_NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}',
       '--build-arg','NEXT_PUBLIC_FIREBASE_DATABASE_URL=${_NEXT_PUBLIC_FIREBASE_DATABASE_URL}',
+      '--build-arg','NEXT_PUBLIC_BACKEND_URL=${_NEXT_PUBLIC_BACKEND_URL}',
       '-t', '${_REGISTRY}',
       '-f', 'Dockerfile',
       '.'

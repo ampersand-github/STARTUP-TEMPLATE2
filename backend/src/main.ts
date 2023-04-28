@@ -8,8 +8,6 @@ import { AllExceptionFilter } from "src/module/exception/all-exception.filter";
 import * as process from "process";
 
 async function bootstrap() {
-  // const isDev = process.env.NODE_ENV === "development";
-
   const fastify = new FastifyAdapter();
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, fastify);
 
@@ -24,7 +22,7 @@ async function bootstrap() {
   // セキュリティ
   await app.register(helmet);
   app.enableCors({
-    origin: "http://localhost:3010", //アクセス許可するオリジン
+    origin: process.env.origin, //アクセス許可するオリジン
   });
   await app.register(fastifyCsrf);
 
