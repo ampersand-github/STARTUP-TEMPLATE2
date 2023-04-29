@@ -15,8 +15,8 @@ steps:
       '--build-arg','NEXT_PUBLIC_FIREBASE_DATABASE_URL=${_NEXT_PUBLIC_FIREBASE_DATABASE_URL}',
       '--build-arg','NEXT_PUBLIC_BACKEND_URL=${_NEXT_PUBLIC_BACKEND_URL}',
       '-t', '${_REGISTRY}',
-      '-f', 'Dockerfile',
-      '.'
+      '-f', './frontend/Dockerfile',
+      './frontend/'
     ]
     id: Build
 
