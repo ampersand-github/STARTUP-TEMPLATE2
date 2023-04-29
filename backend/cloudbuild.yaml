@@ -13,7 +13,7 @@ steps:
       '--build-arg','DATABASE_URL=${_DATABASE_URL}',
       '-t', '${_REGISTRY}',
       '-f', 'Dockerfile',
-      '.'
+      './backend/'
     ]
     id: Build
 
