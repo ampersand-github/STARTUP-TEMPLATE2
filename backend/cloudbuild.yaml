@@ -12,7 +12,7 @@ steps:
       '--build-arg','ORIGIN=${_ORIGIN}',
       '--build-arg','DATABASE_URL=${_DATABASE_URL}',
       '-t', '${_REGISTRY}',
-      '-f', './backend/.deploy/Dockerfile',
+      '-f', './backend/Dockerfile',
       './backend/'
     ]
     id: Build
