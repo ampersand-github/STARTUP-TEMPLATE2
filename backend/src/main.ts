@@ -22,7 +22,7 @@ async function bootstrap() {
   // セキュリティ
   await app.register(helmet);
   app.enableCors({
-    origin: process.env.origin, //アクセス許可するオリジン
+    origin: process.env.ORIGIN, //アクセス許可するオリジン
   });
   await app.register(fastifyCsrf);
 

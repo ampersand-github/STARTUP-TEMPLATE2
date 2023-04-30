@@ -22,12 +22,12 @@ COPY --from=builder /app/prisma/ ./prisma/
 
 ARG PORT
 ENV PORT=$PORT
-ARG project_id
-ENV project_id=$project_id
-ARG private_key
-ENV private_key=$private_key
-ARG client_email
-ENV client_email=$client_email
+ARG PROJECT_ID
+ENV PROJECT_ID=$PROJECT_ID
+ARG PRIVATE_KEY
+ENV PRIVATE_KEY=$PRIVATE_KEY
+ARG CLIENT_EMAIL
+ENV CLIENT_EMAIL=$CLIENT_EMAIL
 ARG origin
 ENV origin=$origin
 ARG databaseURL
