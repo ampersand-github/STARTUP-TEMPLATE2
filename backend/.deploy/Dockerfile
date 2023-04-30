@@ -2,10 +2,10 @@ FROM node:19-alpine AS builder
 ENV NODE_ENV=development
 WORKDIR /app
 COPY package*.json ./
-COPY prisma ./prisma
+COPY ../prisma ./prisma
 RUN npm ci
 RUN npx prisma generate
-COPY . .
+COPY .. .
 
 RUN npm run build
 
