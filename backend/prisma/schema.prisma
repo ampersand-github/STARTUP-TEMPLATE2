@@ -20,12 +20,13 @@ model samples {
 }
 
 model accounts {
-  id         String    @id
-  email      String    @unique
-  create_at  DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  id         String     @id
+  email      String     @unique
+  create_at  DateTime   @default(now())
+  updated_at DateTime   @updatedAt
   address    address?
   profiles   profiles?
+  profiles2  profiles2?
 }
 
 model address {
@@ -53,4 +54,13 @@ model profiles {
   //
   account      accounts @relation(fields: [account_id], references: [id])
   account_id   String   @unique
+}
+
+model profiles2 {
+  id         String   @id
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  //
+  account    accounts @relation(fields: [account_id], references: [id])
+  account_id String   @unique
 }
